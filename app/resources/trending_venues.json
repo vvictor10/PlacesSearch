@@ -1,0 +1,771 @@
+{
+  "meta": {
+    "code": 200,
+    "requestId": "5adb9dc3dd5797574033e9de"
+  },
+  "response": {
+    "venues": [
+      {
+        "id": "42911d00f964a520f5231fe3",
+        "name": "New York Penn Station",
+        "location": {
+          "address": "1 Penn Plz",
+          "crossStreet": "btwn W 31st & W 33rd St",
+          "lat": 40.75058091272541,
+          "lng": -73.99261863275491,
+          "distance": 631,
+          "postalCode": "10001",
+          "cc": "US",
+          "neighborhood": "Chelsea",
+          "city": "New York",
+          "state": "NY",
+          "country": "United States",
+          "formattedAddress": [
+            "1 Penn Plz (btwn W 31st & W 33rd St)",
+            "New York, NY 10001",
+            "United States"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d129951735",
+            "name": "Train Station",
+            "pluralName": "Train Stations",
+            "shortName": "Train Station",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/travel/trainstation_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "venuePage": {
+          "id": "85006792"
+        }
+      },
+      {
+        "id": "40f1d480f964a5206a0a1fe3",
+        "name": "High Line",
+        "location": {
+          "address": "btwn Gansevoort & W 34th St",
+          "crossStreet": "btwn 10th & 12th Ave",
+          "lat": 40.746825,
+          "lng": -74.005507,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 40.746825,
+              "lng": -74.005507
+            }
+          ],
+          "distance": 1679,
+          "postalCode": "10011",
+          "cc": "US",
+          "city": "New York",
+          "state": "NY",
+          "country": "United States",
+          "formattedAddress": [
+            "btwn Gansevoort & W 34th St (btwn 10th & 12th Ave)",
+            "New York, NY 10011",
+            "United States"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d163941735",
+            "name": "Park",
+            "pluralName": "Parks",
+            "shortName": "Park",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/parks_outdoors/park_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ]
+      },
+      {
+        "id": "42829c80f964a5206a221fe3",
+        "name": "Grand Central Terminal",
+        "location": {
+          "address": "87 E 42nd St",
+          "crossStreet": "btwn Vanderbilt & Park Ave",
+          "lat": 40.752814335081645,
+          "lng": -73.9771230895226,
+          "distance": 874,
+          "postalCode": "10017",
+          "cc": "US",
+          "city": "New York",
+          "state": "NY",
+          "country": "United States",
+          "formattedAddress": [
+            "87 E 42nd St (btwn Vanderbilt & Park Ave)",
+            "New York, NY 10017",
+            "United States"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d129951735",
+            "name": "Train Station",
+            "pluralName": "Train Stations",
+            "shortName": "Train Station",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/travel/trainstation_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "venuePage": {
+          "id": "91385129"
+        }
+      },
+      {
+        "id": "49c27575f964a520f1551fe3",
+        "name": "Union Square Greenmarket",
+        "location": {
+          "address": "1 Union Sq W",
+          "crossStreet": "btwn 15th & 17th St",
+          "lat": 40.73660421361564,
+          "lng": -73.99040342059492,
+          "distance": 1371,
+          "postalCode": "10003",
+          "cc": "US",
+          "neighborhood": "Union Square",
+          "city": "New York",
+          "state": "NY",
+          "country": "United States",
+          "formattedAddress": [
+            "1 Union Sq W (btwn 15th & 17th St)",
+            "New York, NY 10003",
+            "United States"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d1fa941735",
+            "name": "Farmers Market",
+            "pluralName": "Farmers Markets",
+            "shortName": "Farmer's Market",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/shops/food_farmersmarket_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "venuePage": {
+          "id": "32897601"
+        }
+      },
+      {
+        "id": "49b7ed6df964a52030531fe3",
+        "name": "Times Square",
+        "location": {
+          "address": "Broadway & 7th Ave",
+          "crossStreet": "btwn 42nd & 47th St",
+          "lat": 40.75714496430642,
+          "lng": -73.98604178822987,
+          "distance": 973,
+          "postalCode": "10036",
+          "cc": "US",
+          "city": "New York",
+          "state": "NY",
+          "country": "United States",
+          "formattedAddress": [
+            "Broadway & 7th Ave (btwn 42nd & 47th St)",
+            "New York, NY 10036",
+            "United States"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d164941735",
+            "name": "Plaza",
+            "pluralName": "Plazas",
+            "shortName": "Plaza",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/parks_outdoors/plaza_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ]
+      },
+      {
+        "id": "3fd66200f964a520d7f11ee3",
+        "name": "Bryant Park",
+        "location": {
+          "address": "E 42nd St",
+          "crossStreet": "btwn 5th & 6th Ave",
+          "lat": 40.75374967292062,
+          "lng": -73.98379206543375,
+          "distance": 616,
+          "postalCode": "10018",
+          "cc": "US",
+          "neighborhood": "Midtown",
+          "city": "New York",
+          "state": "NY",
+          "country": "United States",
+          "formattedAddress": [
+            "E 42nd St (btwn 5th & 6th Ave)",
+            "New York, NY 10018",
+            "United States"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d163941735",
+            "name": "Park",
+            "pluralName": "Parks",
+            "shortName": "Park",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/parks_outdoors/park_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "delivery": {
+          "id": "298339",
+          "url": "https://www.seamless.com/menu/calle-dao-bryant-park-38-w-39th-st-new-york/298339?affiliate=1131&utm_source=foursquare-affiliate-network&utm_medium=affiliate&utm_campaign=1131&utm_content=298339",
+          "provider": {
+            "name": "seamless",
+            "icon": {
+              "prefix": "https://igx.4sqi.net/img/general/cap/",
+              "sizes": [
+                40,
+                50
+              ],
+              "name": "/delivery_provider_seamless_20180129.png"
+            }
+          }
+        }
+      },
+      {
+        "id": "436d4780f964a520bd291fe3",
+        "name": "Metropolitan Pavilion",
+        "location": {
+          "address": "125 W 18th St",
+          "crossStreet": "btwn 6th & 7th Ave",
+          "lat": 40.74046346511098,
+          "lng": -73.99583236656518,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 40.74046346511098,
+              "lng": -73.99583236656518
+            }
+          ],
+          "distance": 1229,
+          "postalCode": "10011",
+          "cc": "US",
+          "city": "New York",
+          "state": "NY",
+          "country": "United States",
+          "formattedAddress": [
+            "125 W 18th St (btwn 6th & 7th Ave)",
+            "New York, NY 10011",
+            "United States"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d171941735",
+            "name": "Event Space",
+            "pluralName": "Event Spaces",
+            "shortName": "Event Space",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/building/eventspace_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "venuePage": {
+          "id": "39564378"
+        }
+      },
+      {
+        "id": "4283ee00f964a5209d221fe3",
+        "name": "Jacob K. Javits Convention Center",
+        "location": {
+          "address": "655 W 34th St",
+          "crossStreet": "at 11th Ave",
+          "lat": 40.75722123047448,
+          "lng": -74.00157678148989,
+          "distance": 1660,
+          "postalCode": "10001",
+          "cc": "US",
+          "city": "New York",
+          "state": "NY",
+          "country": "United States",
+          "formattedAddress": [
+            "655 W 34th St (at 11th Ave)",
+            "New York, NY 10001",
+            "United States"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d1ff931735",
+            "name": "Convention Center",
+            "pluralName": "Convention Centers",
+            "shortName": "Convention Center",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/building/conventioncenter_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "venuePage": {
+          "id": "36675064"
+        }
+      },
+      {
+        "id": "4c225ae47e85c9283ee5bb21",
+        "name": "Trader Joe's",
+        "location": {
+          "address": "675 6th Ave",
+          "crossStreet": "W 21st St",
+          "lat": 40.74191453754941,
+          "lng": -73.99389088153839,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 40.74191453754941,
+              "lng": -73.99389088153839
+            }
+          ],
+          "distance": 999,
+          "postalCode": "10010",
+          "cc": "US",
+          "city": "New York",
+          "state": "NY",
+          "country": "United States",
+          "formattedAddress": [
+            "675 6th Ave (W 21st St)",
+            "New York, NY 10010",
+            "United States"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d118951735",
+            "name": "Grocery Store",
+            "pluralName": "Grocery Stores",
+            "shortName": "Grocery Store",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/shops/food_grocery_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ]
+      },
+      {
+        "id": "43a72ba0f964a520672c1fe3",
+        "name": "Regal Cinemas Union Square 14",
+        "location": {
+          "address": "850 Broadway",
+          "lat": 40.734137,
+          "lng": -73.990753,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 40.734137,
+              "lng": -73.990753
+            }
+          ],
+          "distance": 1643,
+          "postalCode": "10003",
+          "cc": "US",
+          "city": "New York",
+          "state": "NY",
+          "country": "United States",
+          "formattedAddress": [
+            "850 Broadway",
+            "New York, NY 10003",
+            "United States"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d17f941735",
+            "name": "Movie Theater",
+            "pluralName": "Movie Theaters",
+            "shortName": "Movie Theater",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/arts_entertainment/movietheater_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "events": {
+          "count": 13,
+          "summary": "13 movies"
+        }
+      },
+      {
+        "id": "453cacc7f964a520153c1fe3",
+        "name": "AMC Loews Kips Bay 15",
+        "location": {
+          "address": "570 2nd Ave",
+          "crossStreet": "btwn 30th & 31st St",
+          "lat": 40.742971591696474,
+          "lng": -73.9771919613682,
+          "distance": 938,
+          "postalCode": "10016",
+          "cc": "US",
+          "city": "New York",
+          "state": "NY",
+          "country": "United States",
+          "formattedAddress": [
+            "570 2nd Ave (btwn 30th & 31st St)",
+            "New York, NY 10016",
+            "United States"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d17f941735",
+            "name": "Movie Theater",
+            "pluralName": "Movie Theaters",
+            "shortName": "Movie Theater",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/arts_entertainment/movietheater_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "events": {
+          "count": 27,
+          "summary": "27 movies"
+        }
+      },
+      {
+        "id": "41390580f964a520dc1a1fe3",
+        "name": "Chelsea Market",
+        "location": {
+          "address": "75 9th Ave",
+          "crossStreet": "btwn W 15th & W 16th St",
+          "lat": 40.74220260344642,
+          "lng": -74.00582902959194,
+          "distance": 1832,
+          "postalCode": "10011",
+          "cc": "US",
+          "city": "New York",
+          "state": "NY",
+          "country": "United States",
+          "formattedAddress": [
+            "75 9th Ave (btwn W 15th & W 16th St)",
+            "New York, NY 10011",
+            "United States"
+          ]
+        },
+        "categories": [
+          {
+            "id": "50be8ee891d4fa8dcc7199a7",
+            "name": "Market",
+            "pluralName": "Markets",
+            "shortName": "Market",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/shops/market_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "venuePage": {
+          "id": "76783324"
+        }
+      },
+      {
+        "id": "3fd66200f964a520def11ee3",
+        "name": "Union Square Park",
+        "location": {
+          "address": "btwn Broadway & Union Sq E",
+          "crossStreet": "btwn E 14th & E 17th St",
+          "lat": 40.73533159523701,
+          "lng": -73.99086827293576,
+          "distance": 1518,
+          "postalCode": "10003",
+          "cc": "US",
+          "city": "New York",
+          "state": "NY",
+          "country": "United States",
+          "formattedAddress": [
+            "btwn Broadway & Union Sq E (btwn E 14th & E 17th St)",
+            "New York, NY 10003",
+            "United States"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d163941735",
+            "name": "Park",
+            "pluralName": "Parks",
+            "shortName": "Park",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/parks_outdoors/park_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ]
+      },
+      {
+        "id": "4af5a46af964a520b5fa21e3",
+        "name": "Museum of Modern Art (MoMA)",
+        "location": {
+          "address": "11 W 53rd St",
+          "crossStreet": "btwn 5th & 6th Ave",
+          "lat": 40.76141278917594,
+          "lng": -73.97693369182005,
+          "distance": 1626,
+          "postalCode": "10019",
+          "cc": "US",
+          "city": "New York",
+          "state": "NY",
+          "country": "United States",
+          "formattedAddress": [
+            "11 W 53rd St (btwn 5th & 6th Ave)",
+            "New York, NY 10019",
+            "United States"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d18f941735",
+            "name": "Art Museum",
+            "pluralName": "Art Museums",
+            "shortName": "Art Museum",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/arts_entertainment/museum_art_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ]
+      },
+      {
+        "id": "40afe980f964a5203bf31ee3",
+        "name": "AMC Empire 25",
+        "location": {
+          "address": "234 W 42nd St",
+          "crossStreet": "btwn 7th & 8th Ave",
+          "lat": 40.756875576903305,
+          "lng": -73.98906050750634,
+          "distance": 985,
+          "postalCode": "10036",
+          "cc": "US",
+          "city": "New York",
+          "state": "NY",
+          "country": "United States",
+          "formattedAddress": [
+            "234 W 42nd St (btwn 7th & 8th Ave)",
+            "New York, NY 10036",
+            "United States"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d17f941735",
+            "name": "Movie Theater",
+            "pluralName": "Movie Theaters",
+            "shortName": "Movie Theater",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/arts_entertainment/movietheater_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "events": {
+          "count": 27,
+          "summary": "27 movies"
+        }
+      },
+      {
+        "id": "40b68100f964a5207d001fe3",
+        "name": "Madison Square Park",
+        "location": {
+          "address": "Broadway & Madison Ave",
+          "lat": 40.74226204193276,
+          "lng": -73.98800611495972,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 40.74226204193276,
+              "lng": -73.98800611495972
+            }
+          ],
+          "distance": 710,
+          "postalCode": "10010",
+          "cc": "US",
+          "city": "New York",
+          "state": "NY",
+          "country": "United States",
+          "formattedAddress": [
+            "Broadway & Madison Ave",
+            "New York, NY 10010",
+            "United States"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d163941735",
+            "name": "Park",
+            "pluralName": "Parks",
+            "shortName": "Park",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/parks_outdoors/park_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ]
+      },
+      {
+        "id": "4a4138ebf964a520f9a41fe3",
+        "name": "Cinépolis Chelsea",
+        "location": {
+          "address": "260 W 23rd St",
+          "crossStreet": "8th Ave",
+          "lat": 40.744743601214104,
+          "lng": -73.99816228988541,
+          "distance": 1127,
+          "postalCode": "10011",
+          "cc": "US",
+          "city": "New York",
+          "state": "NY",
+          "country": "United States",
+          "formattedAddress": [
+            "260 W 23rd St (8th Ave)",
+            "New York, NY 10011",
+            "United States"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d17f941735",
+            "name": "Movie Theater",
+            "pluralName": "Movie Theaters",
+            "shortName": "Movie Theater",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/arts_entertainment/movietheater_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "events": {
+          "count": 1,
+          "summary": "The Rocky Horror Picture Show",
+          "items": [
+            {
+              "id": "5243a8974dcb51f0cf56acc5",
+              "name": "The Rocky Horror Picture Show",
+              "categories": [
+                {
+                  "id": "4dfb90c6bd413dd705e8f897",
+                  "name": "Movie",
+                  "pluralName": "Movies",
+                  "shortName": "Movie",
+                  "icon": {
+                    "prefix": "https://ss3.4sqi.net/img/categories_v2/arts_entertainment/movietheater_",
+                    "suffix": ".png"
+                  },
+                  "primary": true
+                }
+              ],
+              "allDay": true,
+              "date": 1380254400,
+              "timeZone": "America/New_York",
+              "summary": "11:59pm",
+              "text": "A loving couple, a few lost monsters and a sweet transvestite from transsexual Transylvania sing and dance through a campy, sloppy salute to horror movies and sexual liberation. Bring your sense of humor. And some toast.",
+              "images": [
+                "https://playfoursquare.s3.amazonaws.com/events/images/cinemasource/000074h1.jpg"
+              ],
+              "stats": {
+                "checkinsCount": 168,
+                "usersCount": 155
+              },
+              "participants": [
+                {
+                  "participant": {
+                    "id": "4e132e6abd41026cd50e8d6e",
+                    "displayName": "The Rocky Horror Picture Show",
+                    "images": [
+                      "https://playfoursquare.s3.amazonaws.com/events/images/cinemasource/000074h1.jpg",
+                      "https://playfoursquare.s3.amazonaws.com/events/images/cinemasource/000074h2.jpg",
+                      "https://playfoursquare.s3.amazonaws.com/events/images/cinemasource/000074h3.jpg",
+                      "https://playfoursquare.s3.amazonaws.com/events/images/cinemasource/000074h4.jpg",
+                      "https://playfoursquare.s3.amazonaws.com/events/images/cinemasource/000074h5.jpg"
+                    ],
+                    "totalEvents": 0
+                  },
+                  "role": "movie"
+                }
+              ],
+              "genres": "Comedy, Musical",
+              "rating": "R",
+              "runningTime": "100"
+            }
+          ]
+        },
+        "venuePage": {
+          "id": "53510156"
+        }
+      },
+      {
+        "id": "49e330a9f964a52069621fe3",
+        "name": "SVA Theatre",
+        "location": {
+          "address": "333 W 23rd St",
+          "crossStreet": "btwn 8th & 9th Ave",
+          "lat": 40.74613863316155,
+          "lng": -73.99987815125853,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 40.74613863316155,
+              "lng": -73.99987815125853
+            }
+          ],
+          "distance": 1221,
+          "postalCode": "10011",
+          "cc": "US",
+          "city": "New York",
+          "state": "NY",
+          "country": "United States",
+          "formattedAddress": [
+            "333 W 23rd St (btwn 8th & 9th Ave)",
+            "New York, NY 10011",
+            "United States"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d1ac941735",
+            "name": "College Theater",
+            "pluralName": "College Theaters",
+            "shortName": "Theater",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/arts_entertainment/performingarts_theater_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "venuePage": {
+          "id": "48262399"
+        }
+      }
+    ]
+  }
+}

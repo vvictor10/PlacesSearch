@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Seattle Place Search</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="search_hint">What are you looking for?</string>
+
+    <string name="search_no_results_response">Sorry, we couldn\'t find any matches for \"%s\"</string>
+
+</resources>

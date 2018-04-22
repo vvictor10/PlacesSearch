@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/venue_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="@drawable/ripple_effect">
+
+    <ImageView
+        android:id="@+id/venue_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="16dp" />
+
+    <LinearLayout
+        android:id="@+id/venue_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@id/venue_image"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/venue_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Venue Name"
+            android:textColor="@color/black_1"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/category_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Venue Category" />
+
+        <TextView
+            android:id="@+id/distance_to_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="8 miles" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/favorite_status"
+        style="@style/wrap"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:clickable="true"
+        android:padding="16dp"
+        android:src="@drawable/heart_active" />
+
+    <ImageView
+        android:id="@+id/non_favorite_status"
+        style="@style/wrap"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:clickable="true"
+        android:padding="16dp"
+        android:src="@drawable/heart_inactive" />
+
+    <View
+        style="@style/list_separator"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/venue_image" />
+
+</RelativeLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:gravity="center"
+    style="@style/wrap" >
+
+    <View
+        android:id="@+id/square_1"
+        android:layout_height="@dimen/loading_indicator_square_small"
+        android:layout_width="@dimen/loading_indicator_square_small"
+        android:src="@drawable/loading_indicator_square"/>
+
+    <View
+        android:id="@+id/square_2"
+        android:layout_height="@dimen/loading_indicator_square_small"
+        android:layout_width="@dimen/loading_indicator_square_small"
+        android:src="@drawable/loading_indicator_square"
+        android:layout_marginLeft="@dimen/loading_indicator_square_small"
+        android:layout_marginRight="@dimen/loading_indicator_square_small"/>
+
+    <View
+        android:id="@+id/square_3"
+        android:layout_height="@dimen/loading_indicator_square_small"
+        android:layout_width="@dimen/loading_indicator_square_small"
+        android:src="@drawable/loading_indicator_square"/>
+
+</LinearLayout>
