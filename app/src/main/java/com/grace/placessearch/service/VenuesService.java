@@ -16,7 +16,7 @@ public interface VenuesService {
     @GET("venues/trending")
     Observable<Result<VenuesResponse>> trendingVenues();
 
-    @GET("venues/search")
+    @GET("venues/search?intent=checkin&limit=25")
     Observable<Result<VenuesResponse>> search(@Query("query") String queryTerm);
 
 }

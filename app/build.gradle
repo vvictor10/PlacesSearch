@@ -100,8 +100,8 @@ dependencies {
 
 }
 
+// Store all build props as env props for ease of use
 def updateProjectEnvVars(Map<String, String> projectEnv, Properties placesSearchProps) {
-
     try {
 
         projectEnv.put("foursquareapiclientid", placesSearchProps.getProperty("foursquareapiclientid"))

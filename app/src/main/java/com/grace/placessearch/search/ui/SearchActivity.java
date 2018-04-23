@@ -176,6 +176,10 @@ public class SearchActivity extends BaseNavigationActivity implements SearchCont
 
     @OnClick(R.id.search_icon)
     public void onSearchIconClick() {
+        String searchEditTextInput = searchEditText.getText().toString().trim();
+        if (searchEditTextInput.equals(searchString)) {
+            return;
+        }
         doSearch(searchEditText.getText().toString().trim());
     }
 

@@ -49,26 +49,22 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
 
     @Override
     public int getItemCount() {
-        Timber.i("Data size %d", data.size());
         return data.size();
     }
 
     @Override
     public VenueViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Timber.i("called");
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         return new VenueViewHolder(inflater.inflate(R.layout.list_item_venue, parent, false));
     }
 
     @Override
     public void onBindViewHolder(VenueViewHolder holder, int position) {
-        Timber.i("position %d", position);
         holder.bind(data.get(position), listener, picasso, placesPreferenceManager);
     }
 
     public void updateData(List<Venue> batches) {
         this.data = new ArrayList<>(batches);
-        Timber.i("data size %d", data.size());
         notifyDataSetChanged();
     }
 
@@ -107,8 +103,6 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
 
             isFavorite = false;
 
-            Timber.i("Binding data for venue - %s", data.getName());
-
             venueName.setText(data.getName());
 
             if (data.getCategories().size() >= 1) {
@@ -117,7 +111,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
                 categoryName.setText("Not Available");
             }
 
-            distanceToCenter.setText(PlacesSearchUtil.getDistanceInMiles(data));
+            distanceToCenter.setText(PlacesSearchUtil.getDistanceInMiles(data.getLocation()));
 
             loadImage(venueImage, data, picasso);
 
@@ -191,16 +185,16 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
             favoriteStatusImage.setOnClickListener(onClickListener);
         }
 
-        private void animateFavoriteStatus(boolean isInitAnimation, View viewToDisplay, final View viewToHide) {
-            if (viewToHide.getVisibility() != View.INVISIBLE) {
-                viewToHide.setVisibility(View.INVISIBLE);
-            }
-            if (viewToDisplay.getVisibility() != View.VISIBLE) {
-                viewToDisplay.setVisibility(View.VISIBLE);
-            }
-        }
+//        private void animateFavoriteStatus(boolean isInitAnimation, View viewToDisplay, final View viewToHide) {
+//            if (viewToHide.getVisibility() != View.INVISIBLE) {
+//                viewToHide.setVisibility(View.INVISIBLE);
+//            }
+//            if (viewToDisplay.getVisibility() != View.VISIBLE) {
+//                viewToDisplay.setVisibility(View.VISIBLE);
+//            }
+//        }
 
-        private void animateFavoriteStatus1(boolean isInitAnimation, View viewToDisplay, final View viewToHide) {
+        private void animateFavoriteStatus(boolean isInitAnimation, View viewToDisplay, final View viewToHide) {
 
             if (viewToHide.getVisibility() != View.VISIBLE) {
                 return;

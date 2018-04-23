@@ -1,6 +1,7 @@
 package com.grace.placessearch.util;
 
 import com.google.gson.Gson;
+import com.grace.placessearch.PlacesSearchConstants;
 import com.grace.placessearch.common.app.FavoritePlacesPreferences;
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager;
 import com.grace.placessearch.data.model.Location;
@@ -80,4 +81,27 @@ public class PlacesSearchUtil {
         }
     }
 
+    public static String getDistanceInMiles(Location distanceTo) {
+
+        if (distanceTo == null || distanceTo.getLat() == 0 || distanceTo.getLng() == 0) {
+            return "Not Available";
+        }
+
+        android.location.Location startPoint = new android.location.Location("a");
+        startPoint.setLatitude(PlacesSearchConstants.SEATTLE_CENTER_LAT);
+        startPoint.setLongitude(PlacesSearchConstants.SEATTLE_CENTER_LNG);
+
+        android.location.Location endPoint = new android.location.Location("b");
+        endPoint.setLatitude(distanceTo.getLat());
+        endPoint.setLongitude(distanceTo.getLng());
+
+        float distance = startPoint.distanceTo(endPoint);
+
+        float mile = distance / 1609.34f;
+        return String.format("%.2f", mile) + " miles";
+    }
+
+    public static String getLatLngOfUserLocation() {
+        return PlacesSearchConstants.SEATTLE_CENTER_LAT + "," + PlacesSearchConstants.SEATTLE_CENTER_LNG;
+    }
 }

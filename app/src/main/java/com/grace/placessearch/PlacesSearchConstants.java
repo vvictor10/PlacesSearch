@@ -15,5 +15,7 @@ public class PlacesSearchConstants {
     public static final int IMAGE_DISK_CACHE_SIZE = (int) DecimalByteUnit.MEGABYTES.toBytes(50);
 
     public static String CACHE_KEY_TRENDING_VENUES = "TrendingVenuesCache";
-    public static final String CACHE_KEY_FAVORITES_CACHE = "FavoritesCache";
+
+    public static double SEATTLE_CENTER_LAT = 47.6062;
+    public static double SEATTLE_CENTER_LNG = -122.3321;
 }

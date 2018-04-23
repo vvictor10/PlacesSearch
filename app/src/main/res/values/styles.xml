@@ -60,7 +60,7 @@
     <style name="list_separator">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
-        <item name="android:background">@color/black_1_15</item>
+        <item name="android:background">@color/black25percentAlpha</item>
     </style>
 
 </resources>

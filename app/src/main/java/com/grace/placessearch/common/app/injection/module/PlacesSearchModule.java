@@ -13,6 +13,7 @@ import com.grace.placessearch.PlacesSearchEnvironmentEnum;
 import com.grace.placessearch.common.app.injection.qualifier.ForApplication;
 import com.grace.placessearch.service.PlacesApi;
 import com.grace.placessearch.service.network.PlacesApiRetrofit;
+import com.grace.placessearch.util.PlacesSearchUtil;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
@@ -104,7 +105,8 @@ public class PlacesSearchModule {
     @NonNull
     private PlacesApi getPlacesInstance() {
         if (mPlacesApi == null) {
-            mPlacesApi = new PlacesApiRetrofit(PlacesSearchEnvironmentEnum.PROD.placesBaseUrl, "20180421", BuildConfig.FOUR_SQUARE_API_CLIENT_ID, BuildConfig.FOUR_SQUARE_API_CLIENT_SECRET, "47.6062,122.3321");
+            mPlacesApi = new PlacesApiRetrofit(PlacesSearchEnvironmentEnum.PROD.placesBaseUrl, "20180421",
+                    BuildConfig.FOUR_SQUARE_API_CLIENT_ID, BuildConfig.FOUR_SQUARE_API_CLIENT_SECRET, PlacesSearchUtil.getLatLngOfUserLocation());
             Timber.i("Created new PlacesRetrofit instance.");
         }
         return mPlacesApi;
