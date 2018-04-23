@@ -6,6 +6,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
+import com.grace.placessearch.data.model.SuggestedVenuesResponse;
 import com.grace.placessearch.data.model.VenuesResponse;
 import com.grace.placessearch.service.PlacesApi;
 
@@ -44,6 +45,13 @@ public class PlacesApiLocal implements PlacesApi {
     @Override
     public Observable<Result<VenuesResponse>> searchForVenues(String searchTerm) {
         return null;
+    }
+
+    @Override
+    public Observable<Result<SuggestedVenuesResponse>> searchForSuggestedVenues(String searchTerm) {
+        System.out.println("searchForSuggestedVenues: " + resourcesDirectory);
+        String jsonString = fetchJsonFromFile(resourcesDirectory + "/suggested_venues.json");
+        return Observable.just(Result.response(Response.success(getGsonInstance().fromJson(jsonString, SuggestedVenuesResponse.class))));
     }
 
     public static String fetchJsonFromFile(String filePath) {

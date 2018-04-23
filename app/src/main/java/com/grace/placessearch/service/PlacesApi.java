@@ -1,5 +1,6 @@
 package com.grace.placessearch.service;
 
+import com.grace.placessearch.data.model.SuggestedVenuesResponse;
 import com.grace.placessearch.data.model.VenuesResponse;
 
 
@@ -16,4 +17,6 @@ public interface PlacesApi {
     Observable<Result<VenuesResponse>> getTrendingVenues();
 
     Observable<Result<VenuesResponse>> searchForVenues(String searchTerm);
+
+    Observable<Result<SuggestedVenuesResponse>> searchForSuggestedVenues(String searchTerm);
 }

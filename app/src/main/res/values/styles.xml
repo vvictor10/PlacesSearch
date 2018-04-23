@@ -63,4 +63,16 @@
         <item name="android:background">@color/black25percentAlpha</item>
     </style>
 
+    <style name="suggested_search_header">
+        <item name="android:singleLine">true</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.03</item>
+    </style>
+
+    <style name="suggested_search_item_text">
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:letterSpacing">0.03</item>
+    </style>
+
 </resources>

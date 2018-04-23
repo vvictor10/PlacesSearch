@@ -14,7 +14,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.LruCache;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
@@ -58,6 +60,9 @@ public class SearchActivity extends BaseNavigationActivity implements SearchCont
     @Bind(R.id.search_results_recycler_view)
     RecyclerView searchResultsRecyclerView;
 
+    @Bind(R.id.suggested_search_list_recycler_view)
+    RecyclerView suggestedSearchesRecyclerView;
+
     @Bind(R.id.clear_icon)
     ImageView clearIcon;
 
@@ -66,6 +71,15 @@ public class SearchActivity extends BaseNavigationActivity implements SearchCont
 
     @Bind(R.id.no_results_message)
     TextView noResultsMessageText;
+
+    @Bind(R.id.suggested_searches)
+    ViewGroup suggestedSearchesContainer;
+
+    @Bind(R.id.suggested_search_header)
+    ViewGroup suggestedSearchHeader;
+
+    @Bind(R.id.suggested_searches_message)
+    TextView suggestedSearchesMessage;
 
     @Inject
     Picasso picasso;
@@ -81,7 +95,11 @@ public class SearchActivity extends BaseNavigationActivity implements SearchCont
 
     protected RecyclerView.Adapter searchResultsAdapter;
     private LinearLayoutManager searchResultsLayoutManager;
-    private String searchString;
+    private String searchInput;
+
+    protected SuggestedSearchRecyclerAdapter suggestedSearchRecyclerAdapter;
+    private LinearLayoutManager suggestedSearchTermsLayoutManager;
+    private List<String> suggestedSearches = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +125,23 @@ public class SearchActivity extends BaseNavigationActivity implements SearchCont
         });
 
         //DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = setupDrawerListeners();
+
+        toggle.syncState();
+
+        //NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        setupResultsRecylerView();
+        setupSuggestedSearchListRecyclerView();
+
+        showNoResultsState(false);
+
+        displaySuggestedSearchViews(false);
+    }
+
+    @NonNull
+    private ActionBarDrawerToggle setupDrawerListeners() {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -132,15 +167,7 @@ public class SearchActivity extends BaseNavigationActivity implements SearchCont
                 hideKeyboard();
             }
         });
-
-        toggle.syncState();
-
-        //NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        setupResultsRecylerView();
-
-        showNoResultsState(false);
+        return toggle;
     }
 
     @Override
@@ -166,6 +193,9 @@ public class SearchActivity extends BaseNavigationActivity implements SearchCont
         searchEditText.isEnabled();
 //        showingResultsState = false;
         showKeyboard();
+
+        showNoResultsState(false);
+        displaySuggestedSearchViews(false);
     }
 
     @OnClick(R.id.search_edittext)
@@ -177,7 +207,7 @@ public class SearchActivity extends BaseNavigationActivity implements SearchCont
     @OnClick(R.id.search_icon)
     public void onSearchIconClick() {
         String searchEditTextInput = searchEditText.getText().toString().trim();
-        if (searchEditTextInput.equals(searchString)) {
+        if (searchEditTextInput.equals(searchInput)) {
             return;
         }
         doSearch(searchEditText.getText().toString().trim());
@@ -212,7 +242,7 @@ public class SearchActivity extends BaseNavigationActivity implements SearchCont
         if (show) {
             noResultsMessageText.setVisibility(View.VISIBLE);
             noResultsMessageText.setText(String.format(getString(R.string.search_no_results_response),
-                    searchString));
+                    searchInput));
         } else {
             noResultsMessageText.setVisibility(View.INVISIBLE);
         }
@@ -229,6 +259,23 @@ public class SearchActivity extends BaseNavigationActivity implements SearchCont
             if (clearIcon != null) {
                 clearIcon.setVisibility(s.length() > 0 ? View.VISIBLE : View.INVISIBLE);
             }
+
+            searchInput = s.toString();
+
+            if (s.length() != 0) {
+//                recentSearchTermsAdapter.setSearchResults(getSavedRecentSearchList(), false, searchInput);
+//                displaySuggestedSearchHeader(true);
+//            } else {
+//                if (!ignoreSearchEditTextUpdate) {
+                    searchPresenter.doSuggestedSearch(s.toString());
+//                } else {
+//                    recentSearchTermsAdapter.setSearchResults(suggestedSearches, true, searchInput);
+//                    ignoreSearchEditTextUpdate = false;
+//                }
+            } else {
+                displaySuggestedSearchViews(false);
+            }
+
         }
 
         @Override
@@ -260,10 +307,49 @@ public class SearchActivity extends BaseNavigationActivity implements SearchCont
 
     }
 
+    /**
+     * Initializes the suggested search adapter/recycler view to display results
+     */
+    private void setupSuggestedSearchListRecyclerView() {
+        suggestedSearchTermsLayoutManager = new LinearLayoutManager(this);
+        suggestedSearchesRecyclerView.setLayoutManager(suggestedSearchTermsLayoutManager);
+        suggestedSearchRecyclerAdapter = new SuggestedSearchRecyclerAdapter(suggestedSearchesRecyclerView, new ArrayList<String>(), suggestedSearchHeader);
+        suggestedSearchRecyclerAdapter.setClickListeners(suggestedSearchItemClickListener, backgroundTouchListener);
+        suggestedSearchesRecyclerView.setAdapter(suggestedSearchRecyclerAdapter);
+    }
+
+    private View.OnTouchListener backgroundTouchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            hideKeyboard();
+            return false;
+        }
+    };
+
+    private SuggestedSearchRecyclerAdapter.SuggestedSearchOnClickListener suggestedSearchItemClickListener =
+            new SuggestedSearchRecyclerAdapter.SuggestedSearchOnClickListener() {
+                @Override
+                public void onSuggestedSearchItemClick(String searchTerm) {
+//                    if (!recentSearchTermsAdapter.isSuggestedSearches()) {
+//                        searchEditText.setText(searchTerm);
+//                        searchEditText.setSelection(searchTerm.length());
+//                    } else {
+//                        keepSuggestedSearchesSearchInput = true;
+//                        suggestedSearchesSearchInput = searchInput;
+//                    }
+                    Timber.i("SuggestedSearchOnClickListener User Action|%s|%s|%s", "Suggested searches", "Search String", searchTerm);
+                    displaySuggestedSearchViews(false);
+                    doSearch(searchTerm);
+                }
+            };
+
     private void doSearch(String searchString) {
         if (searchString.length() > 0) {
             Timber.d("Searching for %s", searchString);
-            this.searchString = searchString;
+            this.searchInput = searchString;
+
+            // hide suggested searches
+            displaySuggestedSearchViews(false);
 
             // close the keyboard and disable cursor
             hideKeyboard();
@@ -360,7 +446,10 @@ public class SearchActivity extends BaseNavigationActivity implements SearchCont
 
     @Override
     public void onSuggestedSearches(List<String> suggestedSearches) {
-
+        if (searchInput.isEmpty()) {
+            return;
+        }
+        updateSuggestedSearches(suggestedSearches);
     }
 
     @Override
@@ -386,6 +475,30 @@ public class SearchActivity extends BaseNavigationActivity implements SearchCont
             loadingIndicatorView.setVisibility(View.VISIBLE);
         } else {
             loadingIndicatorView.setVisibility(View.GONE);
+        }
+    }
+
+    private void updateSuggestedSearches(List<String> suggestedSearches) {
+        this.suggestedSearches = suggestedSearches;
+        displaySuggestedSearchViews(true);
+        suggestedSearchRecyclerAdapter.setSearchResults(suggestedSearches, searchInput);
+
+        if (suggestedSearchRecyclerAdapter.isSearchResultsEmpty()) {
+            suggestedSearchesMessage.setText(R.string.no_suggested_searches);
+            suggestedSearchesMessage.setVisibility(View.VISIBLE);
+        } else {
+            suggestedSearchesMessage.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private void displaySuggestedSearchViews(boolean show) {
+        if (show) {
+            suggestedSearchesContainer.setVisibility(View.VISIBLE);
+        } else {
+            suggestedSearchesContainer.setVisibility(View.INVISIBLE);
+            if (suggestedSearchRecyclerAdapter != null) {
+                suggestedSearchRecyclerAdapter.clearSearchResults();
+            }
         }
     }
 

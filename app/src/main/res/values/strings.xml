@@ -9,4 +9,7 @@
 
     <string name="search_no_results_response">Sorry, we couldn\'t find any matches for \"%s\"</string>
 
+    <string name="suggested_searches">SUGGESTED SEARCHES</string>
+    <string name="no_suggested_searches">No suggestions.\n Tap \"Search\" for results</string>
+
 </resources>

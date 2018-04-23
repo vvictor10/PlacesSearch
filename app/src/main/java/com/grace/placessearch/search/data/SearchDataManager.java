@@ -1,6 +1,7 @@
 package com.grace.placessearch.search.data;
 
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager;
+import com.grace.placessearch.data.model.SuggestedVenuesResponse;
 import com.grace.placessearch.data.model.VenuesResponse;
 import com.grace.placessearch.service.PlacesApi;
 
@@ -34,5 +35,13 @@ public class SearchDataManager {
         return placesApi.searchForVenues(term);
     }
 
+    /**
+     * Used to search for venue suggestions based on a search string.
+     * @param term
+     * @return
+     */
+    public Observable<Result<SuggestedVenuesResponse>> suggestedSearchForVenues(String term) {
+        return placesApi.searchForSuggestedVenues(term);
+    }
 
 }

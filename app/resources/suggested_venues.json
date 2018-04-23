@@ -1,0 +1,1105 @@
+{
+  "meta": {
+    "code": 200,
+    "requestId": "5addfaacdb04f515c6b3e857"
+  },
+  "response": {
+    "minivenues": [
+      {
+        "id": "52d456c811d24128cdd7bc8b",
+        "name": "Storyville Coffee Company",
+        "location": {
+          "address": "1001 1st Ave",
+          "crossStreet": "at Madison St",
+          "city": "Seattle",
+          "state": "WA",
+          "postalCode": "98104",
+          "country": "US",
+          "lat": 47.604759229857436,
+          "lng": -122.33636209698689,
+          "distance": 357
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d1e0931735",
+            "name": "Coffee Shop",
+            "pluralName": "Coffee Shops",
+            "shortName": "Coffee Shop",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4d4b7105d754a06374d81259",
+            "name": "Food",
+            "pluralName": "Food",
+            "shortName": "Food",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/default_",
+              "suffix": ".png"
+            }
+          }
+        ],
+        "hasPerk": false
+      },
+      {
+        "id": "57e95a82498e0a3995a43e90",
+        "name": "Anchorhead Coffee Co",
+        "location": {
+          "address": "1600 7th Ave Ste 105",
+          "crossStreet": "Olive Way",
+          "city": "Seattle",
+          "state": "WA",
+          "postalCode": "98101",
+          "country": "US",
+          "lat": 47.61340944145408,
+          "lng": -122.33469499188962,
+          "distance": 825
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d1e0931735",
+            "name": "Coffee Shop",
+            "pluralName": "Coffee Shops",
+            "shortName": "Coffee Shop",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4bf58dd8d48988d16d941735",
+            "name": "Café",
+            "pluralName": "Cafés",
+            "shortName": "Café",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/cafe_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4d4b7105d754a06374d81259",
+            "name": "Food",
+            "pluralName": "Food",
+            "shortName": "Food",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/default_",
+              "suffix": ".png"
+            }
+          }
+        ],
+        "hasPerk": false
+      },
+      {
+        "id": "49d3e558f964a520225c1fe3",
+        "name": "Cherry Street Coffee House",
+        "location": {
+          "address": "103 Cherry St",
+          "crossStreet": "at 1st Ave",
+          "city": "Seattle",
+          "state": "WA",
+          "postalCode": "98104",
+          "country": "US",
+          "lat": 47.6027673646861,
+          "lng": -122.33415097514295,
+          "distance": 411
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d1e0931735",
+            "name": "Coffee Shop",
+            "pluralName": "Coffee Shops",
+            "shortName": "Coffee Shop",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4bf58dd8d48988d16d941735",
+            "name": "Café",
+            "pluralName": "Cafés",
+            "shortName": "Café",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/cafe_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4d4b7105d754a06374d81259",
+            "name": "Food",
+            "pluralName": "Food",
+            "shortName": "Food",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/default_",
+              "suffix": ".png"
+            }
+          }
+        ],
+        "hasPerk": false
+      },
+      {
+        "id": "545803de498e7e758ac5605e",
+        "name": "Elm Coffee Roasters",
+        "location": {
+          "address": "240 2nd Avenue Ext S Ste 103",
+          "city": "Seattle",
+          "state": "WA",
+          "postalCode": "98104",
+          "country": "US",
+          "lat": 47.600152370806754,
+          "lng": -122.33094380272051,
+          "distance": 678
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d1e0931735",
+            "name": "Coffee Shop",
+            "pluralName": "Coffee Shops",
+            "shortName": "Coffee Shop",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4d4b7105d754a06374d81259",
+            "name": "Food",
+            "pluralName": "Food",
+            "shortName": "Food",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/default_",
+              "suffix": ".png"
+            }
+          }
+        ],
+        "hasPerk": false
+      },
+      {
+        "id": "525c4e0611d2d13efe2e2f8e",
+        "name": "Cherry Street Coffee",
+        "location": {
+          "address": "509 Olive Way",
+          "crossStreet": "at 5th Ave",
+          "city": "Seattle",
+          "state": "WA",
+          "postalCode": "98101",
+          "country": "US",
+          "lat": 47.61293238118861,
+          "lng": -122.33701679766116,
+          "distance": 835
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d16d941735",
+            "name": "Café",
+            "pluralName": "Cafés",
+            "shortName": "Café",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/cafe_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4d4b7105d754a06374d81259",
+            "name": "Food",
+            "pluralName": "Food",
+            "shortName": "Food",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/default_",
+              "suffix": ".png"
+            }
+          }
+        ],
+        "hasPerk": false
+      },
+      {
+        "id": "52251f9511d2b2f238901956",
+        "name": "Storyville Coffee Company",
+        "location": {
+          "address": "94 Pike St #34",
+          "crossStreet": "1st Ave (Pike Place Market)",
+          "city": "Seattle",
+          "state": "WA",
+          "postalCode": "98101",
+          "country": "US",
+          "lat": 47.60896841591301,
+          "lng": -122.34069709436486,
+          "distance": 715
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d1e0931735",
+            "name": "Coffee Shop",
+            "pluralName": "Coffee Shops",
+            "shortName": "Coffee Shop",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4d4b7105d754a06374d81259",
+            "name": "Food",
+            "pluralName": "Food",
+            "shortName": "Food",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/default_",
+              "suffix": ".png"
+            }
+          }
+        ],
+        "hasPerk": false
+      },
+      {
+        "id": "55fc6351498e081c6ae9a9c1",
+        "name": "Slate Coffee",
+        "location": {
+          "address": "602 2nd Ave",
+          "crossStreet": "James St",
+          "city": "Seattle",
+          "state": "WA",
+          "postalCode": "98104",
+          "country": "US",
+          "lat": 47.60226958101576,
+          "lng": -122.33254930945151,
+          "distance": 438
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d1e0931735",
+            "name": "Coffee Shop",
+            "pluralName": "Coffee Shops",
+            "shortName": "Coffee Shop",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4d4b7105d754a06374d81259",
+            "name": "Food",
+            "pluralName": "Food",
+            "shortName": "Food",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/default_",
+              "suffix": ".png"
+            }
+          }
+        ],
+        "hasPerk": false
+      },
+      {
+        "id": "46681722f964a5208b471fe3",
+        "name": "Seattle Coffee Works",
+        "location": {
+          "address": "107 Pike St",
+          "crossStreet": "btwn 1st & 2nd Ave",
+          "city": "Seattle",
+          "state": "WA",
+          "postalCode": "98101",
+          "country": "US",
+          "lat": 47.609009502542875,
+          "lng": -122.3396575726975,
+          "distance": 647
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d1e0931735",
+            "name": "Coffee Shop",
+            "pluralName": "Coffee Shops",
+            "shortName": "Coffee Shop",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4bf58dd8d48988d16d941735",
+            "name": "Café",
+            "pluralName": "Cafés",
+            "shortName": "Café",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/cafe_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4d4b7105d754a06374d81259",
+            "name": "Food",
+            "pluralName": "Food",
+            "shortName": "Food",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/default_",
+              "suffix": ".png"
+            }
+          }
+        ],
+        "hasPerk": false
+      },
+      {
+        "id": "50523792e4b0c32d8cc1a4aa",
+        "name": "Voxx Coffee",
+        "location": {
+          "address": "1200 6th Ave",
+          "crossStreet": "University",
+          "city": "Seattle",
+          "state": "WA",
+          "postalCode": "98101",
+          "country": "US",
+          "lat": 47.608918643380505,
+          "lng": -122.33250392135724,
+          "distance": 304
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d16d941735",
+            "name": "Café",
+            "pluralName": "Cafés",
+            "shortName": "Café",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/cafe_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4bf58dd8d48988d1e0931735",
+            "name": "Coffee Shop",
+            "pluralName": "Coffee Shops",
+            "shortName": "Coffee Shop",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4d4b7105d754a06374d81259",
+            "name": "Food",
+            "pluralName": "Food",
+            "shortName": "Food",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/default_",
+              "suffix": ".png"
+            }
+          }
+        ],
+        "hasPerk": false
+      },
+      {
+        "id": "569d5c6c498e4ff52aa8b724",
+        "name": "Olympia Coffee Roasters",
+        "location": {
+          "address": "2021 7th Ave",
+          "city": "Seattle",
+          "state": "WA",
+          "postalCode": "98121",
+          "country": "US",
+          "lat": 47.61510039364537,
+          "lng": -122.33834403855218,
+          "distance": 1096
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d1e0931735",
+            "name": "Coffee Shop",
+            "pluralName": "Coffee Shops",
+            "shortName": "Coffee Shop",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4d4b7105d754a06374d81259",
+            "name": "Food",
+            "pluralName": "Food",
+            "shortName": "Food",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/default_",
+              "suffix": ".png"
+            }
+          }
+        ],
+        "hasPerk": false
+      },
+      {
+        "id": "5a735e7e9b04733a15412475",
+        "name": "General Porpoise Coffee & Donuts",
+        "location": {
+          "city": "Seattle",
+          "state": "WA",
+          "postalCode": "98121",
+          "country": "US",
+          "lat": 47.615532,
+          "lng": -122.33977,
+          "distance": 1187
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d16d941735",
+            "name": "Café",
+            "pluralName": "Cafés",
+            "shortName": "Café",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/cafe_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4d4b7105d754a06374d81259",
+            "name": "Food",
+            "pluralName": "Food",
+            "shortName": "Food",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/default_",
+              "suffix": ".png"
+            }
+          }
+        ],
+        "hasPerk": false
+      },
+      {
+        "id": "4a609aa8f964a520ebc01fe3",
+        "name": "Pegasus Coffee",
+        "location": {
+          "address": "711 3rd Ave",
+          "crossStreet": "at Cherry St",
+          "city": "Seattle",
+          "state": "WA",
+          "postalCode": "98104",
+          "country": "US",
+          "lat": 47.603688996975514,
+          "lng": -122.33250195898783,
+          "distance": 281
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d1e0931735",
+            "name": "Coffee Shop",
+            "pluralName": "Coffee Shops",
+            "shortName": "Coffee Shop",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4bf58dd8d48988d179941735",
+            "name": "Bagel Shop",
+            "pluralName": "Bagel Shops",
+            "shortName": "Bagels",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/bagels_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4d4b7105d754a06374d81259",
+            "name": "Food",
+            "pluralName": "Food",
+            "shortName": "Food",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/default_",
+              "suffix": ".png"
+            }
+          }
+        ],
+        "hasPerk": false
+      },
+      {
+        "id": "4a53845cf964a5205eb21fe3",
+        "name": "Tully's Coffee",
+        "location": {
+          "address": "821 2nd Ave Ste 402",
+          "crossStreet": "btw Marion & Columbia",
+          "city": "Seattle",
+          "state": "WA",
+          "postalCode": "98104",
+          "country": "US",
+          "lat": 47.60421978255885,
+          "lng": -122.33461369422167,
+          "distance": 290
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d1e0931735",
+            "name": "Coffee Shop",
+            "pluralName": "Coffee Shops",
+            "shortName": "Coffee Shop",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4bf58dd8d48988d16d941735",
+            "name": "Café",
+            "pluralName": "Cafés",
+            "shortName": "Café",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/cafe_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4d4b7105d754a06374d81259",
+            "name": "Food",
+            "pluralName": "Food",
+            "shortName": "Food",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/default_",
+              "suffix": ".png"
+            }
+          }
+        ],
+        "hasPerk": false
+      },
+      {
+        "id": "4a848900f964a520e3fc1fe3",
+        "name": "Cherry Street Coffee House",
+        "location": {
+          "address": "808 3rd Ave",
+          "crossStreet": "btw Marion & Columbia",
+          "city": "Seattle",
+          "state": "WA",
+          "postalCode": "98104",
+          "country": "US",
+          "lat": 47.60451119273283,
+          "lng": -122.333010369285,
+          "distance": 200
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d1e0931735",
+            "name": "Coffee Shop",
+            "pluralName": "Coffee Shops",
+            "shortName": "Coffee Shop",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4d4b7105d754a06374d81259",
+            "name": "Food",
+            "pluralName": "Food",
+            "shortName": "Food",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/default_",
+              "suffix": ".png"
+            }
+          }
+        ],
+        "hasPerk": false
+      },
+      {
+        "id": "475ebc58f964a520d94c1fe3",
+        "name": "Kaladi Brothers Coffee",
+        "location": {
+          "address": "517 E Pike St",
+          "crossStreet": "at Belmont Ave.",
+          "city": "Seattle",
+          "state": "WA",
+          "postalCode": "98122",
+          "country": "US",
+          "lat": 47.61415160916693,
+          "lng": -122.324565055162,
+          "distance": 1050
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d1e0931735",
+            "name": "Coffee Shop",
+            "pluralName": "Coffee Shops",
+            "shortName": "Coffee Shop",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4d4b7105d754a06374d81259",
+            "name": "Food",
+            "pluralName": "Food",
+            "shortName": "Food",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/default_",
+              "suffix": ".png"
+            }
+          }
+        ],
+        "hasPerk": false
+      },
+      {
+        "id": "4e6e2caa7d8bbfa9af144d0b",
+        "name": "Moore Coffee",
+        "location": {
+          "address": "1930 2nd Ave",
+          "crossStreet": "Virginia St",
+          "city": "Seattle",
+          "state": "WA",
+          "postalCode": "98101",
+          "country": "US",
+          "lat": 47.6114361744415,
+          "lng": -122.34159707862204,
+          "distance": 920
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d16d941735",
+            "name": "Café",
+            "pluralName": "Cafés",
+            "shortName": "Café",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/cafe_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4d4b7105d754a06374d81259",
+            "name": "Food",
+            "pluralName": "Food",
+            "shortName": "Food",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/default_",
+              "suffix": ".png"
+            }
+          }
+        ],
+        "hasPerk": false
+      },
+      {
+        "id": "56380a1ecd10193ef6e851ce",
+        "name": "General Porpoise Coffee & Doughnuts",
+        "location": {
+          "address": "1060 E Union St",
+          "crossStreet": "11th Ave",
+          "city": "Seattle",
+          "state": "WA",
+          "postalCode": "98122",
+          "country": "US",
+          "lat": 47.613048369367704,
+          "lng": -122.31877882545173,
+          "distance": 1257
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d148941735",
+            "name": "Donut Shop",
+            "pluralName": "Donut Shops",
+            "shortName": "Donuts",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/donuts_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4d4b7105d754a06374d81259",
+            "name": "Food",
+            "pluralName": "Food",
+            "shortName": "Food",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/default_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4bf58dd8d48988d1e0931735",
+            "name": "Coffee Shop",
+            "pluralName": "Coffee Shops",
+            "shortName": "Coffee Shop",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+              "suffix": ".png"
+            }
+          }
+        ],
+        "hasPerk": false
+      },
+      {
+        "id": "59095d77fd16bb0148c59444",
+        "name": "Capitol Coffee Works",
+        "location": {
+          "address": "907 E Pike St",
+          "crossStreet": "at Broadway",
+          "city": "Seattle",
+          "state": "WA",
+          "postalCode": "98122",
+          "country": "US",
+          "lat": 47.61413034552408,
+          "lng": -122.32048293651305,
+          "distance": 1240
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d1e0931735",
+            "name": "Coffee Shop",
+            "pluralName": "Coffee Shops",
+            "shortName": "Coffee Shop",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4d4b7105d754a06374d81259",
+            "name": "Food",
+            "pluralName": "Food",
+            "shortName": "Food",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/default_",
+              "suffix": ".png"
+            }
+          }
+        ],
+        "hasPerk": false
+      },
+      {
+        "id": "4d4463c2bbb1a14344fc4572",
+        "name": "Analog Coffee",
+        "location": {
+          "address": "235 Summit Ave E",
+          "crossStreet": "at Thomas St",
+          "city": "Seattle",
+          "state": "WA",
+          "postalCode": "98102",
+          "country": "US",
+          "lat": 47.62078090840648,
+          "lng": -122.32538537274912,
+          "distance": 1699
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d1e0931735",
+            "name": "Coffee Shop",
+            "pluralName": "Coffee Shops",
+            "shortName": "Coffee Shop",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4d4b7105d754a06374d81259",
+            "name": "Food",
+            "pluralName": "Food",
+            "shortName": "Food",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/default_",
+              "suffix": ".png"
+            }
+          }
+        ],
+        "hasPerk": false
+      },
+      {
+        "id": "5aabfe234940bc48fece464f",
+        "name": "General Porpoise Coffee & Doughnuts",
+        "location": {
+          "address": "401 1st Ave S",
+          "crossStreet": "at S Jackson St",
+          "city": "Seattle",
+          "state": "WA",
+          "postalCode": "98104",
+          "country": "US",
+          "lat": 47.599103,
+          "lng": -122.334398,
+          "distance": 808
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d148941735",
+            "name": "Donut Shop",
+            "pluralName": "Donut Shops",
+            "shortName": "Donuts",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/donuts_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4d4b7105d754a06374d81259",
+            "name": "Food",
+            "pluralName": "Food",
+            "shortName": "Food",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/default_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4bf58dd8d48988d1e0931735",
+            "name": "Coffee Shop",
+            "pluralName": "Coffee Shops",
+            "shortName": "Coffee Shop",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+              "suffix": ".png"
+            }
+          }
+        ],
+        "hasPerk": false
+      },
+      {
+        "id": "4fa7fc2ae4b039aeed33d99e",
+        "name": "Coffee Tree",
+        "location": {
+          "address": "905 8th Ave",
+          "crossStreet": "at Marion St.",
+          "city": "Seattle",
+          "state": "WA",
+          "postalCode": "98104",
+          "country": "US",
+          "lat": 47.6073884423799,
+          "lng": -122.32800295497557,
+          "distance": 334
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d1e0931735",
+            "name": "Coffee Shop",
+            "pluralName": "Coffee Shops",
+            "shortName": "Coffee Shop",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4d4b7105d754a06374d81259",
+            "name": "Food",
+            "pluralName": "Food",
+            "shortName": "Food",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/default_",
+              "suffix": ".png"
+            }
+          }
+        ],
+        "hasPerk": false
+      },
+      {
+        "id": "58a75ca48d8e997abd4165f8",
+        "name": "Ghost Note Coffee",
+        "location": {
+          "address": "1623 Bellevue Ave",
+          "city": "Seattle",
+          "state": "WA",
+          "postalCode": "98122",
+          "country": "US",
+          "lat": 47.615925358018465,
+          "lng": -122.32691195109592,
+          "distance": 1150
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d1e0931735",
+            "name": "Coffee Shop",
+            "pluralName": "Coffee Shops",
+            "shortName": "Coffee Shop",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4d4b7105d754a06374d81259",
+            "name": "Food",
+            "pluralName": "Food",
+            "shortName": "Food",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/default_",
+              "suffix": ".png"
+            }
+          }
+        ],
+        "hasPerk": false
+      },
+      {
+        "id": "4412e177f964a520db301fe3",
+        "name": "Panama Hotel Tea & Coffee",
+        "location": {
+          "address": "607 S Main St",
+          "crossStreet": "btwn 6th & Maynard Ave. S",
+          "city": "Seattle",
+          "state": "WA",
+          "postalCode": "98104",
+          "country": "US",
+          "lat": 47.59997006448296,
+          "lng": -122.32614684210247,
+          "distance": 824
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d1e0931735",
+            "name": "Coffee Shop",
+            "pluralName": "Coffee Shops",
+            "shortName": "Coffee Shop",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4d4b7105d754a06374d81259",
+            "name": "Food",
+            "pluralName": "Food",
+            "shortName": "Food",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/default_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4bf58dd8d48988d1fa931735",
+            "name": "Hotel",
+            "pluralName": "Hotels",
+            "shortName": "Hotel",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/travel\/hotel_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4d4b7105d754a06379d81259",
+            "name": "Travel & Transport",
+            "pluralName": "Travel & Transport",
+            "shortName": "Travel",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/travel\/default_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4bf58dd8d48988d1dc931735",
+            "name": "Tea Room",
+            "pluralName": "Tea Rooms",
+            "shortName": "Tea Room",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/tearoom_",
+              "suffix": ".png"
+            }
+          }
+        ],
+        "hasPerk": false
+      },
+      {
+        "id": "59f3689c7564f708b10818b9",
+        "name": "Cascade Coffee Works",
+        "location": {
+          "address": "1130 Thomas St",
+          "crossStreet": "Fairview",
+          "city": "Seattle",
+          "state": "WA",
+          "postalCode": "98109",
+          "country": "US",
+          "lat": 47.62081918143164,
+          "lng": -122.3347394132505,
+          "distance": 1639
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d1e0931735",
+            "name": "Coffee Shop",
+            "pluralName": "Coffee Shops",
+            "shortName": "Coffee Shop",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4d4b7105d754a06374d81259",
+            "name": "Food",
+            "pluralName": "Food",
+            "shortName": "Food",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/default_",
+              "suffix": ".png"
+            }
+          }
+        ],
+        "hasPerk": false
+      },
+      {
+        "id": "4aa1a711f964a520684120e3",
+        "name": "Cherry Street Coffee House",
+        "location": {
+          "address": "2121 1st Ave",
+          "crossStreet": "Btw Blanchard & Lenora St.",
+          "city": "Seattle",
+          "state": "WA",
+          "postalCode": "98121",
+          "country": "US",
+          "lat": 47.61224160400992,
+          "lng": -122.34474029296393,
+          "distance": 1162
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d1e0931735",
+            "name": "Coffee Shop",
+            "pluralName": "Coffee Shops",
+            "shortName": "Coffee Shop",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4bf58dd8d48988d16d941735",
+            "name": "Café",
+            "pluralName": "Cafés",
+            "shortName": "Café",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/cafe_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4bf58dd8d48988d1d8941735",
+            "name": "Gay Bar",
+            "pluralName": "Gay Bars",
+            "shortName": "Gay Bar",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/nightlife\/gaybar_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4d4b7105d754a06374d81259",
+            "name": "Food",
+            "pluralName": "Food",
+            "shortName": "Food",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/default_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4d4b7105d754a06376d81259",
+            "name": "Nightlife Spot",
+            "pluralName": "Nightlife Spots",
+            "shortName": "Nightlife",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/nightlife\/default_",
+              "suffix": ".png"
+            }
+          },
+          {
+            "id": "4bf58dd8d48988d116941735",
+            "name": "Bar",
+            "pluralName": "Bars",
+            "shortName": "Bar",
+            "icon": {
+              "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/nightlife\/pub_",
+              "suffix": ".png"
+            }
+          }
+        ],
+        "hasPerk": false
+      }
+    ]
+  }
+}

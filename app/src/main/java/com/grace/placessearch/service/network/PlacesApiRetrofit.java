@@ -6,6 +6,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
+import com.grace.placessearch.data.model.SuggestedVenuesResponse;
 import com.grace.placessearch.data.model.VenuesResponse;
 import com.grace.placessearch.service.PlacesApi;
 import com.grace.placessearch.service.VenuesService;
@@ -129,13 +130,16 @@ public class PlacesApiRetrofit implements PlacesApi {
 
     @Override
     public Observable<Result<VenuesResponse>> getTrendingVenues() {
-        Timber.i("Fetching trending venues");
         return retrofit.create(VenuesService.class).trendingVenues();
     }
 
     @Override
     public Observable<Result<VenuesResponse>> searchForVenues(String searchTerm) {
-        Timber.i("Fetching trending venues");
         return retrofit.create(VenuesService.class).search(searchTerm);
+    }
+
+    @Override
+    public Observable<Result<SuggestedVenuesResponse>> searchForSuggestedVenues(String searchTerm) {
+        return retrofit.create(VenuesService.class).suggestCompletion(searchTerm);
     }
 }
