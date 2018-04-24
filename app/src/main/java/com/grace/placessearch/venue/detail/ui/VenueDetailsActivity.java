@@ -198,7 +198,7 @@ public class VenueDetailsActivity extends BaseNavigationActivity implements Venu
 
     @Override
     public void onVenue(final Venue venue) {
-        loadingIndicatorView.setVisibility(View.INVISIBLE);
+        //loadingIndicatorView.setVisibility(View.INVISIBLE);
         if (venue != null) {
 
             toolbarTitle.setText(venue.getName());
@@ -310,6 +310,7 @@ public class VenueDetailsActivity extends BaseNavigationActivity implements Venu
             @Override
             public void onSuccess() {
                 Timber.i("Image loaded for url %s", imageUrl);
+                loadingIndicatorView.setVisibility(View.INVISIBLE);
             }
 
             @Override
@@ -325,7 +326,7 @@ public class VenueDetailsActivity extends BaseNavigationActivity implements Venu
         staticMapImageUrlBuilder.append("https://maps.googleapis.com/maps/api/staticmap?size=");
         staticMapImageUrlBuilder.append(imageWidth + "x" + imageHeight + "&maptype=roadmap&markers=color:red%7Clabel:A%7C");
         staticMapImageUrlBuilder.append(PlacesSearchConstants.SEATTLE_CENTER_LAT + "," + PlacesSearchConstants.SEATTLE_CENTER_LNG);
-        staticMapImageUrlBuilder.append("&markers=color:blue%7Clabel:B%7C" + String.format("%.4f", venue.getLocation().getLat()));
+        staticMapImageUrlBuilder.append("&markers=color:red%7Clabel:B%7C" + String.format("%.4f", venue.getLocation().getLat()));
         staticMapImageUrlBuilder.append("," + String.format("%.4f", venue.getLocation().getLng()));
         staticMapImageUrlBuilder.append("&key=AIzaSyBJ8FpHurNJQ0oyEhxY4U1HMAZ2xF_pv9w");
 

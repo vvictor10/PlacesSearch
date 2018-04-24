@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="false"
-    android:background="@android:color/background_light">
+    android:background="@android:color/background_light"
+    android:fitsSystemWindows="false">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar_layout"
@@ -17,7 +17,7 @@
             android:id="@+id/collapsing_toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:contentScrim="@color/black_1_60"
+            app:contentScrim="@color/gray_1"
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
@@ -32,6 +32,14 @@
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
+
+    <com.grace.placessearch.ui.view.LoadingIndicatorView
+        android:id="@+id/loading_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        app:shade="light" />
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -54,13 +62,16 @@
         app:layout_collapseMode="pin"
         app:theme="@style/ThemeOverlay.AppCompat.Light">
 
-            <TextView
-                android:id="@+id/toolbar_title"
-                style="@style/toolbar_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Venue Details"
-                android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse" />
+        <TextView
+            android:id="@+id/toolbar_title"
+            style="@style/toolbar_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Venue Details"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse" />
 
     </android.support.v7.widget.Toolbar>
 </android.support.design.widget.CoordinatorLayout>

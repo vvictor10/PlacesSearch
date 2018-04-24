@@ -70,7 +70,7 @@
     <style name="list_separator">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
-        <item name="android:background">@color/black25percentAlpha</item>
+        <item name="android:background">@color/black_1_15</item>
     </style>
 
     <style name="suggested_search_header">
@@ -80,7 +80,7 @@
     </style>
 
     <style name="suggested_search_item_text">
-        <item name="android:singleLine">true</item>
+        <item name="android:maxLines">1</item>
         <item name="android:ellipsize">end</item>
         <item name="android:letterSpacing">0.03</item>
     </style>

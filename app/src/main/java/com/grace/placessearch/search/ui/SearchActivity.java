@@ -325,9 +325,11 @@ public class SearchActivity extends BaseNavigationActivity implements VenuesCont
             this.searchResults = venues;
             Timber.i("Updating data");
             displayMapFab(true);
+            searchResultsLayoutManager.scrollToPosition(0);
             ((SearchResultsAdapter) searchResultsAdapter).updateData(venues);
         } else {
             Timber.i("Empty data or bad response");
+            searchResultsLayoutManager.scrollToPosition(0);
             ((SearchResultsAdapter) searchResultsAdapter).updateData(new ArrayList<Venue>());
             displayNoResultsState(true);
             displayMapFab(false);
