@@ -90,8 +90,8 @@ public class PlacesSearchStartupManager {
         @Override
         public void onNext(Result<VenuesResponse> result) {
             VenuesResponse venuesResponse = result.response().body();
-            if (venuesResponse != null && venuesResponse.getResponse() != null) {
-                List<Venue> trendingVenues = venuesResponse.getResponse().getVenues();
+            if (venuesResponse != null && venuesResponse.getVenueListResponse() != null) {
+                List<Venue> trendingVenues = venuesResponse.getVenueListResponse().getVenues();
                 Timber.i("No. of Trending venues cached: %d", trendingVenues.size());
                 lruCache.put(PlacesSearchConstants.CACHE_KEY_TRENDING_VENUES, trendingVenues);
             }

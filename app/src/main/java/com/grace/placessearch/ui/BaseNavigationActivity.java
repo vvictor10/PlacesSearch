@@ -2,9 +2,8 @@ package com.grace.placessearch.ui;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -22,37 +21,21 @@ import com.grace.placessearch.common.app.PlacesSearchApplication;
 import com.grace.placessearch.ui.injection.component.ActivityComponent;
 import com.grace.placessearch.ui.injection.component.DaggerActivityComponent;
 
+import butterknife.Bind;
+
 public abstract class BaseNavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    protected ActivityComponent component;
+    @Bind(R.id.toolbar)
+    public Toolbar toolbar;
 
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        //setSupportActionBar(toolbar);
-//        initToolbar(toolbar);
-//
-//        FloatingActionButton fab = findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-//
-//        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-//                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-//        drawer.addDrawerListener(toggle);
-//        toggle.syncState();
-//
-//        NavigationView navigationView = findViewById(R.id.nav_view);
-//        navigationView.setNavigationItemSelectedListener(this);
-//    }
+    @Bind(R.id.drawer_layout)
+    public DrawerLayout drawer;
+
+    @Bind(R.id.nav_view)
+    public NavigationView navigationView;
+
+    protected ActivityComponent component;
 
     @Override
     public void onBackPressed() {
@@ -65,24 +48,18 @@ public abstract class BaseNavigationActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                drawer.openDrawer(GravityCompat.START);  // OPEN DRAWER
+                return true;
+            case R.id.nav_settings:
+                drawer.closeDrawer(GravityCompat.START);
+                return true;
+            case R.id.nav_favorites:
+                drawer.closeDrawer(GravityCompat.START);
+                return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -92,19 +69,49 @@ public abstract class BaseNavigationActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
         if (id == R.id.nav_search) {
-            // Handle the camera action
-        } else if (id == R.id.nav_favorites) {
 
+        } else if (id == R.id.nav_favorites) {
+            return false;
         } else if (id == R.id.nav_settings) {
 
         } else if (id == R.id.nav_view) {
 
         }
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @NonNull
+    protected void setupDrawerListeners() {
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                hideKeyboard();
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                hideKeyboard();
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                hideKeyboard();
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+                hideKeyboard();
+            }
+        });
+
+        toggle.syncState();
     }
 
     protected void initToolbar(Toolbar toolbar) {
@@ -115,7 +122,7 @@ public abstract class BaseNavigationActivity extends AppCompatActivity
             actionBar.setDisplayHomeAsUpEnabled(false);
             actionBar.setDisplayShowHomeEnabled(true);
         }
-        toolbar.setNavigationIcon(R.drawable.hamburger_dark);
+        toolbar.setNavigationIcon(R.drawable.hamburger);
     }
 
     public ActivityComponent component() {
@@ -136,7 +143,7 @@ public abstract class BaseNavigationActivity extends AppCompatActivity
         }
     }
 
-    public void hideKeyboard() {
+    protected void hideKeyboard() {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         View focusedView = getCurrentFocus();
         if (focusedView != null) {
@@ -144,4 +151,12 @@ public abstract class BaseNavigationActivity extends AppCompatActivity
             imm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
         }
     }
+
+    protected void setupNavigationView() {
+        Menu menu = navigationView.getMenu();
+        if (menu != null && menu.getItem(0) != null) {
+            menu.getItem(0).setChecked(true);
+        }
+    }
+
 }

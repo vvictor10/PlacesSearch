@@ -1,10 +1,21 @@
 package com.grace.placessearch.ui.view;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Typeface;
+import android.net.Uri;
+import android.support.customtabs.CustomTabsIntent;
+import android.support.customtabs.CustomTabsService;
+import android.support.v4.content.ContextCompat;
 import android.text.SpannableStringBuilder;
 import android.text.style.StyleSpan;
 
+import java.util.List;
 import java.util.Locale;
+
+import timber.log.Timber;
 
 /**
  * Created by vicsonvictor on 4/23/18.
@@ -44,6 +55,32 @@ public class ViewUtils {
         }
 
         return builder;
+    }
+
+    /**
+     * Returns a boolean which indicates whether Chrome custom tab is supported or not
+     * on the current device.
+     */
+    public static boolean isChromeTabSupported(Context context) {
+
+        // Get default VIEW intent handler that can view a web url.
+        Intent activityIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
+
+        // Get all apps that can handle VIEW intents.
+        PackageManager pm = context.getPackageManager();
+
+        List<ResolveInfo> resolvedActivityList = pm.queryIntentActivities(activityIntent, 0);
+
+        for (ResolveInfo info : resolvedActivityList) {
+            Intent serviceIntent = new Intent();
+            serviceIntent.setAction(CustomTabsService.ACTION_CUSTOM_TABS_CONNECTION);
+            serviceIntent.setPackage(info.activityInfo.packageName);
+            if (pm.resolveService(serviceIntent, 0) != null) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }

@@ -2,6 +2,7 @@ package com.grace.placessearch.search.data;
 
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager;
 import com.grace.placessearch.data.model.SuggestedVenuesResponse;
+import com.grace.placessearch.data.model.VenueResponse;
 import com.grace.placessearch.data.model.VenuesResponse;
 import com.grace.placessearch.service.PlacesApi;
 
@@ -42,6 +43,15 @@ public class SearchDataManager {
      */
     public Observable<Result<SuggestedVenuesResponse>> suggestedSearchForVenues(String term) {
         return placesApi.searchForSuggestedVenues(term);
+    }
+
+    /**
+     * Used to fetch details of a single venue
+     * @param venueId
+     * @return
+     */
+    public Observable<Result<VenueResponse>> getVenue(String venueId) {
+        return placesApi.getVenue(venueId);
     }
 
 }

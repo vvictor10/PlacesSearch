@@ -1,5 +1,20 @@
 <resources>
     <string name="app_name">Seattle Place Search</string>
+    <string name="about">
+		Your mission is to create a three-screen application that allows users to: search for places in Seattle, Washington using the Foursquare API; view their search results in a list or on a map; and view the individual details of each search result.\n\n
+
+		The first screen should display an input field that allows users to search for places (for example, “coffee”, “pizza”, “Whole Foods”, etc) and, upon executing a search, should display the results in a list. Clicking an item in the list should launch a details screen. The details screen should show the place’s location on a map (for example, using Google Maps), provide details about the place, including website, and the user should be able to favorite the place on this screen.\n\n
+
+On the main screen, when search results are visible, the screen should include a Floating Action Button. This button, when clicked, should a full-screen map with a pin marking the location of each search result. Clicking a pin should show the name of the place on the map, and clicking on the name should then open the details screen for the given place.\n\n
+
+		Enjoy
+	</string>
+    <string name="google_maps_key" translatable="false" templateMergeStrategy="preserve">
+        AIzaSyCKxchs2SohPaKHjPfxx_OpoR4bSIxfCEU
+    </string>
+    <string name="google_static_maps_key" translatable="false" templateMergeStrategy="preserve">
+        AIzaSyBJ8FpHurNJQ0oyEhxY4U1HMAZ2xF_pv9w
+    </string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -8,8 +23,20 @@
     <string name="search_hint">What are you looking for?</string>
 
     <string name="search_no_results_response">Sorry, we couldn\'t find any matches for \"%s\"</string>
+    <string name="venue_detail_failure">Sorry, we couldn\'t find the details of the venue you were interested in.</string>
 
     <string name="suggested_searches">SUGGESTED SEARCHES</string>
     <string name="no_suggested_searches">No suggestions.\n Tap \"Search\" for results</string>
+
+    <string name="map_not_ready">Map is not ready yet</string>
+
+    <string name="drag_melbourne">Drag Melbourne</string>
+    <string name="clear_map">Clear</string>
+    <string name="flat">Flat</string>
+    <string name="rotation">Rotation:</string>
+    <string name="reset_map">Reset</string>
+    <string name="custom_info_contents">Custom info contents</string>
+    <string name="custom_info_window">Custom info window</string>
+    <string name="default_info_window">Default info window</string>
 
 </resources>

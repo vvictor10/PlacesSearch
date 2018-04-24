@@ -4,14 +4,15 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.LruCache;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.grace.placessearch.PlacesSearchConstants;
 import com.grace.placessearch.R;
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager;
 import com.grace.placessearch.data.model.Venue;
@@ -28,8 +29,6 @@ import timber.log.Timber;
 
 public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdapter.VenueViewHolder> {
 
-    private static final int crossFadeAnimationDuration = 150;
-
     private List<Venue> data = new ArrayList<>();
     private VenueListener listener;
     private PlacesSearchPreferenceManager placesPreferenceManager;
@@ -37,7 +36,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
     private Picasso picasso;
 
     public interface VenueListener {
-        void onClick(Venue venue);
+        void onVenueItemClicked(Venue venue);
     }
 
     public SearchResultsAdapter(Context context, VenueListener listener, PlacesSearchPreferenceManager placesPreferenceManager, Picasso picasso) {
@@ -60,7 +59,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
 
     @Override
     public void onBindViewHolder(VenueViewHolder holder, int position) {
-        holder.bind(data.get(position), listener, picasso, placesPreferenceManager);
+        holder.bind(context, data.get(position), listener, picasso, placesPreferenceManager);
     }
 
     public void updateData(List<Venue> batches) {
@@ -91,15 +90,18 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
         @Bind(R.id.non_favorite_status)
         public ImageView nonFavoriteStatusImage;
 
+        private View itemView;
         private boolean isFavorite;
+        private boolean favoriteStatusNeedsUpdating;
 
         public VenueViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             isFavorite = false;
+            this.itemView = itemView;
         }
 
-        public void bind(final Venue data, final VenueListener listener, Picasso picasso, PlacesSearchPreferenceManager placesPreferenceManager) {
+        public void bind(final Context context, final Venue data, final VenueListener listener, Picasso picasso, final PlacesSearchPreferenceManager placesPreferenceManager) {
 
             isFavorite = false;
 
@@ -113,27 +115,46 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
 
             distanceToCenter.setText(PlacesSearchUtil.getDistanceInMiles(data.getLocation()));
 
-            loadImage(venueImage, data, picasso);
+            loadImage(context, venueImage, data, picasso);
 
             venueContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Timber.i("Clicked");
-                    listener.onClick(data);
+                    listener.onVenueItemClicked(data);
                 }
             });
 
             setInitialFavoriteStatus(placesPreferenceManager, data);
+
+            itemView.getViewTreeObserver().addOnWindowFocusChangeListener(new ViewTreeObserver.OnWindowFocusChangeListener() {
+                @Override
+                public void onWindowFocusChanged(boolean hasFocus) {
+                    if (hasFocus && getFavoriteStatusNeedsUpdating()) {
+                        refreshFavoriteStatus(data.getId(), placesPreferenceManager);
+                        setFavoriteStatusNeedsUpdating(false);
+                    }
+
+                    // If losing focus(going to another activity perhaps), set to refresh fav status when focus is regained
+                    if (!hasFocus) {
+                        setFavoriteStatusNeedsUpdating(true);
+                    }
+                }
+            });
         }
 
-        private static void loadImage(ImageView imageView, Venue venue, Picasso picasso) {
+        private static void loadImage(Context context, ImageView imageView, Venue venue, Picasso picasso) {
 
             if (venue.getCategories().isEmpty() || venue.getCategories().get(0).getIcon() == null) {
                 return;
             }
 
-            final String imageUrl = venue.getCategories().get(0).getIcon().getPrefix()
-                    + "bg_88" + venue.getCategories().get(0).getIcon().getSuffix();
+            final String imageUrl = venue.getListImgUrl();
+
+            if (imageUrl == null) {
+                imageView.setImageDrawable(context.getDrawable(android.R.drawable.stat_notify_error));
+                return;
+            }
 
             picasso.load(imageUrl).into(imageView, new Callback() {
                 @Override
@@ -146,6 +167,14 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
                     Timber.w("Failed to load browse merch. zone page image");
                 }
             });
+        }
+
+        private boolean getFavoriteStatusNeedsUpdating() {
+            return this.favoriteStatusNeedsUpdating;
+        }
+
+        public void setFavoriteStatusNeedsUpdating(boolean needsUpdating) {
+            this.favoriteStatusNeedsUpdating = needsUpdating;
         }
 
         private void refreshFavoriteStatus(String venueId, PlacesSearchPreferenceManager placesPreferenceManager) {
@@ -185,15 +214,6 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
             favoriteStatusImage.setOnClickListener(onClickListener);
         }
 
-//        private void animateFavoriteStatus(boolean isInitAnimation, View viewToDisplay, final View viewToHide) {
-//            if (viewToHide.getVisibility() != View.INVISIBLE) {
-//                viewToHide.setVisibility(View.INVISIBLE);
-//            }
-//            if (viewToDisplay.getVisibility() != View.VISIBLE) {
-//                viewToDisplay.setVisibility(View.VISIBLE);
-//            }
-//        }
-
         private void animateFavoriteStatus(boolean isInitAnimation, View viewToDisplay, final View viewToHide) {
 
             if (viewToHide.getVisibility() != View.VISIBLE) {
@@ -209,7 +229,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
                 viewToHide.animate()
                         .scaleX(0f)
                         .scaleY(0f)
-                        .setDuration(crossFadeAnimationDuration)
+                        .setDuration(PlacesSearchConstants.HEART_CROSS_FADE_ANIMATION_DURATION)
                         .setListener(new AnimatorListenerAdapter() {
                             @Override
                             public void onAnimationEnd(Animator animation) {
@@ -229,7 +249,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
 
             // If displaying 'non-favorite' status or initial display of 'favorite'
             // status - animate alpha value instantly
-            int duration = crossFadeAnimationDuration;
+            int duration = PlacesSearchConstants.HEART_CROSS_FADE_ANIMATION_DURATION;
             if (viewToDisplay == nonFavoriteStatusImage || isInitAnimation) {
                 duration = 0;
             }

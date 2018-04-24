@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:src="@android:drawable/ic_input_delete"
-        android:visibility="visible"/>
+        android:visibility="invisible"/>
 
     <ImageView
         android:id="@+id/search_icon"

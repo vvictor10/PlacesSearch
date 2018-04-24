@@ -8,8 +8,9 @@
 
     <ImageView
         android:id="@+id/venue_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:layout_width="50dp"
+        android:scaleType="fitXY"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:layout_marginStart="16dp" />
@@ -28,6 +29,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:maxLength="75"
             android:text="Venue Name"
             android:textColor="@color/black_1"
             android:textSize="16dp"
@@ -35,6 +39,9 @@
 
         <TextView
             android:id="@+id/category_name"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:maxLength="75"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -56,7 +63,7 @@
         android:layout_centerVertical="true"
         android:clickable="true"
         android:padding="16dp"
-        android:src="@drawable/heart_active" />
+        android:src="@drawable/ic_favorite_black_24dp" />
 
     <ImageView
         android:id="@+id/non_favorite_status"
@@ -65,7 +72,7 @@
         android:layout_centerVertical="true"
         android:clickable="true"
         android:padding="16dp"
-        android:src="@drawable/heart_inactive" />
+        android:src="@drawable/ic_favorite_border_black_24dp" />
 
     <View
         style="@style/list_separator"

@@ -87,10 +87,6 @@
     <color name="loading_indicator_background_cart">@color/black_1_50</color>
     <color name="loading_indicator_background_pdp_add_to_cart">@color/black_3</color>
 
-    <color name="product_summary_background">@color/gray_6</color>
-    <color name="product_summary_img_background">@color/white_1</color>
-    <color name="product_detail_image_loading_background">@color/gray_7</color>
-
     <color name="black25percentAlpha">#40000000</color>
     <color name="black0percentAlpha">#00000000</color>
 

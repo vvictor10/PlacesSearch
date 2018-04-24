@@ -72,4 +72,21 @@ public class Category {
         this.primary = primary;
     }
 
+    public String getListImgUrl() {
+
+        if (getIcon() == null || getIcon().getPrefix() == null || getIcon().getSuffix() == null) {
+            return null;
+        }
+
+        return getIcon().getPrefix() + "bg_88" + getIcon().getSuffix();
+    }
+
+    public String getMapPinUrl() {
+
+        if (getIcon() == null || getIcon().getPrefix() == null || getIcon().getSuffix() == null) {
+            return null;
+        }
+
+        return getIcon().getPrefix() + "32" + getIcon().getSuffix();
+    }
 }

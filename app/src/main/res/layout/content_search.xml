@@ -10,7 +10,7 @@
         android:id="@+id/search_results_recycler_view"
         style="@style/wrap" />
 
-    <!-- recent searches -->
+    <!-- suggested searches -->
     <include
         android:id="@+id/suggested_searches"
         layout="@layout/suggested_searches"/>

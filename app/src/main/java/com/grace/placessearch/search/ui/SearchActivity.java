@@ -1,15 +1,12 @@
 package com.grace.placessearch.search.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.LruCache;
@@ -23,11 +20,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.grace.placessearch.PlacesSearchConstants;
 import com.grace.placessearch.R;
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager;
+import com.grace.placessearch.data.model.MapPin;
 import com.grace.placessearch.data.model.Venue;
+import com.grace.placessearch.maps.ui.FullScreenMapActivity;
 import com.grace.placessearch.ui.BaseNavigationActivity;
 import com.grace.placessearch.ui.view.LoadingIndicatorView;
+import com.grace.placessearch.venue.detail.ui.VenueDetailsActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -40,19 +41,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import timber.log.Timber;
 
-public class SearchActivity extends BaseNavigationActivity implements SearchContract.View, SearchResultsAdapter.VenueListener {
+public class SearchActivity extends BaseNavigationActivity implements VenuesContract.View, SearchResultsAdapter.VenueListener {
 
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
-
-    @Bind(R.id.fab)
-    FloatingActionButton fab;
-
-    @Bind(R.id.drawer_layout)
-    DrawerLayout drawer;
-
-    @Bind(R.id.nav_view)
-    NavigationView navigationView;
+    @Bind(R.id.map_fab)
+    FloatingActionButton mapFab;
 
     @Bind(R.id.search_edittext)
     EditText searchEditText;
@@ -85,7 +77,7 @@ public class SearchActivity extends BaseNavigationActivity implements SearchCont
     Picasso picasso;
 
     @Inject
-    SearchPresenter searchPresenter;
+    VenuesPresenter venuesPresenter;
 
     @Inject
     PlacesSearchPreferenceManager preferenceManager;
@@ -99,87 +91,46 @@ public class SearchActivity extends BaseNavigationActivity implements SearchCont
 
     protected SuggestedSearchRecyclerAdapter suggestedSearchRecyclerAdapter;
     private LinearLayoutManager suggestedSearchTermsLayoutManager;
-    private List<String> suggestedSearches = new ArrayList<>();
+
+    private List<Venue> searchResults = new ArrayList<>();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         ButterKnife.bind(this);
 
         component().inject(this);
 
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        setupNavigationView();
+
+        setupDrawerListeners();
+
         initToolbar(toolbar);
 
         initSearchTextView();
 
-        //FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-        //DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = setupDrawerListeners();
-
-        toggle.syncState();
-
-        //NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         setupResultsRecylerView();
         setupSuggestedSearchListRecyclerView();
 
-        showNoResultsState(false);
+        displayNoResultsState(false);
 
         displaySuggestedSearchViews(false);
-    }
 
-    @NonNull
-    private ActionBarDrawerToggle setupDrawerListeners() {
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-
-        drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
-            @Override
-            public void onDrawerSlide(View drawerView, float slideOffset) {
-                hideKeyboard();
-            }
-
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                hideKeyboard();
-            }
-
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                hideKeyboard();
-            }
-
-            @Override
-            public void onDrawerStateChanged(int newState) {
-                hideKeyboard();
-            }
-        });
-        return toggle;
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         Timber.i("!");
-        searchPresenter.bindView(this);
+        venuesPresenter.bindView(this);
     }
 
     @Override
     protected void onPause() {
-        searchPresenter.unBindView();
+        venuesPresenter.unBindView();
         hideKeyboard();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         super.onPause();
@@ -191,10 +142,9 @@ public class SearchActivity extends BaseNavigationActivity implements SearchCont
         searchEditText.setSelection(0);
         searchEditText.setCursorVisible(true);
         searchEditText.isEnabled();
-//        showingResultsState = false;
         showKeyboard();
 
-        showNoResultsState(false);
+        displayNoResultsState(false);
         displaySuggestedSearchViews(false);
     }
 
@@ -210,6 +160,7 @@ public class SearchActivity extends BaseNavigationActivity implements SearchCont
         if (searchEditTextInput.equals(searchInput)) {
             return;
         }
+        displayMapFab(false);
         doSearch(searchEditText.getText().toString().trim());
     }
 
@@ -238,7 +189,7 @@ public class SearchActivity extends BaseNavigationActivity implements SearchCont
         searchEditText.addTextChangedListener(searchTextWatcher);
     }
 
-    private void showNoResultsState(boolean show) {
+    private void displayNoResultsState(boolean show) {
         if (show) {
             noResultsMessageText.setVisibility(View.VISIBLE);
             noResultsMessageText.setText(String.format(getString(R.string.search_no_results_response),
@@ -246,6 +197,39 @@ public class SearchActivity extends BaseNavigationActivity implements SearchCont
         } else {
             noResultsMessageText.setVisibility(View.INVISIBLE);
         }
+    }
+
+    private void displayMapFab(boolean show) {
+        if (show) {
+            mapFab.setVisibility(View.VISIBLE);
+        } else {
+            mapFab.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    @OnClick(R.id.map_fab)
+    public void mapFabClicked() {
+        Intent intent = new Intent(this, FullScreenMapActivity.class);
+        intent.putParcelableArrayListExtra(PlacesSearchConstants.MAP_PINS_EXTRA, getMapPinsOfSearchResults());
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in, R.anim.fade_out);
+    }
+
+    private ArrayList<MapPin> getMapPinsOfSearchResults() {
+        ArrayList<MapPin> mapPins = new ArrayList<>();
+        for (int i = 0; i < searchResults.size(); i++) {
+            Venue venue = searchResults.get(i);
+            if (venue.getLocation() != null) {
+                MapPin mapPin = new MapPin();
+                mapPin.setVenueId(venue.getId());
+                mapPin.setPinName(venue.getName());
+                mapPin.setLat(venue.getLocation().getLat());
+                mapPin.setLng(venue.getLocation().getLng());
+                mapPin.setImgUrl(venue.getMapPinUrl());
+                mapPins.add(mapPin);
+            }
+        }
+        return mapPins;
     }
 
     private final TextWatcher searchTextWatcher = new TextWatcher() {
@@ -263,15 +247,8 @@ public class SearchActivity extends BaseNavigationActivity implements SearchCont
             searchInput = s.toString();
 
             if (s.length() != 0) {
-//                recentSearchTermsAdapter.setSearchResults(getSavedRecentSearchList(), false, searchInput);
-//                displaySuggestedSearchHeader(true);
-//            } else {
-//                if (!ignoreSearchEditTextUpdate) {
-                    searchPresenter.doSuggestedSearch(s.toString());
-//                } else {
-//                    recentSearchTermsAdapter.setSearchResults(suggestedSearches, true, searchInput);
-//                    ignoreSearchEditTextUpdate = false;
-//                }
+                displayNoResultsState(false);
+                venuesPresenter.doSuggestedSearch(s.toString());
             } else {
                 displaySuggestedSearchViews(false);
             }
@@ -287,24 +264,10 @@ public class SearchActivity extends BaseNavigationActivity implements SearchCont
      * Initializes the adapter/recycler view to display results
      */
     private void setupResultsRecylerView() {
-
         searchResultsAdapter = new SearchResultsAdapter(this, this, preferenceManager, picasso);
-
         searchResultsLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         searchResultsRecyclerView.setLayoutManager(searchResultsLayoutManager);
-
         searchResultsRecyclerView.setAdapter(searchResultsAdapter);
-
-//        productsListRecyclerView.getRecyclerView().addOnScrollListener(new RecyclerView.OnScrollListener() {
-//            @Override
-//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-//                super.onScrolled(recyclerView, dx, dy);
-//                if (dy > 0) { // skip call on scroll down action
-//                    fetchNextPageOfSearchResults();
-//                }
-//            }
-//        });
-
     }
 
     /**
@@ -330,13 +293,6 @@ public class SearchActivity extends BaseNavigationActivity implements SearchCont
             new SuggestedSearchRecyclerAdapter.SuggestedSearchOnClickListener() {
                 @Override
                 public void onSuggestedSearchItemClick(String searchTerm) {
-//                    if (!recentSearchTermsAdapter.isSuggestedSearches()) {
-//                        searchEditText.setText(searchTerm);
-//                        searchEditText.setSelection(searchTerm.length());
-//                    } else {
-//                        keepSuggestedSearchesSearchInput = true;
-//                        suggestedSearchesSearchInput = searchInput;
-//                    }
                     Timber.i("SuggestedSearchOnClickListener User Action|%s|%s|%s", "Suggested searches", "Search String", searchTerm);
                     displaySuggestedSearchViews(false);
                     doSearch(searchTerm);
@@ -356,91 +312,25 @@ public class SearchActivity extends BaseNavigationActivity implements SearchCont
             searchEditText.setCursorVisible(false);
 
             showLoadingIndicator(true);
-//            // show loading indicator
-//            loadingIndicatorView.setVisibility(View.VISIBLE);
-
-//            // perform search - API call
-//            resetPaginationAttributes();
-//            originalSearchResponse = null;
-            searchPresenter.doSearch(searchString);
+            displayMapFab(false);
+            venuesPresenter.doSearch(searchString);
         }
     }
-//
-//    @Override
-//    public void onBackPressed() {
-//        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-//        if (drawer.isDrawerOpen(GravityCompat.START)) {
-//            drawer.closeDrawer(GravityCompat.START);
-//        } else {
-//            super.onBackPressed();
-//        }
-//    }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        //getMenuInflater().inflate(R.menu.main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-//
-//    @SuppressWarnings("StatementWithEmptyBody")
-//    @Override
-//    public boolean onNavigationItemSelected(MenuItem item) {
-//        // Handle navigation view item clicks here.
-//        int id = item.getItemId();
-//
-//        if (id == R.id.nav_search) {
-//            // Handle the camera action
-//        } else if (id == R.id.nav_favorites) {
-//
-//        } else if (id == R.id.nav_settings) {
-//
-//        } else if (id == R.id.nav_view) {
-//
-//        }
-//
-//        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-//        drawer.closeDrawer(GravityCompat.START);
-//        return true;
-//    }
-//
-//    private void initToolbar(Toolbar toolbar) {
-//        setSupportActionBar(toolbar);
-//        ActionBar actionBar = getSupportActionBar();
-//        if (actionBar != null) {
-//            actionBar.setDisplayShowTitleEnabled(false);
-//            actionBar.setDisplayHomeAsUpEnabled(false);
-//            actionBar.setDisplayShowHomeEnabled(true);
-//        }
-//        toolbar.setNavigationIcon(R.drawable.hamburger_dark);
-//    }
 
     @Override
     public void onSearch(List<Venue> venues) {
         showLoadingIndicator(false);
         if (venues != null && !venues.isEmpty()) {
-            showNoResultsState(false);
+            displayNoResultsState(false);
+            this.searchResults = venues;
             Timber.i("Updating data");
+            displayMapFab(true);
             ((SearchResultsAdapter) searchResultsAdapter).updateData(venues);
         } else {
             Timber.i("Empty data or bad response");
             ((SearchResultsAdapter) searchResultsAdapter).updateData(new ArrayList<Venue>());
-            showNoResultsState(true);
+            displayNoResultsState(true);
+            displayMapFab(false);
         }
     }
 
@@ -453,21 +343,28 @@ public class SearchActivity extends BaseNavigationActivity implements SearchCont
     }
 
     @Override
+    public void onVenue(Venue venue) {
+        // Not applicable
+    }
+
+    @Override
     public void onError() {
         showLoadingIndicator(false);
-        Snackbar.make(fab, "Something went wrong. Please try again later!", Snackbar.LENGTH_SHORT)
+        Snackbar.make(mapFab, "Something went wrong. Please try again later!", Snackbar.LENGTH_SHORT)
                 .setAction("Action", null).show();
     }
 
     @Override
-    public void onNextError() {
+    public void onVenueItemClicked(Venue venue) {
 
-    }
+        Intent intent = new Intent(this, VenueDetailsActivity.class);
+        intent.putExtra(PlacesSearchConstants.VENUE_NAME_EXTRA, venue.getName());
+        intent.putExtra(PlacesSearchConstants.VENUE_ID_EXTRA, venue.getId());
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in, R.anim.fade_out);
 
-    @Override
-    public void onClick(Venue venue) {
-        Snackbar.make(fab, "Venue " + venue.getName() + " clicked", Snackbar.LENGTH_SHORT)
-                .setAction("Action", null).show();
+//        Snackbar.make(mapFab, "Venue " + venue.getName() + " clicked", Snackbar.LENGTH_SHORT)
+//                .setAction("Action", null).show();
     }
 
     public void showLoadingIndicator(boolean show) {
@@ -479,7 +376,6 @@ public class SearchActivity extends BaseNavigationActivity implements SearchCont
     }
 
     private void updateSuggestedSearches(List<String> suggestedSearches) {
-        this.suggestedSearches = suggestedSearches;
         displaySuggestedSearchViews(true);
         suggestedSearchRecyclerAdapter.setSearchResults(suggestedSearches, searchInput);
 

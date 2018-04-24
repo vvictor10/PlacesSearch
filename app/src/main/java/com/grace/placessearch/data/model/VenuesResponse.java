@@ -10,7 +10,7 @@ public class VenuesResponse {
     private Meta meta;
     @SerializedName("response")
     @Expose
-    private Response response;
+    private VenueListResponse mVenueListResponse;
 
     public Meta getMeta() {
         return meta;
@@ -20,12 +20,12 @@ public class VenuesResponse {
         this.meta = meta;
     }
 
-    public Response getResponse() {
-        return response;
+    public VenueListResponse getVenueListResponse() {
+        return mVenueListResponse;
     }
 
-    public void setResponse(Response response) {
-        this.response = response;
+    public void setVenueListResponse(VenueListResponse venueListResponse) {
+        this.mVenueListResponse = venueListResponse;
     }
 
 }

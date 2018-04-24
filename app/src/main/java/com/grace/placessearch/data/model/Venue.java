@@ -13,6 +13,12 @@ public class Venue {
     @SerializedName("name")
     @Expose
     private String name;
+    @SerializedName("url")
+    @Expose
+    private String url;
+    @SerializedName("canonicalUrl")
+    @Expose
+    private String canonicalUrl;
     @SerializedName("location")
     @Expose
     private Location location;
@@ -83,6 +89,40 @@ public class Venue {
 
     public void setEvents(Events events) {
         this.events = events;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getCanonicalUrl() {
+        return canonicalUrl;
+    }
+
+    public void setCanonicalUrl(String canonicalUrl) {
+        this.canonicalUrl = canonicalUrl;
+    }
+
+    public String getListImgUrl() {
+
+        if (getCategories().isEmpty()) {
+            return null;
+        }
+
+        return getCategories().get(0).getListImgUrl();
+    }
+
+    public String getMapPinUrl() {
+
+        if (getCategories().isEmpty()) {
+            return null;
+        }
+
+        return getCategories().get(0).getMapPinUrl();
     }
 
 }

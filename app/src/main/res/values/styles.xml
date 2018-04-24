@@ -15,6 +15,10 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
+    <style name="AppTheme.NoActionBar.FitSystemWindows" parent="AppTheme.NoActionBar">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/primary_dark</item>
+    </style>
 
     <style name="AppTheme.NoActionBar.TranslucentFullScreen">
         <item name="android:windowIsTranslucent">true</item>
@@ -57,6 +61,12 @@
         <item name="android:backgroundTint">@color/black_1</item>
     </style>
 
+    <style name="toolbar_title">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/toolbar_text</item>
+        <item name="android:textSize">16dp</item>
+    </style>
+
     <style name="list_separator">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
@@ -73,6 +83,10 @@
         <item name="android:singleLine">true</item>
         <item name="android:ellipsize">end</item>
         <item name="android:letterSpacing">0.03</item>
+    </style>
+
+    <style name="toolbar_with_back_navigation">
+        <item name="navigationIcon">@drawable/appbar_back_white</item>
     </style>
 
 </resources>

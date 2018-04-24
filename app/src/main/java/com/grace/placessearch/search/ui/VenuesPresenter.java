@@ -5,6 +5,7 @@ import android.util.LruCache;
 import com.grace.placessearch.data.model.Category;
 import com.grace.placessearch.data.model.SuggestedVenuesResponse;
 import com.grace.placessearch.data.model.Venue;
+import com.grace.placessearch.data.model.VenueResponse;
 import com.grace.placessearch.data.model.VenuesResponse;
 import com.grace.placessearch.search.data.SearchDataManager;
 import com.grace.placessearch.ui.injection.scope.ActivityScope;
@@ -23,22 +24,22 @@ import rx.subscriptions.CompositeSubscription;
 import timber.log.Timber;
 
 @ActivityScope
-public class SearchPresenter implements SearchContract.Presenter {
+public class VenuesPresenter implements VenuesContract.Presenter {
 
     private final CompositeSubscription subscriptions = new CompositeSubscription();
     private final SearchDataManager searchDataManager;
-    private static LruCache lruCache = null;
+    private static LruCache lruCache;
     private static String searchTerm;
-    private SearchContract.View viewListener;
+    private VenuesContract.View viewListener;
 
     @Inject
-    public SearchPresenter(LruCache lruCache, SearchDataManager searchDataManager) {
+    public VenuesPresenter(LruCache lruCache, SearchDataManager searchDataManager) {
         this.lruCache = lruCache;
         this.searchDataManager = searchDataManager;
     }
 
     @Override
-    public void bindView(SearchContract.View viewListener) {
+    public void bindView(VenuesContract.View viewListener) {
         this.viewListener = viewListener;
     }
 
@@ -59,8 +60,20 @@ public class SearchPresenter implements SearchContract.Presenter {
         subscriptions.add(getSearchSuggestionsSubscription(searchTerm));
     }
 
+    @Override
+    public void doGetVenue(String venueId) {
+        subscriptions.add(getVenueSubscription(venueId));
+    }
+
     private void unsubscribe() {
         subscriptions.clear();
+    }
+
+    private Subscription getVenueSubscription(String venueId) {
+        return searchDataManager.getVenue(venueId)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new VenueSubscriber(viewListener));
     }
 
     private Subscription getSearchSubscription(String term) {
@@ -79,9 +92,9 @@ public class SearchPresenter implements SearchContract.Presenter {
 
     private static class SearchSuggestionsSubscriber extends Subscriber<Result<SuggestedVenuesResponse>> {
 
-        private SearchContract.View listener;
+        private VenuesContract.View listener;
 
-        public SearchSuggestionsSubscriber(SearchContract.View listener) {
+        public SearchSuggestionsSubscriber(VenuesContract.View listener) {
             this.listener = listener;
         }
 
@@ -92,7 +105,6 @@ public class SearchPresenter implements SearchContract.Presenter {
 
         @Override
         public void onError(Throwable e) {
-            e.printStackTrace();
             listener.onError();
         }
 
@@ -134,9 +146,9 @@ public class SearchPresenter implements SearchContract.Presenter {
 
     private static class SearchSubscriber extends Subscriber<Result<VenuesResponse>> {
 
-        private SearchContract.View listener;
+        private VenuesContract.View listener;
 
-        public SearchSubscriber(SearchContract.View listener) {
+        public SearchSubscriber(VenuesContract.View listener) {
             this.listener = listener;
         }
 
@@ -153,11 +165,41 @@ public class SearchPresenter implements SearchContract.Presenter {
         @Override
         public void onNext(Result<VenuesResponse> result) {
             VenuesResponse venuesResponse = result.response().body();
-            if (venuesResponse != null && venuesResponse.getResponse() != null) {
-                List<Venue> venues = venuesResponse.getResponse().getVenues();
+            if (venuesResponse != null && venuesResponse.getVenueListResponse() != null) {
+                List<Venue> venues = venuesResponse.getVenueListResponse().getVenues();
                 Timber.i("No. of venues for search: %d", venues.size());
                 if (listener != null) {
                     listener.onSearch(venues);
+                }
+            }
+        }
+    }
+
+    private static class VenueSubscriber extends Subscriber<Result<VenueResponse>> {
+
+        private VenuesContract.View listener;
+
+        public VenueSubscriber(VenuesContract.View listener) {
+            this.listener = listener;
+        }
+
+        @Override
+        public void onCompleted() {
+            // n/a
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            listener.onError();
+        }
+
+        @Override
+        public void onNext(Result<VenueResponse> result) {
+            VenueResponse venueResponse = result.response().body();
+            if (venueResponse != null && venueResponse.getSingleVenueResponse() != null) {
+                Timber.i("Venue fetched!");
+                if (listener != null) {
+                    listener.onVenue(venueResponse.getSingleVenueResponse().getVenue());
                 }
             }
         }
