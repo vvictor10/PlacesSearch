@@ -62,7 +62,6 @@
     </style>
 
     <style name="toolbar_title">
-        <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/toolbar_text</item>
         <item name="android:textSize">@dimen/general_text_size</item>
     </style>

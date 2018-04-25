@@ -89,6 +89,11 @@ public class VenueDetailsActivity extends BaseNavigationActivity implements Venu
     TextView addrLine2;
     @Bind(R.id.addr_line_3)
     TextView addrLine3;
+    @Bind(R.id.primary_details_card_view)
+    CardView primaryDetailsCardView;
+    @Bind(R.id.about_card_view)
+    CardView aboutCardView;
+
     @Inject
     Picasso picasso;
 
@@ -174,24 +179,12 @@ public class VenueDetailsActivity extends BaseNavigationActivity implements Venu
     }
 
     @Override
-    public void onSearch(List<Venue> venues) {
-        // Not applicable
-    }
-
-    @Override
-    public void onSuggestedSearches(List<String> suggestedSearches) {
-        // Not applicable
-    }
-
-    @Override
     public void onVenue(final Venue venue) {
-        //loadingIndicatorView.setVisibility(View.INVISIBLE);
         if (venue != null) {
 
             toolbarTitle.setText(venue.getName());
 
             loadMapImage(mapImage, venue);
-
             setupVenueUrl(venue);
 
             if (!venue.getCategories().isEmpty()) {
@@ -201,17 +194,27 @@ public class VenueDetailsActivity extends BaseNavigationActivity implements Venu
             }
 
             setupAddressInfo(venue);
-
             setInitialFavoriteStatus(preferenceManager, venue);
-
-            //loadIconImage(iconImage, venue);
         }
     }
 
     @Override
     public void onError() {
         loadingIndicatorView.setVisibility(View.INVISIBLE);
-        // TODO - display not found message?
+        primaryDetailsCardView.setVisibility(View.INVISIBLE);
+        addressCardView.setVisibility(View.INVISIBLE);
+        aboutCardView.setVisibility(View.INVISIBLE);
+        displayCustomToast("Something went wrong. Please try later.");
+    }
+
+    @Override
+    public void onSearch(List<Venue> venues) {
+        // Not applicable
+    }
+
+    @Override
+    public void onSuggestedSearches(List<String> suggestedSearches) {
+        // Not applicable
     }
 
     private void setupAddressInfo(final Venue venue) {
