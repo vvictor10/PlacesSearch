@@ -1,4 +1,4 @@
-package com.grace.placessearch.util;
+package com.grace.placessearch.common.util;
 
 /**
  * Taken from u2020 example.

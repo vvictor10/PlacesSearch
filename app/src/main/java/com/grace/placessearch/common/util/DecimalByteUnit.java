@@ -1,6 +1,6 @@
-package com.grace.placessearch.util;
+package com.grace.placessearch.common.util;
 
-import static com.grace.placessearch.util.UnitUtils.multiply;
+import static com.grace.placessearch.common.util.UnitUtils.multiply;
 
 /**
  * A {@code DecimalByteUnit} represents power-of-ten byte sizes at a given unit of granularity and

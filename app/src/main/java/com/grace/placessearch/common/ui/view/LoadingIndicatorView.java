@@ -1,4 +1,4 @@
-package com.grace.placessearch.ui.view;
+package com.grace.placessearch.common.ui.view;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;

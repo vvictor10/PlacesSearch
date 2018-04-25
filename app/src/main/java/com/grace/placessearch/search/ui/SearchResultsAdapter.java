@@ -12,12 +12,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.grace.placessearch.PlacesSearchConstants;
+import com.grace.placessearch.common.PlacesSearchConstants;
 import com.grace.placessearch.R;
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager;
 import com.grace.placessearch.data.model.Venue;
-import com.grace.placessearch.util.PlacesSearchUtil;
-import com.squareup.picasso.Callback;
+import com.grace.placessearch.common.util.PlacesSearchUtil;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -25,7 +24,6 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import timber.log.Timber;
 
 public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdapter.VenueViewHolder> {
 
@@ -72,8 +70,8 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
         @Bind(R.id.venue_container)
         public RelativeLayout venueContainer;
 
-        @Bind(R.id.venue_image)
-        public ImageView venueImage;
+        @Bind(R.id.venue_category_image)
+        public ImageView venueCategoryImage;
 
         @Bind(R.id.venue_name)
         public TextView venueName;
@@ -81,8 +79,8 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
         @Bind(R.id.category_name)
         public TextView categoryName;
 
-        @Bind(R.id.distance_to_center)
-        public TextView distanceToCenter;
+        @Bind(R.id.distance_to_user_location)
+        public TextView distanceToUserLocation;
 
         @Bind(R.id.favorite_status)
         public ImageView favoriteStatusImage;
@@ -121,17 +119,26 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
 
             isFavorite = false;
 
+            // Venue name
             venueName.setText(data.getName());
 
+            // Category
             if (data.getCategories().size() >= 1) {
                 categoryName.setText(data.getCategories().get(0).getName());
             } else {
-                categoryName.setText("Not Available");
+                categoryName.setText(context.getString(R.string.unavailable));
             }
 
-            distanceToCenter.setText(PlacesSearchUtil.getDistanceInMiles(data.getLocation()));
+            // distance
+            String distanceToUserStr = PlacesSearchUtil.getDistanceInMilesToUserLocation(data.getLocation());
+            if (distanceToUserStr == null) {
+                distanceToUserLocation.setText(context.getString(R.string.unavailable));
+            } else {
+                distanceToUserLocation.setText(distanceToUserStr);
+            }
 
-            loadImage(context, venueImage, data, picasso);
+            // load category image
+            loadImage(context, venueCategoryImage, data, picasso);
 
             venueContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -139,7 +146,6 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
                     listener.onVenueItemClicked(data);
                 }
             });
-
             setInitialFavoriteStatus(placesPreferenceManager, data);
 
             itemView.getViewTreeObserver().addOnWindowFocusChangeListener(new ViewTreeObserver.OnWindowFocusChangeListener() {

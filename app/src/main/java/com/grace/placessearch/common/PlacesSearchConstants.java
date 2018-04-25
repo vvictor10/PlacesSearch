@@ -1,6 +1,7 @@
-package com.grace.placessearch;
+package com.grace.placessearch.common;
 
-import com.grace.placessearch.util.DecimalByteUnit;
+import com.grace.placessearch.BuildConfig;
+import com.grace.placessearch.common.util.DecimalByteUnit;
 
 /**
  * Created by vicsonvictor on 4/21/18.

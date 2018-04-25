@@ -10,7 +10,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.widget.TextView;
 
 import com.grace.placessearch.R;
-import com.grace.placessearch.ui.view.ViewUtils;
+import com.grace.placessearch.common.ui.view.ViewUtils;
 
 import java.util.List;
 
@@ -143,20 +143,9 @@ public class SuggestedSearchRecyclerAdapter extends RecyclerView.Adapter<Recycle
     }
 
     private void setAnimation(View view, int position) {
-
         if (position != 0) {
-//            startAnimations(searchHeader, position);
-//            startAnimations(view, position);
-//        } else {
             startAnimations(view, position);
         }
-
-//        // only animate up to the first 6 items
-//        // unnecessary to animate more than this
-//        if (position >= 6 || position >= getItemCount()) {
-//            switchFromRecentToSuggested = false;
-//        }
-
     }
 
     private void startAnimations(View view, int position) {

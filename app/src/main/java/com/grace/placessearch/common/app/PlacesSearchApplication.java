@@ -39,7 +39,7 @@ public class PlacesSearchApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        initAppStartupData();
+        initiateAppStartupSequence();
     }
 
     public PlacesSearchComponent component() {
@@ -58,7 +58,11 @@ public class PlacesSearchApplication extends Application {
         }
     }
 
-    private void initAppStartupData() {
+    /**
+     * Triggers the {@link PlacesSearchStartupIntentService} to initiate the app
+     * start up data fetch sequence.
+     */
+    private void initiateAppStartupSequence() {
 
         // Start start-up intent service, if not already running
         ActivityManager manager = (ActivityManager) this.getSystemService(Context.ACTIVITY_SERVICE);

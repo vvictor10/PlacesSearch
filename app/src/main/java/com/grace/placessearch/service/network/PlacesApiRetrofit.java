@@ -2,10 +2,6 @@ package com.grace.placessearch.service.network;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParseException;
 import com.grace.placessearch.data.model.SuggestedVenuesResponse;
 import com.grace.placessearch.data.model.VenueResponse;
 import com.grace.placessearch.data.model.VenuesResponse;
@@ -13,10 +9,6 @@ import com.grace.placessearch.service.PlacesApi;
 import com.grace.placessearch.service.VenuesService;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.HttpUrl;
@@ -30,7 +22,6 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.Result;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
-import timber.log.Timber;
 
 /**
  * Created by vicsonvictor on 4/21/18.
@@ -102,29 +93,7 @@ public class PlacesApiRetrofit implements PlacesApi {
     }
 
     private Gson getGsonInstance() {
-        return new GsonBuilder()
-                .registerTypeAdapter(Integer.class, new JsonDeserializer<Integer>() {
-                    @Override
-                    public Integer deserialize(JsonElement json, Type typeOfT,
-                            JsonDeserializationContext context) throws JsonParseException {
-                        try {
-                            return Integer.valueOf(json.getAsInt());
-                        } catch (NumberFormatException e) {
-                            return null;
-                        }
-                    }
-                }).registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
-                    @Override
-                    public Date deserialize(JsonElement json, Type typeOfT,
-                            JsonDeserializationContext context) throws JsonParseException {
-                        try {
-                            return new SimpleDateFormat("yyy-MM-dd").parse(json.getAsString());
-                        } catch (ParseException e) {
-                            return null;
-                        }
-                    }
-                })
-                .create();
+        return new GsonBuilder().create();
     }
 
     @Override

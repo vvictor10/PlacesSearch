@@ -8,12 +8,12 @@ import android.support.annotation.NonNull;
 import android.util.LruCache;
 
 import com.grace.placessearch.BuildConfig;
-import com.grace.placessearch.PlacesSearchConstants;
-import com.grace.placessearch.PlacesSearchEnvironmentEnum;
+import com.grace.placessearch.common.PlacesSearchConstants;
+import com.grace.placessearch.common.PlacesSearchEnvironmentEnum;
 import com.grace.placessearch.common.app.injection.qualifier.ForApplication;
+import com.grace.placessearch.common.util.PlacesSearchUtil;
 import com.grace.placessearch.service.PlacesApi;
 import com.grace.placessearch.service.network.PlacesApiRetrofit;
-import com.grace.placessearch.util.PlacesSearchUtil;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
@@ -40,22 +40,6 @@ public class PlacesSearchModule {
 
     public PlacesSearchModule(Context context) {
         this.context = context;
-    }
-
-    /**
-     * Creates a cache enabled {@link OkHttpClient} instance and returns it.
-     * Currently, this is being only used for Picasso image handling and caching.
-     */
-    private static OkHttpClient.Builder createOkHttpClient(Context context) {
-        // Install an HTTP cache in the application cache directory.
-        File cacheDir = new File(context.getCacheDir(), PlacesSearchConstants.HTTP);
-        Cache cache = new Cache(cacheDir, PlacesSearchConstants.IMAGE_DISK_CACHE_SIZE);
-
-        return new OkHttpClient.Builder()
-                .cache(cache)
-                .connectTimeout(PlacesSearchConstants.HTTP_TIMEOUT_VALUE, SECONDS)
-                .readTimeout(PlacesSearchConstants.HTTP_TIMEOUT_VALUE, SECONDS)
-                .writeTimeout(PlacesSearchConstants.HTTP_TIMEOUT_VALUE, SECONDS);
     }
 
     @Provides
@@ -105,6 +89,22 @@ public class PlacesSearchModule {
             Timber.i("Created new PlacesRetrofit instance.");
         }
         return mPlacesApi;
+    }
+
+    /**
+     * Creates a cache enabled {@link OkHttpClient} instance and returns it.
+     * Currently, this is being only used for Picasso image handling and caching.
+     */
+    private static OkHttpClient.Builder createOkHttpClient(Context context) {
+        // Install an HTTP cache in the application cache directory.
+        File cacheDir = new File(context.getCacheDir(), PlacesSearchConstants.HTTP);
+        Cache cache = new Cache(cacheDir, PlacesSearchConstants.IMAGE_DISK_CACHE_SIZE);
+
+        return new OkHttpClient.Builder()
+                .cache(cache)
+                .connectTimeout(PlacesSearchConstants.HTTP_TIMEOUT_VALUE, SECONDS)
+                .readTimeout(PlacesSearchConstants.HTTP_TIMEOUT_VALUE, SECONDS)
+                .writeTimeout(PlacesSearchConstants.HTTP_TIMEOUT_VALUE, SECONDS);
     }
 
 }

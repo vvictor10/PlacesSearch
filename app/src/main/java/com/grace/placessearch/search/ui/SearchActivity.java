@@ -20,14 +20,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.grace.placessearch.PlacesSearchConstants;
+import com.grace.placessearch.common.PlacesSearchConstants;
 import com.grace.placessearch.R;
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager;
 import com.grace.placessearch.data.model.MapPin;
 import com.grace.placessearch.data.model.Venue;
-import com.grace.placessearch.maps.ui.FullScreenMapActivity;
-import com.grace.placessearch.ui.BaseNavigationActivity;
-import com.grace.placessearch.ui.view.LoadingIndicatorView;
+import com.grace.placessearch.maps.ui.VenuesMapActivity;
+import com.grace.placessearch.common.ui.BaseNavigationActivity;
+import com.grace.placessearch.common.ui.view.LoadingIndicatorView;
 import com.grace.placessearch.venue.detail.ui.VenueDetailsActivity;
 import com.squareup.picasso.Picasso;
 
@@ -142,8 +142,8 @@ public class SearchActivity extends BaseNavigationActivity implements VenuesCont
 
         navigationView.setNavigationItemSelectedListener(this);
 
-        setupResultsRecylerView();
-        setupSuggestedSearchListRecyclerView();
+        setupSearchResultsRecyclerView();
+        setupSuggestedSearchResultsRecyclerView();
 
         displayNoResultsState(false);
 
@@ -178,13 +178,13 @@ public class SearchActivity extends BaseNavigationActivity implements VenuesCont
     }
 
     @OnClick(R.id.search_edittext)
-    public void onSearchEditTextClick() {
+    public void onSearchEditTextClicked() {
         searchEditText.setCursorVisible(true);
         searchEditText.isEnabled();
     }
 
     @OnClick(R.id.search_icon)
-    public void onSearchIconClick() {
+    public void onSearchIconClicked() {
         String searchEditTextInput = searchEditText.getText().toString().trim();
         if (searchEditTextInput.equals(searchInput)) {
             return;
@@ -238,7 +238,7 @@ public class SearchActivity extends BaseNavigationActivity implements VenuesCont
 
     @OnClick(R.id.map_fab)
     public void mapFabClicked() {
-        Intent intent = new Intent(this, FullScreenMapActivity.class);
+        Intent intent = new Intent(this, VenuesMapActivity.class);
         intent.putParcelableArrayListExtra(PlacesSearchConstants.MAP_PINS_EXTRA, getMapPinsOfSearchResults());
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in, R.anim.fade_out);
@@ -264,7 +264,7 @@ public class SearchActivity extends BaseNavigationActivity implements VenuesCont
     /**
      * Initializes the adapter/recycler view to display results
      */
-    private void setupResultsRecylerView() {
+    private void setupSearchResultsRecyclerView() {
         searchResultsAdapter = new SearchResultsAdapter(this, this, preferenceManager, picasso);
         searchResultsLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         searchResultsRecyclerView.setLayoutManager(searchResultsLayoutManager);
@@ -274,7 +274,7 @@ public class SearchActivity extends BaseNavigationActivity implements VenuesCont
     /**
      * Initializes the suggested search adapter/recycler view to display results
      */
-    private void setupSuggestedSearchListRecyclerView() {
+    private void setupSuggestedSearchResultsRecyclerView() {
         suggestedSearchTermsLayoutManager = new LinearLayoutManager(this);
         suggestedSearchesRecyclerView.setLayoutManager(suggestedSearchTermsLayoutManager);
         suggestedSearchRecyclerAdapter = new SuggestedSearchRecyclerAdapter(suggestedSearchesRecyclerView, new ArrayList<String>(), suggestedSearchHeader);
@@ -294,7 +294,7 @@ public class SearchActivity extends BaseNavigationActivity implements VenuesCont
             hideKeyboard();
             searchEditText.setCursorVisible(false);
 
-            showLoadingIndicator(true);
+            displayLoadingIndicator(true);
             displayMapFab(false);
             venuesPresenter.doSearch(searchString);
         }
@@ -302,7 +302,7 @@ public class SearchActivity extends BaseNavigationActivity implements VenuesCont
 
     @Override
     public void onSearch(List<Venue> venues) {
-        showLoadingIndicator(false);
+        displayLoadingIndicator(false);
         if (venues != null && !venues.isEmpty()) {
             displayNoResultsState(false);
             this.searchResults = venues;
@@ -334,25 +334,21 @@ public class SearchActivity extends BaseNavigationActivity implements VenuesCont
 
     @Override
     public void onError() {
-        showLoadingIndicator(false);
+        displayLoadingIndicator(false);
         Snackbar.make(mapFab, "Something went wrong. Please try again later!", Snackbar.LENGTH_SHORT)
                 .setAction("Action", null).show();
     }
 
     @Override
     public void onVenueItemClicked(Venue venue) {
-
         Intent intent = new Intent(this, VenueDetailsActivity.class);
         intent.putExtra(PlacesSearchConstants.VENUE_NAME_EXTRA, venue.getName());
         intent.putExtra(PlacesSearchConstants.VENUE_ID_EXTRA, venue.getId());
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in, R.anim.fade_out);
-
-//        Snackbar.make(mapFab, "Venue " + venue.getName() + " clicked", Snackbar.LENGTH_SHORT)
-//                .setAction("Action", null).show();
     }
 
-    public void showLoadingIndicator(boolean show) {
+    public void displayLoadingIndicator(boolean show) {
         if (show) {
             loadingIndicatorView.setVisibility(View.VISIBLE);
         } else {

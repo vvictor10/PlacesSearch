@@ -5,8 +5,8 @@ import com.grace.placessearch.data.model.SuggestedVenuesResponse;
 import com.grace.placessearch.data.model.Venue;
 import com.grace.placessearch.data.model.VenueResponse;
 import com.grace.placessearch.data.model.VenuesResponse;
-import com.grace.placessearch.search.data.SearchDataManager;
-import com.grace.placessearch.ui.injection.scope.ActivityScope;
+import com.grace.placessearch.common.data.VenuesDataManager;
+import com.grace.placessearch.common.ui.injection.scope.ActivityScope;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,12 +29,12 @@ import timber.log.Timber;
 public class VenuesPresenter implements VenuesContract.Presenter {
 
     private final CompositeSubscription subscriptions = new CompositeSubscription();
-    private final SearchDataManager searchDataManager;
+    private final VenuesDataManager venuesDataManager;
     private VenuesContract.View viewListener;
 
     @Inject
-    public VenuesPresenter(SearchDataManager searchDataManager) {
-        this.searchDataManager = searchDataManager;
+    public VenuesPresenter(VenuesDataManager venuesDataManager) {
+        this.venuesDataManager = venuesDataManager;
     }
 
     @Override
@@ -68,21 +68,21 @@ public class VenuesPresenter implements VenuesContract.Presenter {
     }
 
     private Subscription getVenueSubscription(String venueId) {
-        return searchDataManager.getVenue(venueId)
+        return venuesDataManager.getVenue(venueId)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new VenueSubscriber(viewListener));
     }
 
     private Subscription getSearchSubscription(String term) {
-        return searchDataManager.searchForVenues(term)
+        return venuesDataManager.searchForVenues(term)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new SearchSubscriber(viewListener));
     }
 
     private Subscription getSearchSuggestionsSubscription(String term) {
-        return searchDataManager.suggestedSearchForVenues(term)
+        return venuesDataManager.suggestedSearchForVenues(term)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new SearchSuggestionsSubscriber(viewListener));
@@ -131,7 +131,7 @@ public class VenuesPresenter implements VenuesContract.Presenter {
                 }
 
                 if (listener != null) {
-                    Timber.i("Suggested search strings %s", suggestedSearchStrings);
+                    Timber.d("Suggested search strings %s", suggestedSearchStrings);
                     listener.onSuggestedSearches(suggestedSearchStrings);
                 }
 
@@ -197,7 +197,7 @@ public class VenuesPresenter implements VenuesContract.Presenter {
         public void onNext(Result<VenueResponse> result) {
             VenueResponse venueResponse = result.response().body();
             if (venueResponse != null && venueResponse.getSingleVenueResponse() != null) {
-                Timber.i("Venue fetched!");
+                Timber.i("Venue details fetched for %s", venueResponse.getSingleVenueResponse().getVenue().getName());
                 if (listener != null) {
                     listener.onVenue(venueResponse.getSingleVenueResponse().getVenue());
                 }

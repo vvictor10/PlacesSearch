@@ -6,7 +6,7 @@ import com.grace.placessearch.common.app.PlacesSearchApplication;
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager;
 import com.grace.placessearch.common.app.injection.module.PlacesSearchModule;
 import com.grace.placessearch.common.service.PlacesSearchStartupIntentService;
-import com.grace.placessearch.search.data.SearchDataManager;
+import com.grace.placessearch.common.data.VenuesDataManager;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Singleton;
@@ -23,7 +23,7 @@ public interface PlacesSearchComponent {
     // provides
     PlacesSearchPreferenceManager providePlacesSearchPreferenceManager();
 
-    SearchDataManager provideSearchDataManager();
+    VenuesDataManager provideSearchDataManager();
 
     Picasso providePicasso();
 

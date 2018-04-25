@@ -36,17 +36,17 @@ import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.grace.placessearch.PlacesSearchConstants;
+import com.grace.placessearch.common.PlacesSearchConstants;
 import com.grace.placessearch.R;
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager;
 import com.grace.placessearch.data.model.Category;
 import com.grace.placessearch.data.model.Venue;
 import com.grace.placessearch.search.ui.VenuesContract;
 import com.grace.placessearch.search.ui.VenuesPresenter;
-import com.grace.placessearch.ui.BaseNavigationActivity;
-import com.grace.placessearch.ui.view.LoadingIndicatorView;
-import com.grace.placessearch.ui.view.ViewUtils;
-import com.grace.placessearch.util.PlacesSearchUtil;
+import com.grace.placessearch.common.ui.BaseNavigationActivity;
+import com.grace.placessearch.common.ui.view.LoadingIndicatorView;
+import com.grace.placessearch.common.ui.view.ViewUtils;
+import com.grace.placessearch.common.util.PlacesSearchUtil;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 

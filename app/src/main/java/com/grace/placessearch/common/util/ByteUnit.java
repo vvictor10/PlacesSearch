@@ -1,4 +1,4 @@
-package com.grace.placessearch.util;
+package com.grace.placessearch.common.util;
 
 /**
  * A {@code ByteUnit} represents a size at a given unit of granularity which can be converted

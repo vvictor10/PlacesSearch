@@ -41,7 +41,7 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <activity
-            android:name=".maps.ui.FullScreenMapActivity"
+            android:name=".maps.ui.VenuesMapActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.TranslucentFullScreen" />
 

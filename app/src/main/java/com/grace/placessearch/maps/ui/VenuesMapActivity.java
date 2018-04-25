@@ -30,7 +30,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.grace.placessearch.PlacesSearchConstants;
+import com.grace.placessearch.common.PlacesSearchConstants;
 import com.grace.placessearch.R;
 import com.grace.placessearch.data.model.MapPin;
 import com.grace.placessearch.venue.detail.ui.VenueDetailsActivity;
@@ -40,10 +40,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import timber.log.Timber;
+
 /**
  * A Map activity displaying the pins passed in the Intent Extra.
  */
-public class FullScreenMapActivity extends AppCompatActivity implements
+public class VenuesMapActivity extends AppCompatActivity implements
         OnMapAndViewReadyListener.OnGlobalLayoutAndMapReadyListener {
 
     @Inject
@@ -55,7 +57,7 @@ public class FullScreenMapActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_full_screen_map);
+        setContentView(R.layout.activity_venues_map);
 
         mapPins = getIntent().getParcelableArrayListExtra(PlacesSearchConstants.MAP_PINS_EXTRA);
 
@@ -97,6 +99,7 @@ public class FullScreenMapActivity extends AppCompatActivity implements
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
                     .infoWindowAnchor(0.5f, 0.5f));
             boundsBuilder.include(latLng);
+            Timber.d("Added pin for venue %s", mapPin.getPinName());
         }
 
         googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
@@ -122,8 +125,8 @@ public class FullScreenMapActivity extends AppCompatActivity implements
         private final View mContents;
 
         InfoWindowAdapter() {
-            mWindow = getLayoutInflater().inflate(R.layout.custom_info_window, null);
-            mContents = getLayoutInflater().inflate(R.layout.custom_info_contents, null);
+            mWindow = getLayoutInflater().inflate(R.layout.map_marker_info_window, null);
+            mContents = getLayoutInflater().inflate(R.layout.map_marker_info_contents, null);
         }
 
         @Override

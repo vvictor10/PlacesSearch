@@ -1,4 +1,4 @@
-package com.grace.placessearch.search.data;
+package com.grace.placessearch.common.data;
 
 import com.grace.placessearch.data.model.SuggestedVenuesResponse;
 import com.grace.placessearch.data.model.VenueResponse;
@@ -12,16 +12,16 @@ import retrofit2.adapter.rxjava.Result;
 import rx.Observable;
 
 /**
- * Search data manager, a component to host all business logic associated
- * with Search and the like.
+ * A component to host all business logic associated with Venue data.
+ * Acts as a facade between the data service layer and the UI code components.
  */
 @Singleton
-public class SearchDataManager {
+public class VenuesDataManager {
 
     private final PlacesApi placesApi;
 
     @Inject
-    public SearchDataManager(PlacesApi placesApi) {
+    public VenuesDataManager(PlacesApi placesApi) {
         this.placesApi = placesApi;
     }
 

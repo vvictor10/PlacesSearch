@@ -2,7 +2,7 @@ package com.grace.placessearch.common.data;
 
 import android.util.LruCache;
 
-import com.grace.placessearch.PlacesSearchConstants;
+import com.grace.placessearch.common.PlacesSearchConstants;
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager;
 import com.grace.placessearch.data.model.Venue;
 import com.grace.placessearch.data.model.VenuesResponse;
@@ -20,7 +20,9 @@ import rx.schedulers.Schedulers;
 import timber.log.Timber;
 
 /**
- * Created by vicsonvictor on 2/15/16.
+ * This component is responsible for satisfying app start up data dependencies.
+ *
+ * Created by vicsonvictor on 4/22/2018.
  */
 @Singleton
 public class PlacesSearchStartupManager {
@@ -43,7 +45,7 @@ public class PlacesSearchStartupManager {
      * Used for app-start-up data caching.
      */
     public void fetchAndCacheData() {
-        // Trending data could be use potentially to display popular venues
+        // Trending data could be potentially used to display popular venues
         // instead of displaying blank results. Not doing it to stick to the requirements :)
 
         //fetchTrendingVenues();

@@ -1,7 +1,7 @@
-package com.grace.placessearch.util;
+package com.grace.placessearch.common.util;
 
 import com.google.gson.Gson;
-import com.grace.placessearch.PlacesSearchConstants;
+import com.grace.placessearch.common.PlacesSearchConstants;
 import com.grace.placessearch.common.app.FavoritePlacesPreferences;
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager;
 import com.grace.placessearch.data.model.Location;
@@ -94,10 +94,10 @@ public class PlacesSearchUtil {
      * @param distanceTo
      * @return
      */
-    public static String getDistanceInMiles(Location distanceTo) {
+    public static String getDistanceInMilesToUserLocation(Location distanceTo) {
 
         if (distanceTo == null || distanceTo.getLat() == 0 || distanceTo.getLng() == 0) {
-            return "Not Available";
+            return null;
         }
 
         android.location.Location startPoint = new android.location.Location("a");
@@ -111,7 +111,7 @@ public class PlacesSearchUtil {
         float distance = startPoint.distanceTo(endPoint);
 
         float mile = distance / 1609.34f;
-        return String.format("%.2f", mile) + " miles";
+        return String.format("%.2f", mile);
     }
 
     /**

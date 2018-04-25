@@ -1,4 +1,4 @@
-package com.grace.placessearch.ui.view;
+package com.grace.placessearch.common.ui.view;
 
 import android.content.Context;
 import android.content.Intent;

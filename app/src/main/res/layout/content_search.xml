@@ -15,7 +15,7 @@
         android:id="@+id/suggested_searches"
         layout="@layout/suggested_searches"/>
 
-    <com.grace.placessearch.ui.view.LoadingIndicatorView
+    <com.grace.placessearch.common.ui.view.LoadingIndicatorView
         android:id="@+id/loading_indicator"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

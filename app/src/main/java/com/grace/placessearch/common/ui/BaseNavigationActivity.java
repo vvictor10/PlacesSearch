@@ -1,4 +1,4 @@
-package com.grace.placessearch.ui;
+package com.grace.placessearch.common.ui;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -22,8 +22,8 @@ import android.widget.Toast;
 
 import com.grace.placessearch.R;
 import com.grace.placessearch.common.app.PlacesSearchApplication;
-import com.grace.placessearch.ui.injection.component.ActivityComponent;
-import com.grace.placessearch.ui.injection.component.DaggerActivityComponent;
+import com.grace.placessearch.common.ui.injection.component.ActivityComponent;
+import com.grace.placessearch.common.ui.injection.component.DaggerActivityComponent;
 
 import butterknife.Bind;
 

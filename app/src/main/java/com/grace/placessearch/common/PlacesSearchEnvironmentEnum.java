@@ -1,8 +1,5 @@
-package com.grace.placessearch;
+package com.grace.placessearch.common;
 
-/**
- * Created by kenneth.mojica on 5/31/16.
- */
 public enum PlacesSearchEnvironmentEnum {
 
     PROD("https://api.foursquare.com/v2/"),
