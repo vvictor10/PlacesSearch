@@ -1,7 +1,5 @@
 ## Spotter - Places Search
 
-[Requirements:](https://github.com/homeaway/Android-Coding-Challenge) https://github.com/homeaway/Android-Coding-Challenge
-
 The app helps users find venues of interest around their current location. They can either search by venue name or location type like 'restaurants', 'hotels' etc. At this time, only the search functionality has been implemented and more can be added as we see fit.
 
 Searching for a venue, brings up 'suggested keywords' and selecting one or executing an explicit search displays a list of results. The results can also be displayed on a map view by clicking on the 'map' floating action button at the bottom of the search results screen.
