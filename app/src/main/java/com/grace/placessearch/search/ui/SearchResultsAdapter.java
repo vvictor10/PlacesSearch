@@ -134,7 +134,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
             if (distanceToUserStr == null) {
                 distanceToUserLocation.setText(context.getString(R.string.unavailable));
             } else {
-                distanceToUserLocation.setText(distanceToUserStr);
+                distanceToUserLocation.setText(distanceToUserStr + " miles");
             }
 
             // load category image
