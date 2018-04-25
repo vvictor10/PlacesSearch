@@ -49,6 +49,4 @@ The Foursquare API keys are specified in the '_placessearch.properties_' file.
   
 I use the PAW tool to test network request/responses and I have added the PAW config file for the Venues API in the 'resources' directory.
 
-### Thank You!
 
-Appreciate the opportunity to execute this coding challenge and thanks for taking the time to review my code. Any and all feedback is very much appreciated.
