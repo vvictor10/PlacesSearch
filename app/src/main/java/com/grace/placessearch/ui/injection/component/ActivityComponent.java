@@ -13,6 +13,8 @@ import dagger.Component;
 public interface ActivityComponent {
 
     void inject(SearchActivity activity);
+
     void inject(FullScreenMapActivity activity);
+
     void inject(VenueDetailsActivity activity);
 }

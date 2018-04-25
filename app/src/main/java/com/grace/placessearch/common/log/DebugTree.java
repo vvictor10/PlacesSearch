@@ -10,7 +10,6 @@ import timber.log.Timber;
 /**
  * From the original {@link Timber.DebugTree}.
  */
-
 public class DebugTree extends Timber.DebugTree {
     protected static final ThreadLocal<String> NEXT_TAG = new ThreadLocal<String>();
     protected static final Pattern ANONYMOUS_CLASS = Pattern.compile("\\$\\d+$");
@@ -116,7 +115,7 @@ public class DebugTree extends Timber.DebugTree {
         String tag = createTag();
         if (message.length() < 4000) {
             /*
-             * DD: this is the only place that needs refactoring
+             * VV: this is the only place that needs refactoring
              * Replacing the original tag with the application tag and
              * using the tag for the class formatted at the beginning.
              */

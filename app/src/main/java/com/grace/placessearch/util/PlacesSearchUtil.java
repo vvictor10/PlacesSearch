@@ -5,7 +5,6 @@ import com.grace.placessearch.PlacesSearchConstants;
 import com.grace.placessearch.common.app.FavoritePlacesPreferences;
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager;
 import com.grace.placessearch.data.model.Location;
-import com.grace.placessearch.data.model.Venue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,6 +18,12 @@ import timber.log.Timber;
 
 public class PlacesSearchUtil {
 
+    /**
+     * Indicates if the passed in venueId is in the user's favorites list.
+     * @param preferenceManager
+     * @param venueId
+     * @return
+     */
     public static boolean isFavorite(PlacesSearchPreferenceManager preferenceManager, String venueId) {
         FavoritePlacesPreferences preferences = preferenceManager.getFavoriteVenuePreferences();
         String[] text = new Gson().fromJson(preferences.favoriteVenues, String[].class);
@@ -29,10 +34,15 @@ public class PlacesSearchUtil {
 
         List<String> favorites = Arrays.asList(text);
         boolean isFavorite = favorites != null && favorites.contains(venueId);
-        Timber.d("Is venueId %s a favorite for the user? %b", venueId, isFavorite);
+        Timber.d("Is venue %s a favorite for the user? %b", venueId, isFavorite);
         return isFavorite;
     }
 
+    /**
+     * Adds a venue to the user's favorites list.
+     * @param preferenceManager
+     * @param venueId
+     */
     public static void addFavorite(PlacesSearchPreferenceManager preferenceManager, String venueId) {
         FavoritePlacesPreferences preferences = preferenceManager.getFavoriteVenuePreferences();
         String[] text = new Gson().fromJson(preferences.favoriteVenues, String[].class);
@@ -49,9 +59,14 @@ public class PlacesSearchUtil {
 
         preferences.favoriteVenues = new Gson().toJson(favorites);
         preferenceManager.setFavoriteVenuePreferences(preferences);
-        Timber.i("Favorite %s added", venueId);
+        Timber.i("Favorite venue %s added", venueId);
     }
 
+    /**
+     * Removes a favorite venue from the user's list.
+     * @param preferenceManager
+     * @param venueId
+     */
     public static void removeFavorite(PlacesSearchPreferenceManager preferenceManager, String venueId) {
         FavoritePlacesPreferences preferences = preferenceManager.getFavoriteVenuePreferences();
         String[] text = new Gson().fromJson(preferences.favoriteVenues, String[].class);
@@ -66,21 +81,19 @@ public class PlacesSearchUtil {
             return;
         }
         favorites.remove(venueId);
-        Timber.i("Favorite %s removed", venueId);
+        Timber.i("Favorite venue %s removed", venueId);
 
         preferences.favoriteVenues = new Gson().toJson(favorites);
         preferenceManager.setFavoriteVenuePreferences(preferences);
     }
 
-    public static String getDistanceInMiles(Venue data) {
-        if (data.getLocation() != null && data.getLocation().getDistance() != 0) {
-            float mile = data.getLocation().getDistance() / 1609.34f;
-            return String.format("%.2f", mile) + " miles";
-        } else {
-            return "Not Available";
-        }
-    }
-
+    /**
+     * Returns the distance in miles between the user location(Seattle center in this case)
+     * and the passed in location.
+     *
+     * @param distanceTo
+     * @return
+     */
     public static String getDistanceInMiles(Location distanceTo) {
 
         if (distanceTo == null || distanceTo.getLat() == 0 || distanceTo.getLng() == 0) {
@@ -88,8 +101,8 @@ public class PlacesSearchUtil {
         }
 
         android.location.Location startPoint = new android.location.Location("a");
-        startPoint.setLatitude(PlacesSearchConstants.SEATTLE_CENTER_LAT);
-        startPoint.setLongitude(PlacesSearchConstants.SEATTLE_CENTER_LNG);
+        startPoint.setLatitude(PlacesSearchConstants.USER_LOCATION_LAT);
+        startPoint.setLongitude(PlacesSearchConstants.USER_LOCATION_LNG);
 
         android.location.Location endPoint = new android.location.Location("b");
         endPoint.setLatitude(distanceTo.getLat());
@@ -101,7 +114,11 @@ public class PlacesSearchUtil {
         return String.format("%.2f", mile) + " miles";
     }
 
+    /**
+     * Returns the formatted user location(Seattle center in this case)
+     * @return
+     */
     public static String getLatLngOfUserLocation() {
-        return PlacesSearchConstants.SEATTLE_CENTER_LAT + "," + PlacesSearchConstants.SEATTLE_CENTER_LNG;
+        return PlacesSearchConstants.USER_LOCATION_LAT + "," + PlacesSearchConstants.USER_LOCATION_LNG;
     }
 }

@@ -43,56 +43,86 @@ import timber.log.Timber;
 
 public class SearchActivity extends BaseNavigationActivity implements VenuesContract.View, SearchResultsAdapter.VenueListener {
 
+    protected RecyclerView.Adapter searchResultsAdapter;
+    protected SuggestedSearchRecyclerAdapter suggestedSearchRecyclerAdapter;
+
     @Bind(R.id.map_fab)
     FloatingActionButton mapFab;
-
     @Bind(R.id.search_edittext)
     EditText searchEditText;
-
     @Bind(R.id.search_results_recycler_view)
     RecyclerView searchResultsRecyclerView;
-
     @Bind(R.id.suggested_search_list_recycler_view)
     RecyclerView suggestedSearchesRecyclerView;
-
     @Bind(R.id.clear_icon)
     ImageView clearIcon;
-
     @Bind(R.id.loading_indicator)
     LoadingIndicatorView loadingIndicatorView;
-
     @Bind(R.id.no_results_message)
     TextView noResultsMessageText;
-
     @Bind(R.id.suggested_searches)
     ViewGroup suggestedSearchesContainer;
-
     @Bind(R.id.suggested_search_header)
     ViewGroup suggestedSearchHeader;
-
     @Bind(R.id.suggested_searches_message)
     TextView suggestedSearchesMessage;
 
     @Inject
     Picasso picasso;
-
     @Inject
     VenuesPresenter venuesPresenter;
-
     @Inject
     PlacesSearchPreferenceManager preferenceManager;
-
     @Inject
     LruCache lruCache;
 
-    protected RecyclerView.Adapter searchResultsAdapter;
     private LinearLayoutManager searchResultsLayoutManager;
     private String searchInput;
 
-    protected SuggestedSearchRecyclerAdapter suggestedSearchRecyclerAdapter;
-    private LinearLayoutManager suggestedSearchTermsLayoutManager;
+    private final TextWatcher searchTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
 
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            // make sure menus are initialized since text watcher is created before menus
+            if (clearIcon != null) {
+                clearIcon.setVisibility(s.length() > 0 ? View.VISIBLE : View.INVISIBLE);
+            }
+
+            searchInput = s.toString();
+
+            if (s.length() != 0) {
+                displayNoResultsState(false);
+                venuesPresenter.doSuggestedSearch(s.toString());
+            } else {
+                displaySuggestedSearchViews(false);
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+        }
+    };
+    private LinearLayoutManager suggestedSearchTermsLayoutManager;
     private List<Venue> searchResults = new ArrayList<>();
+    private View.OnTouchListener backgroundTouchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            hideKeyboard();
+            return false;
+        }
+    };
+    private SuggestedSearchRecyclerAdapter.SuggestedSearchOnClickListener suggestedSearchItemClickListener =
+            new SuggestedSearchRecyclerAdapter.SuggestedSearchOnClickListener() {
+                @Override
+                public void onSuggestedSearchItemClick(String searchTerm) {
+                    Timber.i("SuggestedSearchOnClickListener User Action|%s|%s|%s", "Suggested searches", "Search String", searchTerm);
+                    displaySuggestedSearchViews(false);
+                    doSearch(searchTerm);
+                }
+            };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -122,18 +152,17 @@ public class SearchActivity extends BaseNavigationActivity implements VenuesCont
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        Timber.i("!");
-        venuesPresenter.bindView(this);
-    }
-
-    @Override
     protected void onPause() {
         venuesPresenter.unBindView();
         hideKeyboard();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        venuesPresenter.bindView(this);
     }
 
     @OnClick(R.id.clear_icon)
@@ -171,7 +200,7 @@ public class SearchActivity extends BaseNavigationActivity implements VenuesCont
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     String searchString = searchEditText.getText().toString().trim();
-                    Timber.i("OnEditorActionListener User Action|%s|%s|%s", "Search for Products", "Search String", searchString);
+                    Timber.i("OnEditorActionListener User Action|%s|%s|%s", "Search for Venues", "Search String", searchString);
                     doSearch(searchString);
                     return true;
                 }
@@ -232,34 +261,6 @@ public class SearchActivity extends BaseNavigationActivity implements VenuesCont
         return mapPins;
     }
 
-    private final TextWatcher searchTextWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            // make sure menus are initialized since text watcher is created before menus
-            if (clearIcon != null) {
-                clearIcon.setVisibility(s.length() > 0 ? View.VISIBLE : View.INVISIBLE);
-            }
-
-            searchInput = s.toString();
-
-            if (s.length() != 0) {
-                displayNoResultsState(false);
-                venuesPresenter.doSuggestedSearch(s.toString());
-            } else {
-                displaySuggestedSearchViews(false);
-            }
-
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-        }
-    };
-
     /**
      * Initializes the adapter/recycler view to display results
      */
@@ -280,24 +281,6 @@ public class SearchActivity extends BaseNavigationActivity implements VenuesCont
         suggestedSearchRecyclerAdapter.setClickListeners(suggestedSearchItemClickListener, backgroundTouchListener);
         suggestedSearchesRecyclerView.setAdapter(suggestedSearchRecyclerAdapter);
     }
-
-    private View.OnTouchListener backgroundTouchListener = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            hideKeyboard();
-            return false;
-        }
-    };
-
-    private SuggestedSearchRecyclerAdapter.SuggestedSearchOnClickListener suggestedSearchItemClickListener =
-            new SuggestedSearchRecyclerAdapter.SuggestedSearchOnClickListener() {
-                @Override
-                public void onSuggestedSearchItemClick(String searchTerm) {
-                    Timber.i("SuggestedSearchOnClickListener User Action|%s|%s|%s", "Suggested searches", "Search String", searchTerm);
-                    displaySuggestedSearchViews(false);
-                    doSearch(searchTerm);
-                }
-            };
 
     private void doSearch(String searchString) {
         if (searchString.length() > 0) {
@@ -323,7 +306,7 @@ public class SearchActivity extends BaseNavigationActivity implements VenuesCont
         if (venues != null && !venues.isEmpty()) {
             displayNoResultsState(false);
             this.searchResults = venues;
-            Timber.i("Updating data");
+            Timber.d("Updating data - size: %d", venues.size());
             displayMapFab(true);
             searchResultsLayoutManager.scrollToPosition(0);
             ((SearchResultsAdapter) searchResultsAdapter).updateData(venues);

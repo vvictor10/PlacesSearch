@@ -7,8 +7,6 @@ import com.google.gson.Gson;
 import com.grace.placessearch.BuildConfig;
 import com.grace.placessearch.common.app.injection.qualifier.ForApplication;
 
-import java.util.Locale;
-
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -19,25 +17,11 @@ public class PlacesSearchPreferenceManager {
     private static final String FAVORITE_VENUE_PREFERENCES_CONTENT = PlacesSearchPreferenceManager.class.getSimpleName() + ".favoriteVenuePreferences";
 
     private final SharedPreferences sharedPreferences;
-    private final Locale locale;
     private FavoritePlacesPreferences favoriteVenuePreferences;
 
     @Inject
     public PlacesSearchPreferenceManager(@ForApplication Context context) {
-        this.locale = context.getResources().getConfiguration().locale;
         this.sharedPreferences = context.getSharedPreferences(PLACES_SEARCH_PREFERENCES_KEY, Context.MODE_PRIVATE);
-    }
-
-    /**
-     * Use only for testing purposes.
-     *
-     * @param context
-     * @param sharedPreferences
-     */
-    public PlacesSearchPreferenceManager(@ForApplication Context context, SharedPreferences sharedPreferences) {
-        this.locale = null;
-        this.sharedPreferences = sharedPreferences;
-        this.favoriteVenuePreferences = getFavoriteVenuePreferences();
     }
 
     public FavoritePlacesPreferences getFavoriteVenuePreferences() {

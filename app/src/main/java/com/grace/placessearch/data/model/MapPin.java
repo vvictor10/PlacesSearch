@@ -6,8 +6,19 @@ import android.os.Parcelable;
 /**
  * Created by vicsonvictor on 4/23/18.
  */
-public class MapPin implements Parcelable{
+public class MapPin implements Parcelable {
 
+    public static final Creator<MapPin> CREATOR = new Creator<MapPin>() {
+        @Override
+        public MapPin createFromParcel(Parcel in) {
+            return new MapPin(in);
+        }
+
+        @Override
+        public MapPin[] newArray(int size) {
+            return new MapPin[size];
+        }
+    };
     private String venueId;
     private String pinName;
     private double lat;
@@ -24,18 +35,6 @@ public class MapPin implements Parcelable{
         lng = in.readDouble();
         imgUrl = in.readString();
     }
-
-    public static final Creator<MapPin> CREATOR = new Creator<MapPin>() {
-        @Override
-        public MapPin createFromParcel(Parcel in) {
-            return new MapPin(in);
-        }
-
-        @Override
-        public MapPin[] newArray(int size) {
-            return new MapPin[size];
-        }
-    };
 
     public String getVenueId() {
         return venueId;

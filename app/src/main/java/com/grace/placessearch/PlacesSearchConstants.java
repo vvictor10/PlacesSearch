@@ -18,8 +18,8 @@ public class PlacesSearchConstants {
 
     public static String CACHE_KEY_TRENDING_VENUES = "TrendingVenuesCache";
 
-    public static double SEATTLE_CENTER_LAT = 47.6062;
-    public static double SEATTLE_CENTER_LNG = -122.3321;
+    public static double USER_LOCATION_LAT = new Double(BuildConfig.USER_LOCATION_LAT);
+    public static double USER_LOCATION_LNG = new Double(BuildConfig.USER_LOCATION_LNG);
 
     public static String MAP_PINS_EXTRA = "MapPinsExtra";
     public static String VENUE_NAME_EXTRA = "VenueNameExtra";

@@ -40,8 +40,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import timber.log.Timber;
-
 /**
  * A Map activity displaying the pins passed in the Intent Extra.
  */
@@ -70,7 +68,6 @@ public class FullScreenMapActivity extends AppCompatActivity implements
     public void onMapReady(GoogleMap map) {
         googleMap = map;
 
-        // Add lots of markers to the map.
         LatLngBounds latLngBounds = addMarkersToMap();
 
         // Setting an info window adapter allows us to change the both the contents and look of the
@@ -84,6 +81,10 @@ public class FullScreenMapActivity extends AppCompatActivity implements
         googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, 50));
     }
 
+    /**
+     * Adds marker pins to the map.
+     * @return
+     */
     private LatLngBounds addMarkersToMap() {
         LatLngBounds.Builder boundsBuilder = new LatLngBounds.Builder();
         for (int i = 0; i < mapPins.size(); i++) {
@@ -108,14 +109,14 @@ public class FullScreenMapActivity extends AppCompatActivity implements
         return boundsBuilder.build();
     }
 
-    public void onMarkerInfoWindowClicked(Marker marker) {
+    private void onMarkerInfoWindowClicked(Marker marker) {
         Intent intent = new Intent(this, VenueDetailsActivity.class);
         intent.putExtra(PlacesSearchConstants.VENUE_ID_EXTRA, marker.getSnippet());
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in, R.anim.fade_out);
     }
 
-    class InfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
+    private class InfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
         private final View mWindow;
         private final View mContents;
@@ -143,6 +144,5 @@ public class FullScreenMapActivity extends AppCompatActivity implements
             titleUi.setText(title);
         }
     }
-
 
 }

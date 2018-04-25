@@ -36,32 +36,6 @@ public class PlacesApiLocal implements PlacesApi {
         this.resourcesDirectory = resourcesDirectory;
     }
 
-    @Override
-    public Observable<Result<VenuesResponse>> getTrendingVenues() {
-        System.out.println("getTrendingVenues: " + resourcesDirectory);
-        String jsonString = fetchJsonFromFile(resourcesDirectory + "/trending_venues.json");
-        return Observable.just(Result.response(Response.success(getGsonInstance().fromJson(jsonString, VenuesResponse.class))));
-    }
-
-    @Override
-    public Observable<Result<VenuesResponse>> searchForVenues(String searchTerm) {
-        return null;
-    }
-
-    @Override
-    public Observable<Result<SuggestedVenuesResponse>> searchForSuggestedVenues(String searchTerm) {
-        System.out.println("searchForSuggestedVenues: " + resourcesDirectory);
-        String jsonString = fetchJsonFromFile(resourcesDirectory + "/suggested_venues.json");
-        return Observable.just(Result.response(Response.success(getGsonInstance().fromJson(jsonString, SuggestedVenuesResponse.class))));
-    }
-
-    @Override
-    public Observable<Result<VenueResponse>> getVenue(String venueId) {
-        System.out.println("getVenue: " + resourcesDirectory);
-        String jsonString = fetchJsonFromFile(resourcesDirectory + "/single_venue.json");
-        return Observable.just(Result.response(Response.success(getGsonInstance().fromJson(jsonString, VenueResponse.class))));
-    }
-
     public static String fetchJsonFromFile(String filePath) {
         System.out.println(filePath);
         Writer writer = new StringWriter();
@@ -92,6 +66,32 @@ public class PlacesApiLocal implements PlacesApi {
             }
         }
         return writer.toString();
+    }
+
+    @Override
+    public Observable<Result<VenuesResponse>> getTrendingVenues() {
+        System.out.println("getTrendingVenues: " + resourcesDirectory);
+        String jsonString = fetchJsonFromFile(resourcesDirectory + "/trending_venues.json");
+        return Observable.just(Result.response(Response.success(getGsonInstance().fromJson(jsonString, VenuesResponse.class))));
+    }
+
+    @Override
+    public Observable<Result<VenuesResponse>> searchForVenues(String searchTerm) {
+        return null;
+    }
+
+    @Override
+    public Observable<Result<SuggestedVenuesResponse>> searchForSuggestedVenues(String searchTerm) {
+        System.out.println("searchForSuggestedVenues: " + resourcesDirectory);
+        String jsonString = fetchJsonFromFile(resourcesDirectory + "/suggested_venues.json");
+        return Observable.just(Result.response(Response.success(getGsonInstance().fromJson(jsonString, SuggestedVenuesResponse.class))));
+    }
+
+    @Override
+    public Observable<Result<VenueResponse>> getVenue(String venueId) {
+        System.out.println("getVenue: " + resourcesDirectory);
+        String jsonString = fetchJsonFromFile(resourcesDirectory + "/single_venue.json");
+        return Observable.just(Result.response(Response.success(getGsonInstance().fromJson(jsonString, VenueResponse.class))));
     }
 
     private Gson getGsonInstance() {

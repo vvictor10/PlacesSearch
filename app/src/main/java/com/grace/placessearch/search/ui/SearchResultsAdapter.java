@@ -35,20 +35,11 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
     private Context context;
     private Picasso picasso;
 
-    public interface VenueListener {
-        void onVenueItemClicked(Venue venue);
-    }
-
     public SearchResultsAdapter(Context context, VenueListener listener, PlacesSearchPreferenceManager placesPreferenceManager, Picasso picasso) {
         this.context = context;
         this.placesPreferenceManager = placesPreferenceManager;
         this.listener = listener;
         this.picasso = picasso;
-    }
-
-    @Override
-    public int getItemCount() {
-        return data.size();
     }
 
     @Override
@@ -62,9 +53,18 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
         holder.bind(context, data.get(position), listener, picasso, placesPreferenceManager);
     }
 
+    @Override
+    public int getItemCount() {
+        return data.size();
+    }
+
     public void updateData(List<Venue> batches) {
         this.data = new ArrayList<>(batches);
         notifyDataSetChanged();
+    }
+
+    public interface VenueListener {
+        void onVenueItemClicked(Venue venue);
     }
 
     public static class VenueViewHolder extends RecyclerView.ViewHolder {
@@ -101,6 +101,22 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
             this.itemView = itemView;
         }
 
+        private static void loadImage(Context context, ImageView imageView, Venue venue, Picasso picasso) {
+
+            if (venue.getCategories().isEmpty() || venue.getCategories().get(0).getIcon() == null) {
+                return;
+            }
+
+            final String imageUrl = venue.getListImgUrl();
+
+            if (imageUrl == null) {
+                imageView.setImageDrawable(context.getDrawable(android.R.drawable.stat_notify_error));
+                return;
+            }
+
+            picasso.load(imageUrl).into(imageView);
+        }
+
         public void bind(final Context context, final Venue data, final VenueListener listener, Picasso picasso, final PlacesSearchPreferenceManager placesPreferenceManager) {
 
             isFavorite = false;
@@ -120,7 +136,6 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
             venueContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Timber.i("Clicked");
                     listener.onVenueItemClicked(data);
                 }
             });
@@ -139,32 +154,6 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
                     if (!hasFocus) {
                         setFavoriteStatusNeedsUpdating(true);
                     }
-                }
-            });
-        }
-
-        private static void loadImage(Context context, ImageView imageView, Venue venue, Picasso picasso) {
-
-            if (venue.getCategories().isEmpty() || venue.getCategories().get(0).getIcon() == null) {
-                return;
-            }
-
-            final String imageUrl = venue.getListImgUrl();
-
-            if (imageUrl == null) {
-                imageView.setImageDrawable(context.getDrawable(android.R.drawable.stat_notify_error));
-                return;
-            }
-
-            picasso.load(imageUrl).into(imageView, new Callback() {
-                @Override
-                public void onSuccess() {
-                    Timber.i("Image loaded for url %s", imageUrl);
-                }
-
-                @Override
-                public void onError() {
-                    Timber.w("Failed to load browse merch. zone page image");
                 }
             });
         }

@@ -6,16 +6,12 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Typeface;
 import android.net.Uri;
-import android.support.customtabs.CustomTabsIntent;
 import android.support.customtabs.CustomTabsService;
-import android.support.v4.content.ContextCompat;
 import android.text.SpannableStringBuilder;
 import android.text.style.StyleSpan;
 
 import java.util.List;
 import java.util.Locale;
-
-import timber.log.Timber;
 
 /**
  * Created by vicsonvictor on 4/23/18.

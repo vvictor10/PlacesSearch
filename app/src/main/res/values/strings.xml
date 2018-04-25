@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Seattle Place Search</string>
+    <string name="app_name">Where 2 Go</string>
     <string name="about">
 		Your mission is to create a three-screen application that allows users to: search for places in Seattle, Washington using the Foursquare API; view their search results in a list or on a map; and view the individual details of each search result.\n\n
 

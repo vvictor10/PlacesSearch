@@ -34,7 +34,7 @@
         android:gravity="center_horizontal"
         android:text="@string/search_no_results_response"
         android:textColor="@color/black_1"
-        android:textSize="16dp"
+        android:textSize="@dimen/general_text_size"
         android:visibility="invisible" />
 
 </RelativeLayout>

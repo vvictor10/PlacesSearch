@@ -4,7 +4,6 @@ import com.grace.placessearch.data.model.SuggestedVenuesResponse;
 import com.grace.placessearch.data.model.VenueResponse;
 import com.grace.placessearch.data.model.VenuesResponse;
 
-
 import retrofit2.adapter.rxjava.Result;
 import rx.Observable;
 
@@ -15,11 +14,15 @@ import rx.Observable;
 public interface PlacesApi {
     int READ_TIMEOUT = 20000; //ms
 
+    // Fetch Trending venues
     Observable<Result<VenuesResponse>> getTrendingVenues();
 
+    // Search for venues using a search term
     Observable<Result<VenuesResponse>> searchForVenues(String searchTerm);
 
+    // Search for 'Search' Suggestions based on a term
     Observable<Result<SuggestedVenuesResponse>> searchForSuggestedVenues(String searchTerm);
 
+    // Fetch details of a specific venue
     Observable<Result<VenueResponse>> getVenue(String venueId);
 }

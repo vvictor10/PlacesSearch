@@ -39,7 +39,7 @@ public class PlacesSearchStartupIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent workIntent) {
-        Timber.i("Handling intent");
+        Timber.d("Handling intent..");
         placesSearchStartupManager.fetchAndCacheData();
     }
 

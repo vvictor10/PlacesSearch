@@ -10,35 +10,10 @@ import retrofit2.Retrofit;
 
 public class PlacesRetrofitException extends RuntimeException {
 
-    /**
-     * Identifies the event kind which triggered a {@link PlacesRetrofitException}.
-     */
-    public enum Type {
-        /**
-         * An {@link IOException} occurred while communicating to the server.
-         */
-        NETWORK,
-        /**
-         * A non-200 HTTP status code was received from the server.
-         */
-        HTTP,
-        /**
-         * An internal error occurred while attempting to execute a request. It is best practice to
-         * re-throw this exception so your application crashes.
-         */
-        UNAUTHORIZED,
-        /**
-         * An internal error occurred while attempting to execute a request. It is best practice to
-         * re-throw this exception so your application crashes.
-         */
-        UNEXPECTED
-    }
-
     private final String url;
     private final Response response;
     private final Type type;
     private final Retrofit retrofit;
-
     PlacesRetrofitException(String message, String url, Response response, Type type, Throwable exception, Retrofit retrofit) {
         super(message, exception);
         this.url = url;
@@ -72,7 +47,6 @@ public class PlacesRetrofitException extends RuntimeException {
     public static PlacesRetrofitException unauthorizedError(Throwable exception) {
         return new PlacesRetrofitException(exception.getMessage(), null, null, Type.UNAUTHORIZED, exception, null);
     }
-
 
     /**
      * The request URL which produced the error.
@@ -111,12 +85,35 @@ public class PlacesRetrofitException extends RuntimeException {
 
     /**
      * Use this method to get the underlying http response code.
-     * @return
      */
     public int getHttpResponseCode() {
         if (response == null) {
             return 0;
         }
         return response.code();
+    }
+
+    /**
+     * Identifies the event kind which triggered a {@link PlacesRetrofitException}.
+     */
+    public enum Type {
+        /**
+         * An {@link IOException} occurred while communicating to the server.
+         */
+        NETWORK,
+        /**
+         * A non-200 HTTP status code was received from the server.
+         */
+        HTTP,
+        /**
+         * An internal error occurred while attempting to execute a request. It is best practice to
+         * re-throw this exception so your application crashes.
+         */
+        UNAUTHORIZED,
+        /**
+         * An internal error occurred while attempting to execute a request. It is best practice to
+         * re-throw this exception so your application crashes.
+         */
+        UNEXPECTED
     }
 }

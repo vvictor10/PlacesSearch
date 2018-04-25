@@ -1,7 +1,5 @@
 package com.grace.placessearch.search.ui;
 
-import android.util.LruCache;
-
 import com.grace.placessearch.data.model.Category;
 import com.grace.placessearch.data.model.SuggestedVenuesResponse;
 import com.grace.placessearch.data.model.Venue;
@@ -23,18 +21,19 @@ import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 import timber.log.Timber;
 
+/**
+ * This class acts as the proxy to the data/service layer. The Activities and
+ * other views needed to interact with data, go through the proxies.
+ */
 @ActivityScope
 public class VenuesPresenter implements VenuesContract.Presenter {
 
     private final CompositeSubscription subscriptions = new CompositeSubscription();
     private final SearchDataManager searchDataManager;
-    private static LruCache lruCache;
-    private static String searchTerm;
     private VenuesContract.View viewListener;
 
     @Inject
-    public VenuesPresenter(LruCache lruCache, SearchDataManager searchDataManager) {
-        this.lruCache = lruCache;
+    public VenuesPresenter(SearchDataManager searchDataManager) {
         this.searchDataManager = searchDataManager;
     }
 
@@ -51,7 +50,6 @@ public class VenuesPresenter implements VenuesContract.Presenter {
 
     @Override
     public void doSearch(String searchTerm) {
-        this.searchTerm = searchTerm;
         subscriptions.add(getSearchSubscription(searchTerm));
     }
 
@@ -113,14 +111,16 @@ public class VenuesPresenter implements VenuesContract.Presenter {
             List<String> suggestedSearchStrings = new ArrayList<>();
             SuggestedVenuesResponse venuesResponse = result.response().body();
             if (venuesResponse != null && venuesResponse.getResponse() != null) {
-                List<Venue> minivenues = venuesResponse.getResponse().getVenues();
-                Timber.i("No. of venues for search: %d", minivenues.size());
+                List<Venue> miniVenues = venuesResponse.getResponse().getVenues();
+                Timber.i("No. of venues in search result: %d", miniVenues.size());
 
-                for (int i = 0; i < minivenues.size(); i++) {
-                    Venue venue = minivenues.get(i);
+                for (int i = 0; i < miniVenues.size(); i++) {
+
+                    Venue venue = miniVenues.get(i);
                     if (venue.getName() != null && !venue.getName().isEmpty()) {
                         suggestedSearchStrings.add(venue.getName());
                     }
+
                     List<Category> venueCategories = new ArrayList<>();
                     for (int j = 0; j < venueCategories.size(); j++) {
                         Category category = venueCategories.get(j);

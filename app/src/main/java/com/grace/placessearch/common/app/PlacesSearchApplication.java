@@ -20,7 +20,6 @@ import timber.log.Timber;
 /**
  * Created by vicsonvictor on 4/21/18.
  */
-
 public class PlacesSearchApplication extends Application {
 
     private static final String TAG = PlacesSearchApplication.class.getSimpleName();
@@ -33,20 +32,13 @@ public class PlacesSearchApplication extends Application {
     @Override
     protected void attachBaseContext(final Context base) {
         super.attachBaseContext(base);
-
         component().inject(this);
-
         setupTimber();
-
-        Timber.i("completed!");
-
     }
 
     @Override
     public void onCreate() {
-
         super.onCreate();
-
         initAppStartupData();
     }
 
@@ -72,8 +64,8 @@ public class PlacesSearchApplication extends Application {
         ActivityManager manager = (ActivityManager) this.getSystemService(Context.ACTIVITY_SERVICE);
         boolean startUpServiceRunning = false;
         for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-            if ("com.grace.seattleplacesearch.common.service.PlacesSearchStartupIntentService".equals(service.service.getClassName())) {
-                Timber.i("PlacesSearchStartupIntentService is already running");
+            if ("com.grace.placessearch.common.service.PlacesSearchStartupIntentService".equals(service.service.getClassName())) {
+                Timber.d("PlacesSearchStartupIntentService is already running");
                 startUpServiceRunning = true;
             }
         }
@@ -85,6 +77,5 @@ public class PlacesSearchApplication extends Application {
         }
 
     }
-
 
 }

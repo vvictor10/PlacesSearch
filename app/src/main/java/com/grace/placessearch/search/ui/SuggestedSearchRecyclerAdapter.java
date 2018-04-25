@@ -29,44 +29,10 @@ public class SuggestedSearchRecyclerAdapter extends RecyclerView.Adapter<Recycle
     private RecyclerView recyclerView;
     private String searchInput;
 
-    public static class SuggestedSearchItemViewHolder extends RecyclerView.ViewHolder {
-
-        @Bind(R.id.suggested_search_item_text)
-        public TextView suggestedSearchItemTextView;
-
-        public SuggestedSearchItemViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-        }
-
-    }
-
-    public static class SuggestedSearchHeaderViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.suggested_search_header_text)
-        public TextView suggestedSearchHeaderText;
-
-        public SuggestedSearchHeaderViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-        }
-    }
-
-    @Override
-    public int getItemCount() {
-        return suggestedSearchResults.size();
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        return ITEM_TYPE_DATA;
-    }
-
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
-        if (viewHolder instanceof SuggestedSearchItemViewHolder) {
-            boldAndSetText(viewHolder);
-            setAnimation(viewHolder.itemView, position);
-        }
+    public SuggestedSearchRecyclerAdapter(RecyclerView recyclerView, List<String> suggestedSearchResults, ViewGroup searchHeader) {
+        this.recyclerView = recyclerView;
+        this.suggestedSearchResults = suggestedSearchResults;
+        this.searchHeader = searchHeader;
     }
 
     @Override
@@ -97,14 +63,22 @@ public class SuggestedSearchRecyclerAdapter extends RecyclerView.Adapter<Recycle
         }
     }
 
-    public SuggestedSearchRecyclerAdapter(RecyclerView recyclerView, List<String> suggestedSearchResults, ViewGroup searchHeader) {
-        this.recyclerView = recyclerView;
-        this.suggestedSearchResults = suggestedSearchResults;
-        this.searchHeader = searchHeader;
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
+        if (viewHolder instanceof SuggestedSearchItemViewHolder) {
+            boldAndSetText(viewHolder);
+            setAnimation(viewHolder.itemView, position);
+        }
     }
 
-    public interface SuggestedSearchOnClickListener {
-        void onSuggestedSearchItemClick(String item);
+    @Override
+    public int getItemViewType(int position) {
+        return ITEM_TYPE_DATA;
+    }
+
+    @Override
+    public int getItemCount() {
+        return suggestedSearchResults.size();
     }
 
     public void setClickListeners(SuggestedSearchOnClickListener listener, View.OnTouchListener backgroundTouchListener) {
@@ -155,7 +129,6 @@ public class SuggestedSearchRecyclerAdapter extends RecyclerView.Adapter<Recycle
                     notifyItemInserted(suggestedSearchResults.size() - 1);
                 }
             }
-
 
         } else { // refresh list
 
@@ -223,6 +196,32 @@ public class SuggestedSearchRecyclerAdapter extends RecyclerView.Adapter<Recycle
             String suggestedSearch = suggestedSearchResults.get(adapterPos);
             SpannableStringBuilder spannableStringBuilder = ViewUtils.applyBoldStyleToText(suggestedSearch, searchInput);
             ((SuggestedSearchItemViewHolder) viewHolder).suggestedSearchItemTextView.setText(spannableStringBuilder);
+        }
+    }
+
+    public interface SuggestedSearchOnClickListener {
+        void onSuggestedSearchItemClick(String item);
+    }
+
+    public static class SuggestedSearchItemViewHolder extends RecyclerView.ViewHolder {
+
+        @Bind(R.id.suggested_search_item_text)
+        public TextView suggestedSearchItemTextView;
+
+        public SuggestedSearchItemViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
+
+    }
+
+    public static class SuggestedSearchHeaderViewHolder extends RecyclerView.ViewHolder {
+        @Bind(R.id.suggested_search_header_text)
+        public TextView suggestedSearchHeaderText;
+
+        public SuggestedSearchHeaderViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 

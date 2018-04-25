@@ -17,13 +17,11 @@ import com.grace.placessearch.R;
 
 public class LoadingIndicatorView extends RelativeLayout {
 
-    private final LinearInterpolator interpolator = new LinearInterpolator();
-    private static final int animationDuration = 600;
-
     public static final int DARK = 0;
     public static final int LIGHT = 1;
     public static final int TRANSPARENT = 7;
-
+    private static final int animationDuration = 600;
+    private final LinearInterpolator interpolator = new LinearInterpolator();
     private View square1;
     private View square2;
     private View square3;
@@ -80,7 +78,8 @@ public class LoadingIndicatorView extends RelativeLayout {
     public void setShade(int colorType) {
         setSquareColor(R.color.gray_3);
         switch (colorType) {
-            case DARK: setBackground(ContextCompat.getDrawable(getContext(), R.drawable.dark_background));
+            case DARK:
+                setBackground(ContextCompat.getDrawable(getContext(), R.drawable.dark_background));
                 break;
 
             default:

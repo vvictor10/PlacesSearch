@@ -84,8 +84,6 @@ public class PlacesApiRetrofit implements PlacesApi {
 
                         request = request.newBuilder().url(urlBuilder.build()).build();
 
-                        Timber.i("Url is %s", request.url().toString());
-
                         return chain.proceed(request);
                     }
                 })

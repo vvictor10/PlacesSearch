@@ -30,7 +30,6 @@ import timber.log.Timber;
 /**
  * Created by vicsonvictor on 4/21/18.
  */
-
 @Module
 public class PlacesSearchModule {
 
@@ -41,6 +40,22 @@ public class PlacesSearchModule {
 
     public PlacesSearchModule(Context context) {
         this.context = context;
+    }
+
+    /**
+     * Creates a cache enabled {@link OkHttpClient} instance and returns it.
+     * Currently, this is being only used for Picasso image handling and caching.
+     */
+    private static OkHttpClient.Builder createOkHttpClient(Context context) {
+        // Install an HTTP cache in the application cache directory.
+        File cacheDir = new File(context.getCacheDir(), PlacesSearchConstants.HTTP);
+        Cache cache = new Cache(cacheDir, PlacesSearchConstants.IMAGE_DISK_CACHE_SIZE);
+
+        return new OkHttpClient.Builder()
+                .cache(cache)
+                .connectTimeout(PlacesSearchConstants.HTTP_TIMEOUT_VALUE, SECONDS)
+                .readTimeout(PlacesSearchConstants.HTTP_TIMEOUT_VALUE, SECONDS)
+                .writeTimeout(PlacesSearchConstants.HTTP_TIMEOUT_VALUE, SECONDS);
     }
 
     @Provides
@@ -80,26 +95,6 @@ public class PlacesSearchModule {
     @Singleton
     OkHttpClient provideOkHttpClient() {
         return createOkHttpClient(context).build();
-    }
-
-
-    /**
-     * Creates a cache enabled {@link OkHttpClient} instance and returns it.
-     * Currently, this is being only used for Picasso image handling and caching.
-     *
-     * @param context
-     * @return
-     */
-    private static OkHttpClient.Builder createOkHttpClient(Context context) {
-        // Install an HTTP cache in the application cache directory.
-        File cacheDir = new File(context.getCacheDir(), PlacesSearchConstants.HTTP);
-        Cache cache = new Cache(cacheDir, PlacesSearchConstants.IMAGE_DISK_CACHE_SIZE);
-
-        return new OkHttpClient.Builder()
-                .cache(cache)
-                .connectTimeout(PlacesSearchConstants.HTTP_TIMEOUT_VALUE, SECONDS)
-                .readTimeout(PlacesSearchConstants.HTTP_TIMEOUT_VALUE, SECONDS)
-                .writeTimeout(PlacesSearchConstants.HTTP_TIMEOUT_VALUE, SECONDS);
     }
 
     @NonNull

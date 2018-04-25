@@ -1,1 +1,1 @@
-# SeattlePlacesSearch
+# PlacesSearch

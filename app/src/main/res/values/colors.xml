@@ -38,12 +38,6 @@
     <color name="black_1_90">#e6000000</color>
     <color name="black_1_95">#f2000000</color>
 
-    <color name="navigation_header_text">@color/white</color>
-    <color name="separator_color">@color/white60</color>
-    <color name="navigation_footer">@color/gray_5</color>
-    <color name="toolbar_separator">@color/gray_4</color>
-    <color name="toolbar_shadow_color">#45000000</color>
-
     <color name="toolbar">@color/black_2</color>
     <color name="toolbar_text">@color/white</color>
     <color name="toolbar_text_dark">@color/black_1</color>
@@ -57,42 +51,7 @@
     <color name="primary_dark_search">@color/black_1</color>
     <color name="accent_search">@color/transparent</color>
 
-    <color name="facebook_blue">#4267b2</color>
-
-    <color name="dev_tools_toolbar_color">@color/primary_dark</color>
-
-    <color name="search_background">@color/white</color>
-    <color name="search_no_results">@color/gray_6</color>
-    <color name="search_no_results_text">@color/gray_2</color>
-    <color name="search_results">@color/gray_5</color>
-    <color name="filter_sort_action_text">@color/black_3</color>
-    <color name="search_button_separator">@color/gray_5</color>
-    <color name="search_results_text">@color/black_2</color>
-    <color name="search_results_count_background">@color/gray_6</color>
-    <color name="search_toolbar">@color/white</color>
-
-    <color name="recent_search_title_text">@color/black_2</color>
-    <color name="recent_search_item_text">@color/black_3</color>
-
-    <color name="navigation_menu_text">@color/black_3</color>
-
-    <color name="navigation_footer_guarantee">@color/black_3</color>
-    <color name="navigation_footer_guarantee_desc">@color/gray_2</color>
-    <color name="navigation_footer_version">@color/gray_2</color>
-
     <color name="loading_indicator_background_light">@color/white90</color>
     <color name="loading_indicator_background_dark">@color/gray_7</color>
-    <color name="loading_indicator_background_search">@color/gray_7</color>
-    <color name="loading_indicator_background_explore">@color/black_1</color>
-    <color name="loading_indicator_background_cart">@color/black_1_50</color>
-    <color name="loading_indicator_background_pdp_add_to_cart">@color/black_3</color>
-
-    <color name="black25percentAlpha">#40000000</color>
-    <color name="black0percentAlpha">#00000000</color>
-
-    <color name="toolbar_action_ripple_color">@color/gray_1</color>
-    <color name="steel">#868d95</color>
-
-    <color name="global_message_background">#e6363636</color>
 
 </resources>

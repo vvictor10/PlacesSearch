@@ -43,30 +43,13 @@ public class PlacesSearchStartupManager {
      * Used for app-start-up data caching.
      */
     public void fetchAndCacheData() {
-        Timber.i("called");
-        fetchTrendingVenues();
-        // First get the visitor token, if not found
-//        if (preferenceManager.getVisitorToken() == null) {
-//            Timber.i("Visitor Token not found, about to get one from the guest-authentication call");
-//            ecomm.getVisitorToken(new AuthRequest(EcommConstants.US_SITE_CODE))
-//                    .subscribeOn(Schedulers.io())
-//                    .subscribe(new GuestAuthResponseSubscriber(skipStartupDataRefresh));
-//        } else {
-//            Timber.i("Visitor Token found in lruCache");
-//            ((EcommRetrofit) ecomm).setVisitorToken(preferenceManager.getVisitorToken());
-//            Timber.i("Visitor Token set on EcommRetrofit instance %s", ecomm);
-//            if (!skipStartupDataRefresh) {
-//                Timber.i("Refreshing CMS & Rollouts & other app start-up data");
-//                cacheAppStartupData();
-//            }
-//
-//            syncEcommStartupData();
-//        }
+        // Trending data could be use potentially to display popular venues
+        // instead of displaying blank results. Not doing it to stick to the requirements :)
 
+        //fetchTrendingVenues();
     }
 
     private void fetchTrendingVenues() {
-        Timber.i("called");
         Set<String> cached = (Set<String>) lruCache.get(PlacesSearchConstants.CACHE_KEY_TRENDING_VENUES);
         if (cached == null) {
             mPlacesApi.getTrendingVenues()

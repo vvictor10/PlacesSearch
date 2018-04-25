@@ -22,12 +22,16 @@ public interface PlacesSearchComponent {
 
     // provides
     PlacesSearchPreferenceManager providePlacesSearchPreferenceManager();
+
     SearchDataManager provideSearchDataManager();
+
     Picasso providePicasso();
+
     LruCache provideLruCache();
 
     // injects
     void inject(PlacesSearchApplication app);
+
     void inject(PlacesSearchStartupIntentService placesSearchStartupIntentService);
 
 }

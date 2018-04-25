@@ -19,6 +19,7 @@ package com.grace.placessearch.venue.detail.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -62,45 +63,32 @@ import timber.log.Timber;
  */
 public class VenueDetailsActivity extends BaseNavigationActivity implements VenuesContract.View {
 
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
-
-    @Bind(R.id.toolbar_title)
-    TextView toolbarTitle;
-
-    @Bind(R.id.map_image)
-    ImageView mapImage;
-
-    @Bind(R.id.loading_indicator)
-    LoadingIndicatorView loadingIndicatorView;
-
-    @Bind(R.id.address_card_view)
-    CardView addressCardView;
-
-    @Bind(R.id.venue_categories)
-    TextView venueCategories;
-
-    @Bind(R.id.venue_url)
-    TextView venueUrl;
-
-    @Bind(R.id.addr_line_1)
-    TextView addrLine1;
-
-    @Bind(R.id.addr_line_2)
-    TextView addrLine2;
-
-    @Bind(R.id.addr_line_3)
-    TextView addrLine3;
-
     @Bind(R.id.favorite_status)
     public ImageView favoriteStatusImage;
-
     @Bind(R.id.non_favorite_status)
     public ImageView nonFavoriteStatusImage;
-
     @Bind(R.id.directions_image)
     public ImageView directionsImage;
-
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+    @Bind(R.id.toolbar_title)
+    TextView toolbarTitle;
+    @Bind(R.id.map_image)
+    ImageView mapImage;
+    @Bind(R.id.loading_indicator)
+    LoadingIndicatorView loadingIndicatorView;
+    @Bind(R.id.address_card_view)
+    CardView addressCardView;
+    @Bind(R.id.venue_categories)
+    TextView venueCategories;
+    @Bind(R.id.venue_url)
+    TextView venueUrl;
+    @Bind(R.id.addr_line_1)
+    TextView addrLine1;
+    @Bind(R.id.addr_line_2)
+    TextView addrLine2;
+    @Bind(R.id.addr_line_3)
+    TextView addrLine3;
     @Inject
     Picasso picasso;
 
@@ -160,6 +148,17 @@ public class VenueDetailsActivity extends BaseNavigationActivity implements Venu
         return super.onOptionsItemSelected(item);
     }
 
+    public void initToolbar(Toolbar toolbar) {
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+        }
+        toolbar.setNavigationIcon(R.drawable.appbar_back_white);
+    }
+
     private void setViewHeight(final View view, final int viewHeight) {
         ViewTreeObserver vto = view.getViewTreeObserver();
         vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
@@ -172,18 +171,6 @@ public class VenueDetailsActivity extends BaseNavigationActivity implements Venu
                 return true;
             }
         });
-    }
-
-
-    public void initToolbar(Toolbar toolbar) {
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayShowTitleEnabled(false);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setDisplayShowHomeEnabled(true);
-        }
-        toolbar.setNavigationIcon(R.drawable.appbar_back_white);
     }
 
     @Override
@@ -221,6 +208,12 @@ public class VenueDetailsActivity extends BaseNavigationActivity implements Venu
         }
     }
 
+    @Override
+    public void onError() {
+        loadingIndicatorView.setVisibility(View.INVISIBLE);
+        // TODO - display not found message?
+    }
+
     private void setupAddressInfo(final Venue venue) {
         if (venue.getLocation() != null && !venue.getLocation().getFormattedAddress().isEmpty()) {
             for (int i = 0; i < venue.getLocation().getFormattedAddress().size(); i++) {
@@ -248,6 +241,7 @@ public class VenueDetailsActivity extends BaseNavigationActivity implements Venu
     private void setupVenueUrl(final Venue venue) {
         if (venue.getUrl() != null) {
             venueUrl.setText(venue.getUrl());
+            venueUrl.setPaintFlags(venueUrl.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
             venueUrl.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -262,7 +256,7 @@ public class VenueDetailsActivity extends BaseNavigationActivity implements Venu
     private void launchMapsForDirections(Venue venue) {
         StringBuilder staticMapImageUrlBuilder = new StringBuilder();
         staticMapImageUrlBuilder.append("https://www.google.com/maps/dir/?api=1&travelmode=driving&origin=");
-        staticMapImageUrlBuilder.append(PlacesSearchConstants.SEATTLE_CENTER_LAT + "," + PlacesSearchConstants.SEATTLE_CENTER_LNG);
+        staticMapImageUrlBuilder.append(PlacesSearchConstants.USER_LOCATION_LAT + "," + PlacesSearchConstants.USER_LOCATION_LNG);
         staticMapImageUrlBuilder.append("&destination=" + String.format("%.4f", venue.getLocation().getLat()));
         staticMapImageUrlBuilder.append("," + String.format("%.4f", venue.getLocation().getLng()));
         staticMapImageUrlBuilder.append("&key=AIzaSyBJ8FpHurNJQ0oyEhxY4U1HMAZ2xF_pv9w");
@@ -288,12 +282,6 @@ public class VenueDetailsActivity extends BaseNavigationActivity implements Venu
         return categoriesString.toString();
     }
 
-    @Override
-    public void onError() {
-        loadingIndicatorView.setVisibility(View.INVISIBLE);
-        // TODO - display not found message?
-    }
-
     private void loadMapImage(ImageView imageView, Venue venue) {
 
         if (venue.getLocation() == null) {
@@ -301,7 +289,6 @@ public class VenueDetailsActivity extends BaseNavigationActivity implements Venu
         }
 
         final String imageUrl = getMapImageUrl(venue);
-        Timber.d("Url is %s", imageUrl);
         if (imageUrl == null) {
             return;
         }
@@ -309,13 +296,13 @@ public class VenueDetailsActivity extends BaseNavigationActivity implements Venu
         picasso.load(imageUrl).into(imageView, new Callback() {
             @Override
             public void onSuccess() {
-                Timber.i("Image loaded for url %s", imageUrl);
+                Timber.d("Image loaded for url %s", imageUrl);
                 loadingIndicatorView.setVisibility(View.INVISIBLE);
             }
 
             @Override
             public void onError() {
-                Timber.w("Failed to load browse merch. zone page image");
+                Timber.w("Failed to load map image");
             }
         });
     }
@@ -325,7 +312,7 @@ public class VenueDetailsActivity extends BaseNavigationActivity implements Venu
         StringBuilder staticMapImageUrlBuilder = new StringBuilder();
         staticMapImageUrlBuilder.append("https://maps.googleapis.com/maps/api/staticmap?size=");
         staticMapImageUrlBuilder.append(imageWidth + "x" + imageHeight + "&maptype=roadmap&markers=color:red%7Clabel:A%7C");
-        staticMapImageUrlBuilder.append(PlacesSearchConstants.SEATTLE_CENTER_LAT + "," + PlacesSearchConstants.SEATTLE_CENTER_LNG);
+        staticMapImageUrlBuilder.append(PlacesSearchConstants.USER_LOCATION_LAT + "," + PlacesSearchConstants.USER_LOCATION_LNG);
         staticMapImageUrlBuilder.append("&markers=color:red%7Clabel:B%7C" + String.format("%.4f", venue.getLocation().getLat()));
         staticMapImageUrlBuilder.append("," + String.format("%.4f", venue.getLocation().getLng()));
         staticMapImageUrlBuilder.append("&key=AIzaSyBJ8FpHurNJQ0oyEhxY4U1HMAZ2xF_pv9w");
@@ -408,11 +395,9 @@ public class VenueDetailsActivity extends BaseNavigationActivity implements Venu
 
     protected void launchUrl(String urlToLoad) {
 
-        Timber.d("Loading url: %s", urlToLoad);
-
         if (ViewUtils.isChromeTabSupported(this)) { // Chrome Custom tab supported
 
-            Timber.i("Launching using Chrome custom tab.");
+            Timber.d("Launching using Chrome custom tab.");
 
             // Launch in Chrome CustomTabs
             CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
@@ -426,7 +411,7 @@ public class VenueDetailsActivity extends BaseNavigationActivity implements Venu
 
         } else { // Chrome Custom tabs not supported
 
-            Timber.i("Launching using browser as Chrome custom tab is not supported.");
+            Timber.d("Launching using browser as Chrome custom tab is not supported.");
 
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(urlToLoad));
             browserIntent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);

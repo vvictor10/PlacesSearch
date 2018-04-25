@@ -1,6 +1,5 @@
 package com.grace.placessearch.search.data;
 
-import com.grace.placessearch.common.app.PlacesSearchPreferenceManager;
 import com.grace.placessearch.data.model.SuggestedVenuesResponse;
 import com.grace.placessearch.data.model.VenueResponse;
 import com.grace.placessearch.data.model.VenuesResponse;
@@ -13,24 +12,21 @@ import retrofit2.adapter.rxjava.Result;
 import rx.Observable;
 
 /**
- * Search data manager
+ * Search data manager, a component to host all business logic associated
+ * with Search and the like.
  */
 @Singleton
 public class SearchDataManager {
 
     private final PlacesApi placesApi;
-    private final PlacesSearchPreferenceManager preferenceManager;
 
     @Inject
-    public SearchDataManager(PlacesApi placesApi, PlacesSearchPreferenceManager preferenceManager) {
+    public SearchDataManager(PlacesApi placesApi) {
         this.placesApi = placesApi;
-        this.preferenceManager = preferenceManager;
     }
 
     /**
      * Used to search for venues based on a search string.
-     * @param term
-     * @return
      */
     public Observable<Result<VenuesResponse>> searchForVenues(String term) {
         return placesApi.searchForVenues(term);
@@ -38,8 +34,6 @@ public class SearchDataManager {
 
     /**
      * Used to search for venue suggestions based on a search string.
-     * @param term
-     * @return
      */
     public Observable<Result<SuggestedVenuesResponse>> suggestedSearchForVenues(String term) {
         return placesApi.searchForSuggestedVenues(term);
@@ -47,8 +41,6 @@ public class SearchDataManager {
 
     /**
      * Used to fetch details of a single venue
-     * @param venueId
-     * @return
      */
     public Observable<Result<VenueResponse>> getVenue(String venueId) {
         return placesApi.getVenue(venueId);
