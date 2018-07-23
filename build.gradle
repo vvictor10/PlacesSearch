@@ -1,10 +1,11 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 ext {
-    compileSdkVersion = 26
-    buildToolsVersion = '26.0.2'
-    targetSdkVersion = 24
-    supportLibVersion = '26.0.2'
-    minSdkVersion = 21
+    compileSdkVersion = 27
+    buildToolsVersion = '27.0.3'
+    targetSdkVersion = 27
+    supportLibVersion = '27.1.1'
+    playServicesLibVersion = '11.4.0'
+    minSdkVersion = 23
     daggerVersion = '2.6.1'
 }
 

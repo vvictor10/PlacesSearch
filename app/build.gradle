@@ -36,8 +36,8 @@ android {
 
     defaultConfig {
         applicationId "com.grace.placessearch"
-        minSdkVersion 21
-        targetSdkVersion 26
+        minSdkVersion 23
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"

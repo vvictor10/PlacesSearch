@@ -8,7 +8,7 @@ Clicking on a search result item from the list (or) clicking on the info bubble 
 
 ### Configurable
 
-The app has been designed to support any user location, not just Seattle as specified in the requirements. The '_placessearch.properties_' file specifies the user's location in lat and long values and can be updated to reflect any location that is supported by the Foursquare API. So you can simulate the user experience in _New York, NY_ or _Austin, TX_ for example with simple tweaks to the lat/long values in the properties file.
+The app has been designed to support any user location, not just Austin, TX(default). The '_placessearch.properties_' file specifies the user's location in lat and long values and can be updated to reflect any location that is supported by the Foursquare API. So you can simulate the user experience in _New York, NY_ or _Austin, TX_ for example with simple tweaks to the lat/long values in the properties file.
 
 ### Libraries
 
@@ -32,7 +32,7 @@ Apart from the standard Android SDK & libraries, few other open source libraries
 I have used Android Studio 3.0.1 to develop this app. Tried to stick to tools/libraries that I am familiar with(already had on my machine) to make the best use of time. Steps to build/deploy the app:
  
   1. Clone the master branch from the repository.
-  2. Before opening the project on your Android Studio, please ensure that Gradle 4.1 is installed on your machine.
+  2. Before opening the project on your Android Studio, please ensure that Gradle 4.4 is installed on your machine.
   3. Open the '_PlacesSearch_' project in your Android Studio.
   4. Do a 'Build' -> 'Clean'. If the Clean command executes successfully, you should be ready to attempt a deployment of the app to a connected device or your emulator instance.
   5. The 'app' module should be auto-selected in the deployment configuration drop-down. Hit the Run app button to deploy and if all goes well, the 'Spotter' app should be ready to test on your device target.

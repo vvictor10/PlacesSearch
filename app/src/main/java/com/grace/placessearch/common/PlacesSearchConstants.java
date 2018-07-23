@@ -25,4 +25,6 @@ public class PlacesSearchConstants {
     public static String MAP_PINS_EXTRA = "MapPinsExtra";
     public static String VENUE_NAME_EXTRA = "VenueNameExtra";
     public static String VENUE_ID_EXTRA = "VenueIdExtra";
+    public static String VENUE_POSITION_EXTRA = "VenuePositionExtra";
+    public static String VENUE_IS_FAVORITE = "IsFavoriteExtra";
 }

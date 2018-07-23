@@ -88,7 +88,7 @@ public class PlacesSearchUtil {
     }
 
     /**
-     * Returns the distance in miles between the user location(Seattle center in this case)
+     * Returns the distance in miles between the user location(Austin center in this case)
      * and the passed in location.
      *
      * @param distanceTo
@@ -115,7 +115,7 @@ public class PlacesSearchUtil {
     }
 
     /**
-     * Returns the formatted user location(Seattle center in this case)
+     * Returns the formatted user location(Austin center in this case)
      * @return
      */
     public static String getLatLngOfUserLocation() {

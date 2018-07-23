@@ -422,5 +422,4 @@ public class VenueDetailsActivity extends BaseNavigationActivity implements Venu
         }
     }
 
-
 }

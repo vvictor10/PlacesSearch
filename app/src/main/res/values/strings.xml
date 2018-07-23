@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Spotter</string>
     <string name="about_text">
-		Your mission is to create a three-screen application that allows users to: search for places in Seattle, Washington using the Foursquare API; view their search results in a list or on a map; and view the individual details of each search result.\n\n
+		Your mission is to create a three-screen application that allows users to: search for places in Austin, TX using the Foursquare API; view their search results in a list or on a map; and view the individual details of each search result.\n\n
 
 		The first screen should display an input field that allows users to search for places (for example, “coffee”, “pizza”, “Whole Foods”, etc) and, upon executing a search, should display the results in a list. Clicking an item in the list should launch a details screen. The details screen should show the place’s location on a map (for example, using Google Maps), provide details about the place, including website, and the user should be able to favorite the place on this screen.\n\n
 

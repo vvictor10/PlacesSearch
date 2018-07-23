@@ -91,6 +91,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
         private View itemView;
         private boolean isFavorite;
         private boolean favoriteStatusNeedsUpdating;
+        private String venueId;
 
         public VenueViewHolder(View itemView) {
             super(itemView);
@@ -144,6 +145,8 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
                 @Override
                 public void onClick(View view) {
                     listener.onVenueItemClicked(data);
+                    setFavoriteStatusNeedsUpdating(true);
+                    venueId = data.getId();
                 }
             });
             setInitialFavoriteStatus(placesPreferenceManager, data);
@@ -151,14 +154,10 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
             itemView.getViewTreeObserver().addOnWindowFocusChangeListener(new ViewTreeObserver.OnWindowFocusChangeListener() {
                 @Override
                 public void onWindowFocusChanged(boolean hasFocus) {
-                    if (hasFocus && getFavoriteStatusNeedsUpdating()) {
+                    if (hasFocus && getFavoriteStatusNeedsUpdating() && venueId != null && venueId.equals(data.getId())) {
                         refreshFavoriteStatus(data.getId(), placesPreferenceManager);
                         setFavoriteStatusNeedsUpdating(false);
-                    }
-
-                    // If losing focus(going to another activity perhaps), set to refresh fav status when focus is regained
-                    if (!hasFocus) {
-                        setFavoriteStatusNeedsUpdating(true);
+                        venueId = null;
                     }
                 }
             });
@@ -256,8 +255,6 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
                     .setListener(null);
         }
 
-
     }
-
 
 }
