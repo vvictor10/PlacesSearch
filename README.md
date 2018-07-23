@@ -8,7 +8,7 @@ Clicking on a search result item from the list (or) clicking on the info bubble 
 
 ### Configurable
 
-The app has been designed to support any user location, not just Austin, TX(default). The '_placessearch.properties_' file specifies the user's location in lat and long values and can be updated to reflect any location that is supported by the Foursquare API. So you can simulate the user experience in _New York, NY_ or _Austin, TX_ for example with simple tweaks to the lat/long values in the properties file.
+The app has been designed to support any user location, not just Austin, TX(default). The '_placessearch.properties_' file specifies the user's location in lat and long values and can be updated to reflect any location that is supported by the Foursquare API. So you can simulate the user experience in _New York, NY_ or _Seattle, WA_ for example with simple tweaks to the lat/long values in the properties file.
 
 ### Libraries
 
@@ -29,7 +29,7 @@ Apart from the standard Android SDK & libraries, few other open source libraries
 
 #### Tools & Build Instructions
 
-I have used Android Studio 3.0.1 to develop this app. Tried to stick to tools/libraries that I am familiar with(already had on my machine) to make the best use of time. Steps to build/deploy the app:
+I have used Android Studio 3.1.3 to develop this app. Tried to stick to tools/libraries that I am familiar with(already had on my machine) to make the best use of time. Steps to build/deploy the app:
  
   1. Clone the master branch from the repository.
   2. Before opening the project on your Android Studio, please ensure that Gradle 4.4 is installed on your machine.
