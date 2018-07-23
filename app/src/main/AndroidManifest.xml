@@ -42,7 +42,6 @@
 
         <activity
             android:name=".maps.ui.VenuesMapActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.TranslucentFullScreen" />
 
         <!-- Services -->
