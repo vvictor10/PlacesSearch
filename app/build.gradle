@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
 
 // build definitions & properties
 def projectName = "places_search"
@@ -58,59 +57,64 @@ android {
             debuggable false
         }
     }
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // support libs
-    compile "com.android.support:design:${supportLibVersion}"
-    compile "com.android.support:cardview-v7:${supportLibVersion}"
-    compile "com.android.support:appcompat-v7:${supportLibVersion}"
-    compile "com.android.support:recyclerview-v7:${supportLibVersion}"
-    compile "com.android.support:support-v4:${supportLibVersion}"
-    compile "com.android.support:cardview-v7:${supportLibVersion}"
-    compile "com.android.support:customtabs:${supportLibVersion}"
+    implementation "com.android.support:design:${supportLibVersion}"
+    implementation "com.android.support:cardview-v7:${supportLibVersion}"
+    implementation "com.android.support:appcompat-v7:${supportLibVersion}"
+    implementation "com.android.support:recyclerview-v7:${supportLibVersion}"
+    implementation "com.android.support:support-v4:${supportLibVersion}"
+    implementation "com.android.support:cardview-v7:${supportLibVersion}"
+    implementation "com.android.support:customtabs:${supportLibVersion}"
 
     // maps
-    compile ('com.google.android.gms:play-services-maps:12.0.1') {
+    implementation ('com.google.android.gms:play-services-maps:12.0.1') {
         exclude group: 'com.android.support'
     }
 
     // Timber
-    compile 'com.jakewharton.timber:timber:4.1.0'
+    implementation 'com.jakewharton.timber:timber:4.1.0'
 
     // Butterknife
-    compile 'com.jakewharton:butterknife:7.0.1'
+    implementation 'com.jakewharton:butterknife:7.0.1'
+    annotationProcessor 'com.jakewharton:butterknife:7.0.1'
 
     // Dagger
-    compile "com.google.dagger:dagger:2.6.1"
-    apt "com.google.dagger:dagger-compiler:2.6.1"
-    compile 'org.glassfish:javax.annotation:10.0-b28'
+    implementation "com.google.dagger:dagger:2.6.1"
+    annotationProcessor "com.google.dagger:dagger-compiler:2.6.1"
+    implementation 'org.glassfish:javax.annotation:10.0-b28'
 
     // Gson
-    compile 'com.google.code.gson:gson:2.3.1'
+    implementation 'com.google.code.gson:gson:2.3.1'
 
     // Picasso
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.0.2'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.0.2'
 
     // okhttp
-    compile 'com.squareup.okhttp3:okhttp:3.6.0'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.6.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.6.0'
 
     // Retrofit
-    compile 'com.squareup.retrofit2:retrofit:2.0.2'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
+    implementation 'com.squareup.retrofit2:retrofit:2.0.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
 
     // Rx
-    compile 'io.reactivex:rxjava:1.1.0'
-    compile 'io.reactivex:rxandroid:1.1.0'
+    implementation 'io.reactivex:rxjava:1.1.0'
+    implementation 'io.reactivex:rxandroid:1.1.0'
 
     // Test
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.assertj:assertj-core:1.7.0'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.assertj:assertj-core:1.7.0'
 }
 
 // Store all build props as env props for ease of use
