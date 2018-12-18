@@ -64,6 +64,12 @@ android {
     dataBinding {
         enabled = true
     }
+
+    sourceSets {
+        main { java.srcDirs = ['src/main/java', 'src/main/kotlin'] }
+        test.java.srcDirs += 'src/test/kotlin'
+        //androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    }
 }
 
 kapt {
