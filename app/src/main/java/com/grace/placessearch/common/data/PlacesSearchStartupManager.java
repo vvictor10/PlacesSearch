@@ -27,12 +27,12 @@ import timber.log.Timber;
 @Singleton
 public class PlacesSearchStartupManager {
 
-    private final LruCache lruCache;
+    private final LruCache<Object, Object> lruCache;
     private final PlacesApi mPlacesApi;
     private final PlacesSearchPreferenceManager preferenceManager;
 
     @Inject
-    public PlacesSearchStartupManager(LruCache lruCache,
+    public PlacesSearchStartupManager(LruCache<Object, Object> lruCache,
             PlacesApi placesApi,
             PlacesSearchPreferenceManager placesSearchPreferenceManager) {
 
@@ -48,11 +48,11 @@ public class PlacesSearchStartupManager {
         // Trending data could be potentially used to display popular venues
         // instead of displaying blank results. Not doing it to stick to the requirements :)
 
-        //fetchTrendingVenues();
+        fetchTrendingVenues();
     }
 
     private void fetchTrendingVenues() {
-        Set<String> cached = (Set<String>) lruCache.get(PlacesSearchConstants.CACHE_KEY_TRENDING_VENUES);
+        List<String> cached = (List<String>) lruCache.get(PlacesSearchConstants.CACHE_KEY_TRENDING_VENUES);
         if (cached == null) {
             mPlacesApi.getTrendingVenues()
                     .subscribeOn(Schedulers.io())

@@ -28,6 +28,7 @@ import com.grace.placessearch.data.model.Venue;
 import com.grace.placessearch.maps.ui.VenuesMapActivity;
 import com.grace.placessearch.common.ui.BaseNavigationActivity;
 import com.grace.placessearch.common.ui.view.LoadingIndicatorView;
+import com.grace.placessearch.venue.detail.ui.VenueDetailActivity;
 import com.grace.placessearch.venue.detail.ui.VenueDetailsActivity;
 import com.squareup.picasso.Picasso;
 
@@ -74,7 +75,7 @@ public class SearchActivity extends BaseNavigationActivity implements VenuesCont
     @Inject
     PlacesSearchPreferenceManager preferenceManager;
     @Inject
-    LruCache lruCache;
+    LruCache<Object, Object> lruCache;
 
     private LinearLayoutManager searchResultsLayoutManager;
     private String searchInput;
@@ -341,7 +342,7 @@ public class SearchActivity extends BaseNavigationActivity implements VenuesCont
 
     @Override
     public void onVenueItemClicked(Venue venue) {
-        Intent intent = new Intent(this, VenueDetailsActivity.class);
+        Intent intent = new Intent(this, VenueDetailActivity.class);
         intent.putExtra(PlacesSearchConstants.VENUE_NAME_EXTRA, venue.getName());
         intent.putExtra(PlacesSearchConstants.VENUE_ID_EXTRA, venue.getId());
         startActivity(intent);

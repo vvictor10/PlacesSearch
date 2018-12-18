@@ -104,7 +104,7 @@ public class VenueDetailsActivity extends BaseNavigationActivity implements Venu
     PlacesSearchPreferenceManager preferenceManager;
 
     @Inject
-    LruCache lruCache;
+    LruCache<Object, Object> lruCache;
 
     private int imageWidth;
     private int imageHeight;
@@ -324,7 +324,7 @@ public class VenueDetailsActivity extends BaseNavigationActivity implements Venu
     }
 
     private void setInitialFavoriteStatus(final PlacesSearchPreferenceManager placesPreferenceManager, final Venue venue) {
-        isFavorite = PlacesSearchUtil.isFavorite(placesPreferenceManager, venue.getId());
+        isFavorite = PlacesSearchUtil.INSTANCE.isFavorite(placesPreferenceManager, venue.getId());
         if (isFavorite) {
             animateFavoriteStatus(true, favoriteStatusImage, nonFavoriteStatusImage);
         } else {
@@ -336,10 +336,10 @@ public class VenueDetailsActivity extends BaseNavigationActivity implements Venu
             public void onClick(View v) {
                 isFavorite = !isFavorite;
                 if (isFavorite) {
-                    PlacesSearchUtil.addFavorite(placesPreferenceManager, venue.getId());
+                    PlacesSearchUtil.INSTANCE.addFavorite(placesPreferenceManager, venue.getId());
                     animateFavoriteStatus(false, favoriteStatusImage, nonFavoriteStatusImage);
                 } else {
-                    PlacesSearchUtil.removeFavorite(placesPreferenceManager, venue.getId());
+                    PlacesSearchUtil.INSTANCE.removeFavorite(placesPreferenceManager, venue.getId());
                     animateFavoriteStatus(false, nonFavoriteStatusImage, favoriteStatusImage);
                 }
             }

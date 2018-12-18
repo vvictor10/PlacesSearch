@@ -131,7 +131,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
             }
 
             // distance
-            String distanceToUserStr = PlacesSearchUtil.getDistanceInMilesToUserLocation(data.getLocation());
+            String distanceToUserStr = PlacesSearchUtil.INSTANCE.getDistanceInMilesToUserLocation(data.getLocation());
             if (distanceToUserStr == null) {
                 distanceToUserLocation.setText(context.getString(R.string.unavailable));
             } else {
@@ -172,7 +172,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
         }
 
         private void refreshFavoriteStatus(String venueId, PlacesSearchPreferenceManager placesPreferenceManager) {
-            boolean latestFavoriteStatus = PlacesSearchUtil.isFavorite(placesPreferenceManager, venueId);
+            boolean latestFavoriteStatus = PlacesSearchUtil.INSTANCE.isFavorite(placesPreferenceManager, venueId);
             if (!isFavorite && latestFavoriteStatus) { // newly favorited
                 isFavorite = latestFavoriteStatus;
                 animateFavoriteStatus(false, favoriteStatusImage, nonFavoriteStatusImage);
@@ -183,7 +183,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
         }
 
         private void setInitialFavoriteStatus(final PlacesSearchPreferenceManager placesPreferenceManager, final Venue venue) {
-            isFavorite = PlacesSearchUtil.isFavorite(placesPreferenceManager, venue.getId());
+            isFavorite = PlacesSearchUtil.INSTANCE.isFavorite(placesPreferenceManager, venue.getId());
             if (isFavorite) {
                 animateFavoriteStatus(true, favoriteStatusImage, nonFavoriteStatusImage);
             } else {
@@ -195,10 +195,10 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
                 public void onClick(View v) {
                     isFavorite = !isFavorite;
                     if (isFavorite) {
-                        PlacesSearchUtil.addFavorite(placesPreferenceManager, venue.getId());
+                        PlacesSearchUtil.INSTANCE.addFavorite(placesPreferenceManager, venue.getId());
                         animateFavoriteStatus(false, favoriteStatusImage, nonFavoriteStatusImage);
                     } else {
-                        PlacesSearchUtil.removeFavorite(placesPreferenceManager, venue.getId());
+                        PlacesSearchUtil.INSTANCE.removeFavorite(placesPreferenceManager, venue.getId());
                         animateFavoriteStatus(false, nonFavoriteStatusImage, favoriteStatusImage);
                     }
                 }

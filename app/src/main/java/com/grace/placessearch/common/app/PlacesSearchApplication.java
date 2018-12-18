@@ -25,7 +25,7 @@ public class PlacesSearchApplication extends Application {
     private static final String TAG = PlacesSearchApplication.class.getSimpleName();
 
     @Inject
-    LruCache lruCache;
+    LruCache<Object, Object> lruCache;
 
     private PlacesSearchComponent component;
 

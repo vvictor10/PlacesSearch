@@ -27,7 +27,7 @@ public interface PlacesSearchComponent {
 
     Picasso providePicasso();
 
-    LruCache provideLruCache();
+    LruCache<Object, Object> provideLruCache();
 
     // injects
     void inject(PlacesSearchApplication app);

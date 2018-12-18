@@ -38,7 +38,12 @@
         <activity
             android:name=".venue.detail.ui.VenueDetailsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".venue.detail.ui.VenueDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".maps.ui.VenuesMapActivity"

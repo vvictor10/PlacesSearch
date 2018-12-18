@@ -16,7 +16,7 @@ import timber.log.Timber;
  * Created by vicsonvictor on 4/21/18.
  */
 
-public class PlacesSearchUtil {
+public class PlacesSearchUtilOrig {
 
     /**
      * Indicates if the passed in venueId is in the user's favorites list.

@@ -1,5 +1,8 @@
 package com.grace.placessearch.search.ui;
 
+import android.util.LruCache;
+
+import com.grace.placessearch.common.PlacesSearchConstants;
 import com.grace.placessearch.data.model.Category;
 import com.grace.placessearch.data.model.SuggestedVenuesResponse;
 import com.grace.placessearch.data.model.Venue;
@@ -30,10 +33,12 @@ public class VenuesPresenter implements VenuesContract.Presenter {
 
     private final CompositeSubscription subscriptions = new CompositeSubscription();
     private final VenuesDataManager venuesDataManager;
+    private final LruCache<Object, Object> lruCache;
     private VenuesContract.View viewListener;
 
     @Inject
-    public VenuesPresenter(VenuesDataManager venuesDataManager) {
+    public VenuesPresenter(LruCache<Object, Object> lruCache, VenuesDataManager venuesDataManager) {
+        this.lruCache = lruCache;
         this.venuesDataManager = venuesDataManager;
     }
 
@@ -78,7 +83,7 @@ public class VenuesPresenter implements VenuesContract.Presenter {
         return venuesDataManager.searchForVenues(term)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new SearchSubscriber(viewListener));
+                .subscribe(new SearchSubscriber(viewListener, lruCache));
     }
 
     private Subscription getSearchSuggestionsSubscription(String term) {
@@ -147,9 +152,11 @@ public class VenuesPresenter implements VenuesContract.Presenter {
     private static class SearchSubscriber extends Subscriber<Result<VenuesResponse>> {
 
         private VenuesContract.View listener;
+        private LruCache<Object, Object> lruCache;
 
-        public SearchSubscriber(VenuesContract.View listener) {
+        public SearchSubscriber(VenuesContract.View listener, LruCache<Object, Object> lruCache) {
             this.listener = listener;
+            this.lruCache = lruCache;
         }
 
         @Override

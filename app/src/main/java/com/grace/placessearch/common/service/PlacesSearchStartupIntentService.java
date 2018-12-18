@@ -25,7 +25,7 @@ public class PlacesSearchStartupIntentService extends IntentService {
     PlacesSearchPreferenceManager preferenceManager;
 
     @Inject
-    LruCache lruCache;
+    LruCache<Object, Object> lruCache;
 
     public PlacesSearchStartupIntentService() {
         super(PlacesSearchStartupIntentService.class.getName());

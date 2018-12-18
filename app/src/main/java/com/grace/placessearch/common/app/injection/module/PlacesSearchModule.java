@@ -51,7 +51,7 @@ public class PlacesSearchModule {
 
     @Provides
     @Singleton
-    public LruCache provideLruCache() {
+    public LruCache<Object, Object> provideLruCache() {
         return new LruCache(CACHE_SIZE);
     }
 
@@ -85,7 +85,7 @@ public class PlacesSearchModule {
     private PlacesApi getPlacesInstance() {
         if (mPlacesApi == null) {
             mPlacesApi = new PlacesApiRetrofit(PlacesSearchEnvironmentEnum.PROD.placesBaseUrl, "20180421",
-                    BuildConfig.FOUR_SQUARE_API_CLIENT_ID, BuildConfig.FOUR_SQUARE_API_CLIENT_SECRET, PlacesSearchUtil.getLatLngOfUserLocation());
+                    BuildConfig.FOUR_SQUARE_API_CLIENT_ID, BuildConfig.FOUR_SQUARE_API_CLIENT_SECRET, PlacesSearchUtil.INSTANCE.getLatLngOfUserLocation());
             Timber.i("Created new PlacesRetrofit instance.");
         }
         return mPlacesApi;

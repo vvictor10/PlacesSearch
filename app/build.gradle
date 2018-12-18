@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 
 // build definitions & properties
 def projectName = "places_search"
@@ -63,6 +66,10 @@ android {
     }
 }
 
+kapt {
+    generateStubs = true
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -81,15 +88,16 @@ dependencies {
     }
 
     // Timber
-    implementation 'com.jakewharton.timber:timber:4.1.0'
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 
     // Butterknife
     implementation 'com.jakewharton:butterknife:7.0.1'
+    kapt 'com.jakewharton:butterknife:7.0.1'
     annotationProcessor 'com.jakewharton:butterknife:7.0.1'
 
     // Dagger
     implementation "com.google.dagger:dagger:2.6.1"
-    annotationProcessor "com.google.dagger:dagger-compiler:2.6.1"
+    kapt "com.google.dagger:dagger-compiler:2.6.1"
     implementation 'org.glassfish:javax.annotation:10.0-b28'
 
     // Gson
@@ -115,6 +123,10 @@ dependencies {
     // Test
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.assertj:assertj-core:1.7.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }
 
 // Store all build props as env props for ease of use
