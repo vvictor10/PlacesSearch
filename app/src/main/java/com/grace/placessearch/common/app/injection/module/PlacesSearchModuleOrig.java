@@ -1,0 +1,108 @@
+package com.grace.placessearch.common.app.injection.module;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
+
+import android.content.Context;
+import android.net.Uri;
+import android.support.annotation.NonNull;
+import android.util.LruCache;
+
+import com.grace.placessearch.BuildConfig;
+import com.grace.placessearch.common.PlacesSearchConstantsOrig;
+import com.grace.placessearch.common.PlacesSearchEnvironmentEnumOrig;
+import com.grace.placessearch.common.util.PlacesSearchUtil;
+import com.grace.placessearch.service.PlacesApiOrig;
+import com.grace.placessearch.service.network.PlacesApiRetrofitOrig;
+import com.jakewharton.picasso.OkHttp3Downloader;
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
+
+import javax.inject.Singleton;
+
+import dagger.Module;
+import dagger.Provides;
+import okhttp3.Cache;
+import okhttp3.OkHttpClient;
+import timber.log.Timber;
+
+/**
+ * Created by vicsonvictor on 4/21/18.
+ */
+@Module
+public class PlacesSearchModuleOrig {
+
+    private final int CACHE_SIZE = 5 * 1024 * 1024;
+
+    private final Context context;
+    private PlacesApiOrig mPlacesApi;
+
+    public PlacesSearchModuleOrig(Context context) {
+        this.context = context;
+    }
+
+    @Provides
+    @Singleton
+    Context provideContext() {
+        return context;
+    }
+
+    @Provides
+    @Singleton
+    public LruCache<Object, Object> provideLruCache() {
+        return new LruCache(CACHE_SIZE);
+    }
+
+    @Provides
+    @Singleton
+    public PlacesApiOrig providePlaces() {
+        return getPlacesInstance();
+    }
+
+    @Provides
+    @Singleton
+    public Picasso providePicasso(OkHttpClient client) {
+        return new Picasso.Builder(context)
+                .downloader(new OkHttp3Downloader(client))
+                .listener(new Picasso.Listener() {
+                    @Override
+                    public void onImageLoadFailed(Picasso picasso, Uri uri, Exception exception) {
+                        Timber.w(exception, "Failed to load image: %s", uri);
+                    }
+                })
+                .build();
+    }
+
+    @Provides
+    @Singleton
+    OkHttpClient provideOkHttpClient() {
+        return createOkHttpClient(context).build();
+    }
+
+    @NonNull
+    private PlacesApiOrig getPlacesInstance() {
+        if (mPlacesApi == null) {
+            mPlacesApi = new PlacesApiRetrofitOrig(PlacesSearchEnvironmentEnumOrig.PROD.placesBaseUrl, "20180421",
+                    BuildConfig.FOUR_SQUARE_API_CLIENT_ID, BuildConfig.FOUR_SQUARE_API_CLIENT_SECRET, PlacesSearchUtil.INSTANCE.getLatLngOfUserLocation());
+            Timber.i("Created new PlacesRetrofit instance.");
+        }
+        return mPlacesApi;
+    }
+
+    /**
+     * Creates a cache enabled {@link OkHttpClient} instance and returns it.
+     * Currently, this is being only used for Picasso image handling and caching.
+     */
+    private static OkHttpClient.Builder createOkHttpClient(Context context) {
+        // Install an HTTP cache in the application cache directory.
+        File cacheDir = new File(context.getCacheDir(), PlacesSearchConstantsOrig.HTTP);
+        Cache cache = new Cache(cacheDir, PlacesSearchConstantsOrig.IMAGE_DISK_CACHE_SIZE);
+
+        return new OkHttpClient.Builder()
+                .cache(cache)
+                .connectTimeout(PlacesSearchConstantsOrig.HTTP_TIMEOUT_VALUE, SECONDS)
+                .readTimeout(PlacesSearchConstantsOrig.HTTP_TIMEOUT_VALUE, SECONDS)
+                .writeTimeout(PlacesSearchConstantsOrig.HTTP_TIMEOUT_VALUE, SECONDS);
+    }
+
+}

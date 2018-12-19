@@ -2,14 +2,13 @@ package com.grace.placessearch.search.ui;
 
 import android.util.LruCache;
 
-import com.grace.placessearch.common.PlacesSearchConstants;
+import com.grace.placessearch.common.data.VenuesDataManager;
+import com.grace.placessearch.common.ui.injection.scope.ActivityScope;
 import com.grace.placessearch.data.model.Category;
 import com.grace.placessearch.data.model.SuggestedVenuesResponse;
 import com.grace.placessearch.data.model.Venue;
 import com.grace.placessearch.data.model.VenueResponse;
 import com.grace.placessearch.data.model.VenuesResponse;
-import com.grace.placessearch.common.data.VenuesDataManager;
-import com.grace.placessearch.common.ui.injection.scope.ActivityScope;
 
 import java.util.ArrayList;
 import java.util.List;

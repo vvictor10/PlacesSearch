@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.grace.placessearch.common.PlacesSearchConstants;
+import com.grace.placessearch.common.PlacesSearchConstantsOrig;
 import com.grace.placessearch.R;
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager;
 import com.grace.placessearch.data.model.Venue;
@@ -223,7 +223,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
                 viewToHide.animate()
                         .scaleX(0f)
                         .scaleY(0f)
-                        .setDuration(PlacesSearchConstants.HEART_CROSS_FADE_ANIMATION_DURATION)
+                        .setDuration(PlacesSearchConstantsOrig.HEART_CROSS_FADE_ANIMATION_DURATION)
                         .setListener(new AnimatorListenerAdapter() {
                             @Override
                             public void onAnimationEnd(Animator animation) {
@@ -243,7 +243,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
 
             // If displaying 'non-favorite' status or initial display of 'favorite'
             // status - animate alpha value instantly
-            int duration = PlacesSearchConstants.HEART_CROSS_FADE_ANIMATION_DURATION;
+            int duration = PlacesSearchConstantsOrig.HEART_CROSS_FADE_ANIMATION_DURATION;
             if (viewToDisplay == nonFavoriteStatusImage || isInitAnimation) {
                 duration = 0;
             }

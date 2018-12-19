@@ -49,6 +49,10 @@
             android:name=".maps.ui.VenuesMapActivity"
             android:theme="@style/AppTheme.NoActionBar.TranslucentFullScreen" />
 
+        <activity
+            android:name=".maps.ui.VenuesMapActivityOrig"
+            android:theme="@style/AppTheme.NoActionBar.TranslucentFullScreen" />
+
         <!-- Services -->
         <service
             android:name="com.grace.placessearch.common.service.PlacesSearchStartupIntentService"

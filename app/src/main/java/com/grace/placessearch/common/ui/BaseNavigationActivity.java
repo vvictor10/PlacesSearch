@@ -124,7 +124,7 @@ public abstract class BaseNavigationActivity extends AppCompatActivity
     public ActivityComponent component() {
         if (component == null) {
             component = DaggerActivityComponent.builder()
-                    .placesSearchComponent(((PlacesSearchApplication) getApplication()).component())
+                    .placesSearchComponentKT(((PlacesSearchApplication) getApplication()).component())
                     .build();
         }
         return component;

@@ -1,7 +1,6 @@
 package com.grace.placessearch.common.util;
 
-import com.google.gson.Gson;
-import com.grace.placessearch.common.PlacesSearchConstants;
+import com.grace.placessearch.common.PlacesSearchConstantsOrig;
 import com.grace.placessearch.common.app.FavoritePlacesPreferences;
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager;
 import com.grace.placessearch.data.model.Location;
@@ -26,7 +25,8 @@ public class PlacesSearchUtilOrig {
      */
     public static boolean isFavorite(PlacesSearchPreferenceManager preferenceManager, String venueId) {
         FavoritePlacesPreferences preferences = preferenceManager.getFavoriteVenuePreferences();
-        String[] text = new Gson().fromJson(preferences.favoriteVenues, String[].class);
+        String[] text = null;
+                //new Gson().fromJson(preferences.favoriteVenues, String[].class);
 
         if (text == null || text.length == 0) {
             return false;
@@ -45,7 +45,8 @@ public class PlacesSearchUtilOrig {
      */
     public static void addFavorite(PlacesSearchPreferenceManager preferenceManager, String venueId) {
         FavoritePlacesPreferences preferences = preferenceManager.getFavoriteVenuePreferences();
-        String[] text = new Gson().fromJson(preferences.favoriteVenues, String[].class);
+        String[] text = null;
+                //new Gson().fromJson(preferences.favoriteVenues, String[].class);
 
         List<String> favorites;
         if (text != null) {
@@ -57,7 +58,7 @@ public class PlacesSearchUtilOrig {
 
         favorites.add(venueId);
 
-        preferences.favoriteVenues = new Gson().toJson(favorites);
+        //preferences.favoriteVenues = new Gson().toJson(favorites);
         preferenceManager.setFavoriteVenuePreferences(preferences);
         Timber.i("Favorite venue %s added", venueId);
     }
@@ -69,7 +70,8 @@ public class PlacesSearchUtilOrig {
      */
     public static void removeFavorite(PlacesSearchPreferenceManager preferenceManager, String venueId) {
         FavoritePlacesPreferences preferences = preferenceManager.getFavoriteVenuePreferences();
-        String[] text = new Gson().fromJson(preferences.favoriteVenues, String[].class);
+        String[] text = null;
+                //new Gson().fromJson(preferences.favoriteVenues, String[].class);
         if (text == null || text.length == 0) {
             return;
         }
@@ -83,7 +85,7 @@ public class PlacesSearchUtilOrig {
         favorites.remove(venueId);
         Timber.i("Favorite venue %s removed", venueId);
 
-        preferences.favoriteVenues = new Gson().toJson(favorites);
+        //preferences.favoriteVenues = new Gson().toJson(favorites);
         preferenceManager.setFavoriteVenuePreferences(preferences);
     }
 
@@ -101,8 +103,8 @@ public class PlacesSearchUtilOrig {
         }
 
         android.location.Location startPoint = new android.location.Location("a");
-        startPoint.setLatitude(PlacesSearchConstants.USER_LOCATION_LAT);
-        startPoint.setLongitude(PlacesSearchConstants.USER_LOCATION_LNG);
+        startPoint.setLatitude(PlacesSearchConstantsOrig.USER_LOCATION_LAT);
+        startPoint.setLongitude(PlacesSearchConstantsOrig.USER_LOCATION_LNG);
 
         android.location.Location endPoint = new android.location.Location("b");
         endPoint.setLatitude(distanceTo.getLat());
@@ -119,6 +121,6 @@ public class PlacesSearchUtilOrig {
      * @return
      */
     public static String getLatLngOfUserLocation() {
-        return PlacesSearchConstants.USER_LOCATION_LAT + "," + PlacesSearchConstants.USER_LOCATION_LNG;
+        return PlacesSearchConstantsOrig.USER_LOCATION_LAT + "," + PlacesSearchConstantsOrig.USER_LOCATION_LNG;
     }
 }

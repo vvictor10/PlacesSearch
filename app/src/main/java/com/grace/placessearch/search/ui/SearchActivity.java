@@ -20,16 +20,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.grace.placessearch.common.PlacesSearchConstants;
 import com.grace.placessearch.R;
+import com.grace.placessearch.common.PlacesSearchConstantsOrig;
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager;
+import com.grace.placessearch.common.ui.BaseNavigationActivity;
+import com.grace.placessearch.common.ui.view.LoadingIndicatorView;
 import com.grace.placessearch.data.model.MapPin;
 import com.grace.placessearch.data.model.Venue;
 import com.grace.placessearch.maps.ui.VenuesMapActivity;
-import com.grace.placessearch.common.ui.BaseNavigationActivity;
-import com.grace.placessearch.common.ui.view.LoadingIndicatorView;
 import com.grace.placessearch.venue.detail.ui.VenueDetailActivity;
-import com.grace.placessearch.venue.detail.ui.VenueDetailsActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -240,7 +239,7 @@ public class SearchActivity extends BaseNavigationActivity implements VenuesCont
     @OnClick(R.id.map_fab)
     public void mapFabClicked() {
         Intent intent = new Intent(this, VenuesMapActivity.class);
-        intent.putParcelableArrayListExtra(PlacesSearchConstants.MAP_PINS_EXTRA, getMapPinsOfSearchResults());
+        intent.putParcelableArrayListExtra(PlacesSearchConstantsOrig.MAP_PINS_EXTRA, getMapPinsOfSearchResults());
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in, R.anim.fade_out);
     }
@@ -343,8 +342,8 @@ public class SearchActivity extends BaseNavigationActivity implements VenuesCont
     @Override
     public void onVenueItemClicked(Venue venue) {
         Intent intent = new Intent(this, VenueDetailActivity.class);
-        intent.putExtra(PlacesSearchConstants.VENUE_NAME_EXTRA, venue.getName());
-        intent.putExtra(PlacesSearchConstants.VENUE_ID_EXTRA, venue.getId());
+        intent.putExtra(PlacesSearchConstantsOrig.VENUE_NAME_EXTRA, venue.getName());
+        intent.putExtra(PlacesSearchConstantsOrig.VENUE_ID_EXTRA, venue.getId());
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in, R.anim.fade_out);
     }

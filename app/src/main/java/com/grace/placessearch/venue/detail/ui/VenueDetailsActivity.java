@@ -36,17 +36,17 @@ import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.grace.placessearch.common.PlacesSearchConstants;
 import com.grace.placessearch.R;
+import com.grace.placessearch.common.PlacesSearchConstantsOrig;
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager;
-import com.grace.placessearch.data.model.Category;
-import com.grace.placessearch.data.model.Venue;
-import com.grace.placessearch.search.ui.VenuesContract;
-import com.grace.placessearch.search.ui.VenuesPresenter;
 import com.grace.placessearch.common.ui.BaseNavigationActivity;
 import com.grace.placessearch.common.ui.view.LoadingIndicatorView;
 import com.grace.placessearch.common.ui.view.ViewUtils;
 import com.grace.placessearch.common.util.PlacesSearchUtil;
+import com.grace.placessearch.data.model.Category;
+import com.grace.placessearch.data.model.Venue;
+import com.grace.placessearch.search.ui.VenuesContract;
+import com.grace.placessearch.search.ui.VenuesPresenter;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -61,6 +61,7 @@ import timber.log.Timber;
 /**
  * A Map activity displaying the pins passed in the Intent Extra.
  */
+@Deprecated
 public class VenueDetailsActivity extends BaseNavigationActivity implements VenuesContract.View {
 
     @Bind(R.id.favorite_status)
@@ -131,7 +132,7 @@ public class VenueDetailsActivity extends BaseNavigationActivity implements Venu
         imageHeight = (int) (imageWidth * 1.0); //aspect ratio
         setViewHeight(mapImage, imageHeight);
 
-        String venueId = getIntent().getStringExtra(PlacesSearchConstants.VENUE_ID_EXTRA);
+        String venueId = getIntent().getStringExtra(PlacesSearchConstantsOrig.VENUE_ID_EXTRA);
 
         loadingIndicatorView.setVisibility(View.VISIBLE);
         venuesPresenter.doGetVenue(venueId);
@@ -259,7 +260,7 @@ public class VenueDetailsActivity extends BaseNavigationActivity implements Venu
     private void launchMapsForDirections(Venue venue) {
         StringBuilder staticMapImageUrlBuilder = new StringBuilder();
         staticMapImageUrlBuilder.append("https://www.google.com/maps/dir/?api=1&travelmode=driving&origin=");
-        staticMapImageUrlBuilder.append(PlacesSearchConstants.USER_LOCATION_LAT + "," + PlacesSearchConstants.USER_LOCATION_LNG);
+        staticMapImageUrlBuilder.append(PlacesSearchConstantsOrig.USER_LOCATION_LAT + "," + PlacesSearchConstantsOrig.USER_LOCATION_LNG);
         staticMapImageUrlBuilder.append("&destination=" + String.format("%.4f", venue.getLocation().getLat()));
         staticMapImageUrlBuilder.append("," + String.format("%.4f", venue.getLocation().getLng()));
         staticMapImageUrlBuilder.append("&key=AIzaSyBJ8FpHurNJQ0oyEhxY4U1HMAZ2xF_pv9w");
@@ -315,7 +316,7 @@ public class VenueDetailsActivity extends BaseNavigationActivity implements Venu
         StringBuilder staticMapImageUrlBuilder = new StringBuilder();
         staticMapImageUrlBuilder.append("https://maps.googleapis.com/maps/api/staticmap?size=");
         staticMapImageUrlBuilder.append(imageWidth + "x" + imageHeight + "&maptype=roadmap&markers=color:red%7Clabel:A%7C");
-        staticMapImageUrlBuilder.append(PlacesSearchConstants.USER_LOCATION_LAT + "," + PlacesSearchConstants.USER_LOCATION_LNG);
+        staticMapImageUrlBuilder.append(PlacesSearchConstantsOrig.USER_LOCATION_LAT + "," + PlacesSearchConstantsOrig.USER_LOCATION_LNG);
         staticMapImageUrlBuilder.append("&markers=color:red%7Clabel:B%7C" + String.format("%.4f", venue.getLocation().getLat()));
         staticMapImageUrlBuilder.append("," + String.format("%.4f", venue.getLocation().getLng()));
         staticMapImageUrlBuilder.append("&key=AIzaSyBJ8FpHurNJQ0oyEhxY4U1HMAZ2xF_pv9w");
@@ -364,7 +365,7 @@ public class VenueDetailsActivity extends BaseNavigationActivity implements Venu
             viewToHide.animate()
                     .scaleX(0f)
                     .scaleY(0f)
-                    .setDuration(PlacesSearchConstants.HEART_CROSS_FADE_ANIMATION_DURATION)
+                    .setDuration(PlacesSearchConstantsOrig.HEART_CROSS_FADE_ANIMATION_DURATION)
                     .setListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animation) {
@@ -384,7 +385,7 @@ public class VenueDetailsActivity extends BaseNavigationActivity implements Venu
 
         // If displaying 'non-favorite' status or initial display of 'favorite'
         // status - animate alpha value instantly
-        int duration = PlacesSearchConstants.HEART_CROSS_FADE_ANIMATION_DURATION;
+        int duration = PlacesSearchConstantsOrig.HEART_CROSS_FADE_ANIMATION_DURATION;
         if (viewToDisplay == nonFavoriteStatusImage || isInitAnimation) {
             duration = 0;
         }

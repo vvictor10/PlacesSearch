@@ -1,13 +1,11 @@
 package com.grace.placessearch.service.local
 
 
-import com.grace.placessearch.service.PlacesApi
-
 import java.io.File
 
 abstract class KtPlacesTestBase {
 
-    protected val places: PlacesApi
+    protected val places: PlacesApiLocal
         get() = PLACES_API
 
     companion object {
