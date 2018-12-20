@@ -6,6 +6,7 @@ import java.lang.annotation.Retention;
 
 import javax.inject.Qualifier;
 
+@Deprecated
 @Qualifier
 @Retention(RUNTIME)
 public @interface ForApplicationOrig {

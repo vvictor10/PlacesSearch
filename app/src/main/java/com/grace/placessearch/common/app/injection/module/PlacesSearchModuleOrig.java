@@ -8,8 +8,8 @@ import android.support.annotation.NonNull;
 import android.util.LruCache;
 
 import com.grace.placessearch.BuildConfig;
-import com.grace.placessearch.common.PlacesSearchConstantsOrig;
-import com.grace.placessearch.common.PlacesSearchEnvironmentEnumOrig;
+import com.grace.placessearch.common.PlacesSearchConstants;
+import com.grace.placessearch.common.PlacesSearchEnvironmentEnum;
 import com.grace.placessearch.common.util.PlacesSearchUtil;
 import com.grace.placessearch.service.PlacesApiOrig;
 import com.grace.placessearch.service.network.PlacesApiRetrofitOrig;
@@ -29,6 +29,7 @@ import timber.log.Timber;
 /**
  * Created by vicsonvictor on 4/21/18.
  */
+@Deprecated
 @Module
 public class PlacesSearchModuleOrig {
 
@@ -82,7 +83,7 @@ public class PlacesSearchModuleOrig {
     @NonNull
     private PlacesApiOrig getPlacesInstance() {
         if (mPlacesApi == null) {
-            mPlacesApi = new PlacesApiRetrofitOrig(PlacesSearchEnvironmentEnumOrig.PROD.placesBaseUrl, "20180421",
+            mPlacesApi = new PlacesApiRetrofitOrig(PlacesSearchEnvironmentEnum.PROD.getPlacesBaseUrl(), "20180421",
                     BuildConfig.FOUR_SQUARE_API_CLIENT_ID, BuildConfig.FOUR_SQUARE_API_CLIENT_SECRET, PlacesSearchUtil.INSTANCE.getLatLngOfUserLocation());
             Timber.i("Created new PlacesRetrofit instance.");
         }
@@ -95,14 +96,14 @@ public class PlacesSearchModuleOrig {
      */
     private static OkHttpClient.Builder createOkHttpClient(Context context) {
         // Install an HTTP cache in the application cache directory.
-        File cacheDir = new File(context.getCacheDir(), PlacesSearchConstantsOrig.HTTP);
-        Cache cache = new Cache(cacheDir, PlacesSearchConstantsOrig.IMAGE_DISK_CACHE_SIZE);
+        File cacheDir = new File(context.getCacheDir(), PlacesSearchConstants.HTTP);
+        Cache cache = new Cache(cacheDir, PlacesSearchConstants.IMAGE_DISK_CACHE_SIZE);
 
         return new OkHttpClient.Builder()
                 .cache(cache)
-                .connectTimeout(PlacesSearchConstantsOrig.HTTP_TIMEOUT_VALUE, SECONDS)
-                .readTimeout(PlacesSearchConstantsOrig.HTTP_TIMEOUT_VALUE, SECONDS)
-                .writeTimeout(PlacesSearchConstantsOrig.HTTP_TIMEOUT_VALUE, SECONDS);
+                .connectTimeout(PlacesSearchConstants.HTTP_TIMEOUT_VALUE, SECONDS)
+                .readTimeout(PlacesSearchConstants.HTTP_TIMEOUT_VALUE, SECONDS)
+                .writeTimeout(PlacesSearchConstants.HTTP_TIMEOUT_VALUE, SECONDS);
     }
 
 }

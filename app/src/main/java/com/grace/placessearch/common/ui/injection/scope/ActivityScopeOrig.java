@@ -5,8 +5,9 @@ import java.lang.annotation.RetentionPolicy;
 
 import javax.inject.Scope;
 
+@Deprecated
 @Scope
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ActivityScope {
+public @interface ActivityScopeOrig {
 
 }

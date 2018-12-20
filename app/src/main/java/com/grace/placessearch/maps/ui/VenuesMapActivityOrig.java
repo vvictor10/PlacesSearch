@@ -30,8 +30,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.grace.placessearch.common.PlacesSearchConstantsOrig;
 import com.grace.placessearch.R;
+import com.grace.placessearch.common.PlacesSearchConstants;
 import com.grace.placessearch.data.model.MapPin;
 import com.grace.placessearch.venue.detail.ui.VenueDetailActivity;
 import com.squareup.picasso.Picasso;
@@ -60,7 +60,7 @@ public class VenuesMapActivityOrig extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_venues_map);
 
-        mapPins = getIntent().getParcelableArrayListExtra(PlacesSearchConstantsOrig.MAP_PINS_EXTRA);
+        mapPins = getIntent().getParcelableArrayListExtra(PlacesSearchConstants.MAP_PINS_EXTRA);
 
         SupportMapFragment mapFragment =
                 (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
@@ -115,7 +115,7 @@ public class VenuesMapActivityOrig extends AppCompatActivity implements
 
     private void onMarkerInfoWindowClicked(Marker marker) {
         Intent intent = new Intent(this, VenueDetailActivity.class);
-        intent.putExtra(PlacesSearchConstantsOrig.VENUE_ID_EXTRA, marker.getSnippet());
+        intent.putExtra(PlacesSearchConstants.VENUE_ID_EXTRA, marker.getSnippet());
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in, R.anim.fade_out);
     }

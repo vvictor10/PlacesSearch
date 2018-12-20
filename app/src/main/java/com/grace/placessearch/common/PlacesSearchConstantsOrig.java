@@ -6,7 +6,7 @@ import com.grace.placessearch.common.util.DecimalByteUnit;
 /**
  * Created by vicsonvictor on 4/21/18.
  */
-
+@Deprecated
 public class PlacesSearchConstantsOrig {
 
     public static final String HTTP = "http";

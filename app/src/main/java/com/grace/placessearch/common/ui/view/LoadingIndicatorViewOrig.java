@@ -15,7 +15,8 @@ import android.widget.RelativeLayout;
 
 import com.grace.placessearch.R;
 
-public class LoadingIndicatorView extends RelativeLayout {
+@Deprecated
+public class LoadingIndicatorViewOrig extends RelativeLayout {
 
     public static final int DARK = 0;
     public static final int LIGHT = 1;
@@ -28,15 +29,15 @@ public class LoadingIndicatorView extends RelativeLayout {
 
     private AnimatorSet loadingIndicatorAnimation;
 
-    public LoadingIndicatorView(Context context) {
+    public LoadingIndicatorViewOrig(Context context) {
         this(context, null, 0);
     }
 
-    public LoadingIndicatorView(Context context, AttributeSet attrs) {
+    public LoadingIndicatorViewOrig(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public LoadingIndicatorView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public LoadingIndicatorViewOrig(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
 

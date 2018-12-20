@@ -52,8 +52,8 @@ class DebugTree(protected val applicationTag: String) : Timber.DebugTree() {
         throwShade(Log.ERROR, formatString(message, *args), t)
     }
 
-    protected fun throwShade(priority: Int, message: String?, t: Throwable?) {
-        var message = message
+    protected fun throwShade(priority: Int, messageStr: String?, t: Throwable?) {
+        var message = messageStr
         if (message == null || message.isEmpty()) {
             if (t != null) {
                 message = Log.getStackTraceString(t)

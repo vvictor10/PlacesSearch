@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.LruCache;
@@ -21,7 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.grace.placessearch.R;
-import com.grace.placessearch.common.PlacesSearchConstantsOrig;
+import com.grace.placessearch.common.PlacesSearchConstants;
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager;
 import com.grace.placessearch.common.ui.BaseNavigationActivity;
 import com.grace.placessearch.common.ui.view.LoadingIndicatorView;
@@ -136,10 +138,11 @@ public class SearchActivity extends BaseNavigationActivity implements VenuesCont
 
         setupDrawerListeners();
 
-        initToolbar(toolbar);
+        initToolbar((Toolbar)findViewById(R.id.toolbar));
 
         initSearchTextView();
 
+        NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         setupSearchResultsRecyclerView();
@@ -239,7 +242,7 @@ public class SearchActivity extends BaseNavigationActivity implements VenuesCont
     @OnClick(R.id.map_fab)
     public void mapFabClicked() {
         Intent intent = new Intent(this, VenuesMapActivity.class);
-        intent.putParcelableArrayListExtra(PlacesSearchConstantsOrig.MAP_PINS_EXTRA, getMapPinsOfSearchResults());
+        intent.putParcelableArrayListExtra(PlacesSearchConstants.MAP_PINS_EXTRA, getMapPinsOfSearchResults());
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in, R.anim.fade_out);
     }
@@ -342,8 +345,8 @@ public class SearchActivity extends BaseNavigationActivity implements VenuesCont
     @Override
     public void onVenueItemClicked(Venue venue) {
         Intent intent = new Intent(this, VenueDetailActivity.class);
-        intent.putExtra(PlacesSearchConstantsOrig.VENUE_NAME_EXTRA, venue.getName());
-        intent.putExtra(PlacesSearchConstantsOrig.VENUE_ID_EXTRA, venue.getId());
+        intent.putExtra(PlacesSearchConstants.VENUE_NAME_EXTRA, venue.getName());
+        intent.putExtra(PlacesSearchConstants.VENUE_ID_EXTRA, venue.getId());
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in, R.anim.fade_out);
     }

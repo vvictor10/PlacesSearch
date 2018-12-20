@@ -1,6 +1,6 @@
 package com.grace.placessearch.common.util;
 
-import com.grace.placessearch.common.PlacesSearchConstantsOrig;
+import com.grace.placessearch.common.PlacesSearchConstants;
 import com.grace.placessearch.common.app.FavoritePlacesPreferences;
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager;
 import com.grace.placessearch.data.model.Location;
@@ -103,8 +103,8 @@ public class PlacesSearchUtilOrig {
         }
 
         android.location.Location startPoint = new android.location.Location("a");
-        startPoint.setLatitude(PlacesSearchConstantsOrig.USER_LOCATION_LAT);
-        startPoint.setLongitude(PlacesSearchConstantsOrig.USER_LOCATION_LNG);
+        startPoint.setLatitude(PlacesSearchConstants.USER_LOCATION_LAT);
+        startPoint.setLongitude(PlacesSearchConstants.USER_LOCATION_LNG);
 
         android.location.Location endPoint = new android.location.Location("b");
         endPoint.setLatitude(distanceTo.getLat());
@@ -121,6 +121,6 @@ public class PlacesSearchUtilOrig {
      * @return
      */
     public static String getLatLngOfUserLocation() {
-        return PlacesSearchConstantsOrig.USER_LOCATION_LAT + "," + PlacesSearchConstantsOrig.USER_LOCATION_LNG;
+        return PlacesSearchConstants.USER_LOCATION_LAT + "," + PlacesSearchConstants.USER_LOCATION_LNG;
     }
 }

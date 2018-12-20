@@ -5,6 +5,7 @@ import javax.inject.Singleton;
 /**
  * Created by vicsonvictor on 4/21/18.
  */
+@Deprecated
 @Singleton
 //@Component(modules = {PlacesSearchModuleOrig.class})
 public interface PlacesSearchComponentOrig {

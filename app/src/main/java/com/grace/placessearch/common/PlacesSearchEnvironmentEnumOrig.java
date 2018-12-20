@@ -1,5 +1,6 @@
 package com.grace.placessearch.common;
 
+@Deprecated
 public enum PlacesSearchEnvironmentEnumOrig {
 
     PROD("https://api.foursquare.com/v2/"),

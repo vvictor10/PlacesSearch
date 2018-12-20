@@ -2,7 +2,7 @@ package com.grace.placessearch.common.data;
 
 import android.util.LruCache;
 
-import com.grace.placessearch.common.PlacesSearchConstantsOrig;
+import com.grace.placessearch.common.PlacesSearchConstants;
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager;
 import com.grace.placessearch.data.model.Venue;
 import com.grace.placessearch.data.model.VenuesResponse;
@@ -52,7 +52,7 @@ public class PlacesSearchStartupManagerOrig {
     }
 
     private void fetchTrendingVenues() {
-        List<String> cached = (List<String>) lruCache.get(PlacesSearchConstantsOrig.CACHE_KEY_TRENDING_VENUES);
+        List<String> cached = (List<String>) lruCache.get(PlacesSearchConstants.CACHE_KEY_TRENDING_VENUES);
         if (cached == null) {
             mPlacesApi.getTrendingVenues()
                     .subscribeOn(Schedulers.io())
@@ -82,7 +82,7 @@ public class PlacesSearchStartupManagerOrig {
             if (venuesResponse != null && venuesResponse.getVenueListResponse() != null) {
                 List<Venue> trendingVenues = venuesResponse.getVenueListResponse().getVenues();
                 Timber.i("No. of Trending venues cached: %d", trendingVenues.size());
-                lruCache.put(PlacesSearchConstantsOrig.CACHE_KEY_TRENDING_VENUES, trendingVenues);
+                lruCache.put(PlacesSearchConstants.CACHE_KEY_TRENDING_VENUES, trendingVenues);
             }
         }
     }

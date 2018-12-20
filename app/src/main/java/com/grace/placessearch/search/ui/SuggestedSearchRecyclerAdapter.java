@@ -183,7 +183,7 @@ public class SuggestedSearchRecyclerAdapter extends RecyclerView.Adapter<Recycle
         int adapterPos = viewHolder.getAdapterPosition();
         if (adapterPos != RecyclerView.NO_POSITION) {
             String suggestedSearch = suggestedSearchResults.get(adapterPos);
-            SpannableStringBuilder spannableStringBuilder = ViewUtils.applyBoldStyleToText(suggestedSearch, searchInput);
+            SpannableStringBuilder spannableStringBuilder = ViewUtils.INSTANCE.applyBoldStyleToText(suggestedSearch, searchInput);
             ((SuggestedSearchItemViewHolder) viewHolder).suggestedSearchItemTextView.setText(spannableStringBuilder);
         }
     }

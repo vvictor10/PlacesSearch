@@ -27,7 +27,8 @@ import com.grace.placessearch.common.ui.injection.component.DaggerActivityCompon
 
 import butterknife.Bind;
 
-public abstract class BaseNavigationActivity extends AppCompatActivity
+@Deprecated
+public abstract class BaseNavigationActivityOrig extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Bind(R.id.toolbar)
@@ -160,7 +161,7 @@ public abstract class BaseNavigationActivity extends AppCompatActivity
         View layout = inflater.inflate(R.layout.custom_toast,
                 (ViewGroup) findViewById(R.id.custom_toast_container));
 
-        TextView text = layout.findViewById(R.id.text);
+        TextView text = layout.findViewById(R.id.text_view);
         text.setText(message);
 
         Toast toast = new Toast(getApplicationContext());
