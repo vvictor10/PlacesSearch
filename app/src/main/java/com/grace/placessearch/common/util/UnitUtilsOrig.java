@@ -3,8 +3,9 @@ package com.grace.placessearch.common.util;
 /**
  * Taken from u2020 example.
  */
-final class UnitUtils {
-    private UnitUtils() {
+@Deprecated
+final class UnitUtilsOrig {
+    private UnitUtilsOrig() {
         throw new AssertionError("No instances.");
     }
 

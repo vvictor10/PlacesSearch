@@ -5,11 +5,12 @@ package com.grace.placessearch.common.util;
  * into bytes. A {@code ByteUnit} does not maintain byte size information, but only helps use byte
  * size representations that may be maintained separately across various contexts.
  *
- * @see DecimalByteUnit
+ * @see DecimalByteUnitOrig
  * <p/>
  * Taken from u2020 example.
  */
-public interface ByteUnit {
+@Deprecated
+public interface ByteUnitOrig {
     /**
      * Converts the given size in the given unit to bytes. Conversions with arguments that would
      * numerically overflow saturate to {@code Long.MIN_VALUE} if negative or {@code Long.MAX_VALUE}

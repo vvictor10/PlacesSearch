@@ -1,7 +1,7 @@
 package com.grace.placessearch.common;
 
 import com.grace.placessearch.BuildConfig;
-import com.grace.placessearch.common.util.DecimalByteUnit;
+import com.grace.placessearch.common.util.DecimalByteUnitOrig;
 
 /**
  * Created by vicsonvictor on 4/21/18.
@@ -15,7 +15,7 @@ public class PlacesSearchConstantsOrig {
     public static final int HEART_CROSS_FADE_ANIMATION_DURATION = 150;
 
     // Disk cache size used for Picasso - set to 50MB for now.
-    public static final int IMAGE_DISK_CACHE_SIZE = (int) DecimalByteUnit.MEGABYTES.toBytes(50);
+    public static final int IMAGE_DISK_CACHE_SIZE = (int) DecimalByteUnitOrig.MEGABYTES.toBytes(50);
 
     public static String CACHE_KEY_TRENDING_VENUES = "TrendingVenuesCache";
 

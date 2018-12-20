@@ -1,6 +1,6 @@
 package com.grace.placessearch.common.util;
 
-import static com.grace.placessearch.common.util.UnitUtils.multiply;
+import static com.grace.placessearch.common.util.UnitUtilsOrig.multiply;
 
 /**
  * A {@code DecimalByteUnit} represents power-of-ten byte sizes at a given unit of granularity and
@@ -10,13 +10,14 @@ import static com.grace.placessearch.common.util.UnitUtils.multiply;
  * <p/>
  * Taken from u2020 example.
  */
-public enum DecimalByteUnit implements ByteUnit {
+@Deprecated
+public enum DecimalByteUnitOrig implements ByteUnitOrig {
     /**
      * Byte unit representing one byte.
      */
     BYTES {
         @Override
-        public long convert(long sourceCount, DecimalByteUnit sourceUnit) {
+        public long convert(long sourceCount, DecimalByteUnitOrig sourceUnit) {
             return sourceUnit.toBytes(sourceCount);
         }
 
@@ -56,7 +57,7 @@ public enum DecimalByteUnit implements ByteUnit {
      */
     KILOBYTES {
         @Override
-        public long convert(long sourceCount, DecimalByteUnit sourceUnit) {
+        public long convert(long sourceCount, DecimalByteUnitOrig sourceUnit) {
             return sourceUnit.toKilobytes(sourceCount);
         }
 
@@ -96,7 +97,7 @@ public enum DecimalByteUnit implements ByteUnit {
      */
     MEGABYTES {
         @Override
-        public long convert(long sourceCount, DecimalByteUnit sourceUnit) {
+        public long convert(long sourceCount, DecimalByteUnitOrig sourceUnit) {
             return sourceUnit.toMegabytes(sourceCount);
         }
 
@@ -136,7 +137,7 @@ public enum DecimalByteUnit implements ByteUnit {
      */
     GIGABYTES {
         @Override
-        public long convert(long sourceCount, DecimalByteUnit sourceUnit) {
+        public long convert(long sourceCount, DecimalByteUnitOrig sourceUnit) {
             return sourceUnit.toGigabytes(sourceCount);
         }
 
@@ -176,7 +177,7 @@ public enum DecimalByteUnit implements ByteUnit {
      */
     TERABYTES {
         @Override
-        public long convert(long sourceCount, DecimalByteUnit sourceUnit) {
+        public long convert(long sourceCount, DecimalByteUnitOrig sourceUnit) {
             return sourceUnit.toTerabytes(sourceCount);
         }
 
@@ -216,7 +217,7 @@ public enum DecimalByteUnit implements ByteUnit {
      */
     PETABYTES {
         @Override
-        public long convert(long sourceCount, DecimalByteUnit sourceUnit) {
+        public long convert(long sourceCount, DecimalByteUnitOrig sourceUnit) {
             return sourceUnit.toPetabytes(sourceCount);
         }
 
@@ -275,12 +276,12 @@ public enum DecimalByteUnit implements ByteUnit {
      * @return the converted size in this unit, or {@code Long.MIN_VALUE} if conversion would
      * negatively overflow, or {@code Long.MAX_VALUE} if it would positively overflow.
      */
-    public long convert(long sourceCount, DecimalByteUnit sourceUnit) {
+    public long convert(long sourceCount, DecimalByteUnitOrig sourceUnit) {
         throw new AbstractMethodError();
     }
 
     /**
-     * Equivalent to {@link #convert(long, DecimalByteUnit) KILOBYTES.convert(count, this)}.
+     * Equivalent to {@link #convert(long, DecimalByteUnitOrig) KILOBYTES.convert(count, this)}.
      *
      * @param count the bit count
      * @return the converted count, or {@code Long.MIN_VALUE} if conversion would negatively
@@ -291,7 +292,7 @@ public enum DecimalByteUnit implements ByteUnit {
     }
 
     /**
-     * Equivalent to {@link #convert(long, DecimalByteUnit) MEGABYTES.convert(count, this)}.
+     * Equivalent to {@link #convert(long, DecimalByteUnitOrig) MEGABYTES.convert(count, this)}.
      *
      * @param count the bit count
      * @return the converted count, or {@code Long.MIN_VALUE} if conversion would negatively
@@ -302,7 +303,7 @@ public enum DecimalByteUnit implements ByteUnit {
     }
 
     /**
-     * Equivalent to {@link #convert(long, DecimalByteUnit) GIGABYTES.convert(count, this)}.
+     * Equivalent to {@link #convert(long, DecimalByteUnitOrig) GIGABYTES.convert(count, this)}.
      *
      * @param count the bit count
      * @return the converted count, or {@code Long.MIN_VALUE} if conversion would negatively
@@ -313,7 +314,7 @@ public enum DecimalByteUnit implements ByteUnit {
     }
 
     /**
-     * Equivalent to {@link #convert(long, DecimalByteUnit) TERABYTES.convert(count, this)}.
+     * Equivalent to {@link #convert(long, DecimalByteUnitOrig) TERABYTES.convert(count, this)}.
      *
      * @param count the bit count
      * @return the converted count, or {@code Long.MIN_VALUE} if conversion would negatively
@@ -324,7 +325,7 @@ public enum DecimalByteUnit implements ByteUnit {
     }
 
     /**
-     * Equivalent to {@link #convert(long, DecimalByteUnit) PETABYTES.convert(count, this)}.
+     * Equivalent to {@link #convert(long, DecimalByteUnitOrig) PETABYTES.convert(count, this)}.
      *
      * @param count the bit count
      * @return the converted count, or {@code Long.MIN_VALUE} if conversion would negatively

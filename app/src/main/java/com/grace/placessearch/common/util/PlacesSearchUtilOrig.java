@@ -14,7 +14,7 @@ import timber.log.Timber;
 /**
  * Created by vicsonvictor on 4/21/18.
  */
-
+@Deprecated
 public class PlacesSearchUtilOrig {
 
     /**
