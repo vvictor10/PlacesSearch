@@ -2,9 +2,9 @@ package com.grace.placessearch.service.local
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.grace.placessearch.data.model.SuggestedVenuesResponse
-import com.grace.placessearch.data.model.VenueResponse
-import com.grace.placessearch.data.model.VenuesResponse
+import com.grace.placessearch.common.data.model.SuggestedVenuesResponse
+import com.grace.placessearch.common.data.model.VenueResponse
+import com.grace.placessearch.common.data.model.VenuesResponse
 import com.grace.placessearch.service.PlacesApi
 import retrofit2.Response
 import retrofit2.adapter.rxjava.Result

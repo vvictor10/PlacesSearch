@@ -5,8 +5,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
-
-public class Events {
+@Deprecated
+public class EventsOrig {
 
     @SerializedName("count")
     @Expose
@@ -16,7 +16,7 @@ public class Events {
     private String summary;
     @SerializedName("items")
     @Expose
-    private List<Item> items = new ArrayList<>();
+    private List<ItemOrig> items = new ArrayList<>();
 
     public long getCount() {
         return count;
@@ -34,11 +34,11 @@ public class Events {
         this.summary = summary;
     }
 
-    public List<Item> getItems() {
+    public List<ItemOrig> getItems() {
         return items;
     }
 
-    public void setItems(List<Item> items) {
+    public void setItems(List<ItemOrig> items) {
         this.items = items;
     }
 

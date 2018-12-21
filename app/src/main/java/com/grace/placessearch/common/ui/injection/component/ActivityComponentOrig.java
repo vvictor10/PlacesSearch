@@ -1,6 +1,6 @@
 package com.grace.placessearch.common.ui.injection.component;
 
-import com.grace.placessearch.common.app.injection.component.PlacesSearchComponentKT;
+import com.grace.placessearch.common.app.injection.component.PlacesSearchComponent;
 import com.grace.placessearch.common.ui.injection.scope.ActivityScope;
 import com.grace.placessearch.maps.ui.VenuesMapActivity;
 import com.grace.placessearch.maps.ui.VenuesMapActivityOrig;
@@ -12,7 +12,7 @@ import dagger.Component;
 
 @Deprecated
 @ActivityScope
-@Component(dependencies = PlacesSearchComponentKT.class)
+@Component(dependencies = PlacesSearchComponent.class)
 public interface ActivityComponentOrig {
 
     void inject(SearchActivityOrig activity);

@@ -8,8 +8,8 @@ import android.util.LruCache;
 
 import com.grace.placessearch.BuildConfig;
 import com.grace.placessearch.common.app.injection.component.DaggerPlacesSearchComponentKT;
-import com.grace.placessearch.common.app.injection.component.PlacesSearchComponentKT;
-import com.grace.placessearch.common.app.injection.module.PlacesSearchModuleKT;
+import com.grace.placessearch.common.app.injection.component.PlacesSearchComponent;
+import com.grace.placessearch.common.app.injection.module.PlacesSearchModule;
 import com.grace.placessearch.common.log.DebugTree;
 import com.grace.placessearch.common.service.PlacesSearchStartupIntentService;
 
@@ -28,7 +28,7 @@ public class PlacesSearchApplicationOrig extends Application {
     @Inject
     LruCache<Object, Object> lruCache;
 
-    private PlacesSearchComponentKT component;
+    private PlacesSearchComponent component;
 
     @Override
     protected void attachBaseContext(final Context base) {
@@ -43,9 +43,9 @@ public class PlacesSearchApplicationOrig extends Application {
         initiateAppStartupSequence();
     }
 
-    public PlacesSearchComponentKT component() {
+    public PlacesSearchComponent component() {
         if (component == null) {
-            component = DaggerPlacesSearchComponentKT.builder().placesSearchModuleKT(new PlacesSearchModuleKT(this)).build();
+            component = DaggerPlacesSearchComponentKT.builder().placesSearchModuleKT(new PlacesSearchModule(this)).build();
         }
         return component;
     }

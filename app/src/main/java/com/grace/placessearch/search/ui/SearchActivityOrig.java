@@ -25,10 +25,12 @@ import android.widget.TextView;
 import com.grace.placessearch.R;
 import com.grace.placessearch.common.PlacesSearchConstants;
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager;
+import com.grace.placessearch.common.data.model.MapPin;
+import com.grace.placessearch.common.data.model.Venue;
 import com.grace.placessearch.common.ui.BaseNavigationActivity;
 import com.grace.placessearch.common.ui.view.LoadingIndicatorView;
-import com.grace.placessearch.data.model.MapPin;
-import com.grace.placessearch.data.model.Venue;
+import com.grace.placessearch.data.model.MapPinOrig;
+import com.grace.placessearch.data.model.VenueOrig;
 import com.grace.placessearch.maps.ui.VenuesMapActivity;
 import com.grace.placessearch.venue.detail.ui.VenueDetailsActivity;
 import com.squareup.picasso.Picasso;
@@ -252,12 +254,7 @@ public class SearchActivityOrig extends BaseNavigationActivity implements Venues
         for (int i = 0; i < searchResults.size(); i++) {
             Venue venue = searchResults.get(i);
             if (venue.getLocation() != null) {
-                MapPin mapPin = new MapPin();
-                mapPin.setVenueId(venue.getId());
-                mapPin.setPinName(venue.getName());
-                mapPin.setLat(venue.getLocation().getLat());
-                mapPin.setLng(venue.getLocation().getLng());
-                mapPin.setImgUrl(venue.getMapPinUrl());
+                MapPin mapPin = new MapPin(venue.getId(), venue.getName(), venue.getLocation().getLat(), venue.getLocation().getLng(), venue.getMapPinUrl());
                 mapPins.add(mapPin);
             }
         }

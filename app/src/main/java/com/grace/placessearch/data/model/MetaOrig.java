@@ -3,7 +3,8 @@ package com.grace.placessearch.data.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Meta {
+@Deprecated
+public class MetaOrig {
 
     @SerializedName("code")
     @Expose

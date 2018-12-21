@@ -3,7 +3,7 @@ package com.grace.placessearch.common.app.injection.component
 import android.util.LruCache
 import com.grace.placessearch.common.app.PlacesSearchApplication
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager
-import com.grace.placessearch.common.app.injection.module.PlacesSearchModuleKT
+import com.grace.placessearch.common.app.injection.module.PlacesSearchModule
 import com.grace.placessearch.common.data.VenuesDataManager
 import com.grace.placessearch.common.service.PlacesSearchStartupIntentService
 import com.squareup.picasso.Picasso
@@ -14,8 +14,8 @@ import javax.inject.Singleton
  * Created by vicsonvictor on 4/21/18.
  */
 @Singleton
-@Component(modules = [PlacesSearchModuleKT::class])
-interface PlacesSearchComponentKT {
+@Component(modules = [PlacesSearchModule::class])
+interface PlacesSearchComponent {
 
     fun providePlacesSearchPreferenceManager(): PlacesSearchPreferenceManager
 

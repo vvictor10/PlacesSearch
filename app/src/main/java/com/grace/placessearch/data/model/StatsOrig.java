@@ -2,8 +2,8 @@ package com.grace.placessearch.data.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-public class Stats {
+@Deprecated
+public class StatsOrig {
 
     @SerializedName("checkinsCount")
     @Expose

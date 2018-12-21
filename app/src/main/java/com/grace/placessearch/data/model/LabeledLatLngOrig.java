@@ -2,8 +2,8 @@ package com.grace.placessearch.data.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-public class LabeledLatLng {
+@Deprecated
+public class LabeledLatLngOrig {
 
     @SerializedName("label")
     @Expose

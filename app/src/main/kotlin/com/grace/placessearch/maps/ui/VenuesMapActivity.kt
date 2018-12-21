@@ -27,7 +27,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.grace.placessearch.R
 import com.grace.placessearch.common.PlacesSearchConstants
-import com.grace.placessearch.data.model.MapPin
+import com.grace.placessearch.common.data.model.MapPin
 import com.grace.placessearch.venue.detail.ui.VenueDetailsActivity
 import com.squareup.picasso.Picasso
 import timber.log.Timber

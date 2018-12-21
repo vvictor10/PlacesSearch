@@ -1,6 +1,7 @@
 package com.grace.placessearch.search.ui
 
-import com.grace.placessearch.data.model.Venue
+import com.grace.placessearch.common.data.model.Venue
+
 
 /**
  * This interface defines the data dependency contract between the Venues

@@ -32,7 +32,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.grace.placessearch.R;
 import com.grace.placessearch.common.PlacesSearchConstants;
-import com.grace.placessearch.data.model.MapPin;
+import com.grace.placessearch.common.data.model.MapPin;
 import com.grace.placessearch.venue.detail.ui.VenueDetailsActivity;
 import com.squareup.picasso.Picasso;
 

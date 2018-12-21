@@ -5,18 +5,18 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
-
-public class SuggestedResponse {
+@Deprecated
+public class SuggestedResponseOrig {
 
     @SerializedName("minivenues")
     @Expose
-    private List<Venue> venues = new ArrayList<>();
+    private List<VenueOrig> venues = new ArrayList<>();
 
-    public List<Venue> getVenues() {
+    public List<VenueOrig> getVenues() {
         return venues;
     }
 
-    public void setVenues(List<Venue> venues) {
+    public void setVenues(List<VenueOrig> venues) {
         this.venues = venues;
     }
 

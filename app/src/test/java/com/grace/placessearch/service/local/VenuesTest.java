@@ -2,10 +2,10 @@ package com.grace.placessearch.service.local;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.grace.placessearch.data.model.SuggestedVenuesResponse;
-import com.grace.placessearch.data.model.Venue;
-import com.grace.placessearch.data.model.VenueResponse;
-import com.grace.placessearch.data.model.VenuesResponse;
+import com.grace.placessearch.common.data.model.SuggestedVenuesResponse;
+import com.grace.placessearch.common.data.model.Venue;
+import com.grace.placessearch.common.data.model.VenueResponse;
+import com.grace.placessearch.common.data.model.VenuesResponse;
 
 import org.junit.Test;
 

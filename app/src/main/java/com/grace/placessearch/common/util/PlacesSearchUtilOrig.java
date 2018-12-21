@@ -3,7 +3,7 @@ package com.grace.placessearch.common.util;
 import com.grace.placessearch.common.PlacesSearchConstants;
 import com.grace.placessearch.common.app.FavoritePlacesPreferences;
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager;
-import com.grace.placessearch.data.model.Location;
+import com.grace.placessearch.common.data.model.Location;
 
 import java.util.ArrayList;
 import java.util.Arrays;

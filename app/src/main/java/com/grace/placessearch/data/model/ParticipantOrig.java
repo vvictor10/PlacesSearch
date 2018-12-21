@@ -2,21 +2,21 @@ package com.grace.placessearch.data.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-public class Participant {
+@Deprecated
+public class ParticipantOrig {
 
     @SerializedName("participant")
     @Expose
-    private Participant participant;
+    private ParticipantOrig participant;
     @SerializedName("role")
     @Expose
     private String role;
 
-    public Participant getParticipant() {
+    public ParticipantOrig getParticipant() {
         return participant;
     }
 
-    public void setParticipant(Participant participant) {
+    public void setParticipant(ParticipantOrig participant) {
         this.participant = participant;
     }
 

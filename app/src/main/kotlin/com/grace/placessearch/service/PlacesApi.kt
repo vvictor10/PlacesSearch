@@ -1,9 +1,8 @@
 package com.grace.placessearch.service
 
-import com.grace.placessearch.data.model.SuggestedVenuesResponse
-import com.grace.placessearch.data.model.VenueResponse
-import com.grace.placessearch.data.model.VenuesResponse
-
+import com.grace.placessearch.common.data.model.SuggestedVenuesResponse
+import com.grace.placessearch.common.data.model.VenueResponse
+import com.grace.placessearch.common.data.model.VenuesResponse
 import retrofit2.adapter.rxjava.Result
 import rx.Observable
 
@@ -26,6 +25,6 @@ interface PlacesApi {
     fun getVenue(venueId: String): Observable<Result<VenueResponse>>
 
     companion object {
-        val READ_TIMEOUT = 20000 //ms
+        const val READ_TIMEOUT = 20000 //ms
     }
 }

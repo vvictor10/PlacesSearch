@@ -13,8 +13,8 @@ import android.widget.TextView
 import com.grace.placessearch.R
 import com.grace.placessearch.common.PlacesSearchConstants
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager
+import com.grace.placessearch.common.data.model.Venue
 import com.grace.placessearch.common.util.PlacesSearchUtil
-import com.grace.placessearch.data.model.Venue
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item_venue.view.*
 import java.util.*
@@ -120,7 +120,7 @@ class SearchResultsAdapter(private val context: Context, private val listener: V
             }
         }
 
-        private fun refreshFavoriteStatus(venueId: String, placesPreferenceManager: PlacesSearchPreferenceManager) {
+        private fun refreshFavoriteStatus(venueId: String?, placesPreferenceManager: PlacesSearchPreferenceManager) {
             val latestFavoriteStatus = PlacesSearchUtil.isFavorite(placesPreferenceManager, venueId)
             if (!isFavorite && latestFavoriteStatus) { // newly favorited
                 isFavorite = latestFavoriteStatus

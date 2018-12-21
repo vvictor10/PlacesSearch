@@ -15,8 +15,9 @@ import android.widget.TextView;
 import com.grace.placessearch.R;
 import com.grace.placessearch.common.PlacesSearchConstants;
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager;
+import com.grace.placessearch.common.data.model.Venue;
 import com.grace.placessearch.common.util.PlacesSearchUtil;
-import com.grace.placessearch.data.model.Venue;
+import com.grace.placessearch.data.model.VenueOrig;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

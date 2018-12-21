@@ -18,9 +18,9 @@ import butterknife.OnClick
 import com.grace.placessearch.R
 import com.grace.placessearch.common.PlacesSearchConstants
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager
+import com.grace.placessearch.common.data.model.MapPin
+import com.grace.placessearch.common.data.model.Venue
 import com.grace.placessearch.common.ui.BaseNavigationActivity
-import com.grace.placessearch.data.model.MapPin
-import com.grace.placessearch.data.model.Venue
 import com.grace.placessearch.maps.ui.VenuesMapActivity
 import com.grace.placessearch.venue.detail.ui.VenueDetailsActivity
 import com.squareup.picasso.Picasso
@@ -178,12 +178,12 @@ class SearchActivity : BaseNavigationActivity(), VenuesContract.View, SearchResu
         for (i in searchResults.indices) {
             val venue = searchResults[i]
             if (venue.location != null) {
-                val mapPin = MapPin()
-                mapPin.venueId = venue.id
-                mapPin.pinName = venue.name
-                mapPin.lat = venue.location.lat
-                mapPin.lng = venue.location.lng
-                mapPin.imgUrl = venue.mapPinUrl
+                val mapPin = MapPin(venue.id!!, venue.name!!, venue.location!!.lat, venue.location!!.lng, venue.mapPinUrl!!)
+//                mapPin.venueId = venue.id
+//                mapPin.pinName = venue.name
+//                mapPin.lat = venue.location!!.lat
+//                mapPin.lng = venue.location!!.lng
+//                mapPin.imgUrl = venue.mapPinUrl
                 mapPins.add(mapPin)
             }
         }

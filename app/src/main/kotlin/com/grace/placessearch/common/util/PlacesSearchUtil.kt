@@ -3,7 +3,7 @@ package com.grace.placessearch.common.util
 import com.google.gson.Gson
 import com.grace.placessearch.common.PlacesSearchConstants
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager
-import com.grace.placessearch.data.model.Location
+import com.grace.placessearch.common.data.model.Location
 import timber.log.Timber
 import java.util.*
 import kotlin.collections.ArrayList
@@ -27,7 +27,7 @@ object PlacesSearchUtil {
      * @param venueId
      * @return
      */
-    fun isFavorite(preferenceManager: PlacesSearchPreferenceManager, venueId: String): Boolean {
+    fun isFavorite(preferenceManager: PlacesSearchPreferenceManager, venueId: String?): Boolean {
         val preferences = preferenceManager.favoriteVenuePreferences
         val text = Gson().fromJson(preferences.favoriteVenues, Array<String>::class.java)
 
@@ -46,7 +46,11 @@ object PlacesSearchUtil {
      * @param preferenceManager
      * @param venueId
      */
-    fun addFavorite(preferenceManager: PlacesSearchPreferenceManager, venueId: String) {
+    fun addFavorite(preferenceManager: PlacesSearchPreferenceManager, venueId: String?) {
+
+        if (venueId == null)
+            return
+
         val preferences = preferenceManager.favoriteVenuePreferences
         val text = Gson().fromJson(preferences.favoriteVenues, Array<String>::class.java)
 
@@ -67,7 +71,11 @@ object PlacesSearchUtil {
      * @param preferenceManager
      * @param venueId
      */
-    fun removeFavorite(preferenceManager: PlacesSearchPreferenceManager, venueId: String) {
+    fun removeFavorite(preferenceManager: PlacesSearchPreferenceManager, venueId: String?) {
+
+        if (venueId == null)
+            return
+
         val preferences = preferenceManager.favoriteVenuePreferences
         val text = Gson().fromJson(preferences.favoriteVenues, Array<String>::class.java)
         if (text == null || text.isEmpty()) {

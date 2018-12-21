@@ -24,7 +24,7 @@ import javax.inject.Singleton
  * Created by vicsonvictor on 4/21/18.
  */
 @Module
-class PlacesSearchModuleKT(private val context: Context) {
+class PlacesSearchModule(private val context: Context) {
 
     companion object {
         const val CACHE_SIZE = 5 * 1024 * 1024

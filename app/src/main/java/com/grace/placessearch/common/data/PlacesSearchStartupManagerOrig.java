@@ -4,8 +4,8 @@ import android.util.LruCache;
 
 import com.grace.placessearch.common.PlacesSearchConstants;
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager;
-import com.grace.placessearch.data.model.Venue;
-import com.grace.placessearch.data.model.VenuesResponse;
+import com.grace.placessearch.common.data.model.Venue;
+import com.grace.placessearch.common.data.model.VenuesResponse;
 import com.grace.placessearch.service.PlacesApiOrig;
 
 import java.util.List;

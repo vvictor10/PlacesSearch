@@ -2,18 +2,18 @@ package com.grace.placessearch.data.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-public class SingleVenueResponse {
+@Deprecated
+public class SingleVenueResponseOrig {
 
     @SerializedName("venue")
     @Expose
-    private Venue venue;
+    private VenueOrig venue;
 
-    public Venue getVenue() {
+    public VenueOrig getVenue() {
         return venue;
     }
 
-    public void setVenue(Venue venue) {
+    public void setVenue(VenueOrig venue) {
         this.venue = venue;
     }
 }

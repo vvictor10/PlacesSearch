@@ -2,11 +2,11 @@ package com.grace.placessearch.service.network;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.grace.placessearch.data.model.SuggestedVenuesResponse;
-import com.grace.placessearch.data.model.VenueResponse;
-import com.grace.placessearch.data.model.VenuesResponse;
+import com.grace.placessearch.common.data.model.SuggestedVenuesResponse;
+import com.grace.placessearch.common.data.model.VenueResponse;
+import com.grace.placessearch.common.data.model.VenuesResponse;
 import com.grace.placessearch.service.PlacesApiOrig;
-import com.grace.placessearch.service.VenuesServiceOrig;
+import com.grace.placessearch.service.VenuesService;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -98,21 +98,21 @@ public class PlacesApiRetrofitOrig implements PlacesApiOrig {
 
     @Override
     public Observable<Result<VenuesResponse>> getTrendingVenues() {
-        return retrofit.create(VenuesServiceOrig.class).trendingVenues();
+        return retrofit.create(VenuesService.class).trendingVenues();
     }
 
     @Override
     public Observable<Result<VenuesResponse>> searchForVenues(String searchTerm) {
-        return retrofit.create(VenuesServiceOrig.class).search(searchTerm);
+        return retrofit.create(VenuesService.class).search(searchTerm);
     }
 
     @Override
     public Observable<Result<SuggestedVenuesResponse>> searchForSuggestedVenues(String searchTerm) {
-        return retrofit.create(VenuesServiceOrig.class).suggestCompletion(searchTerm);
+        return retrofit.create(VenuesService.class).suggestCompletion(searchTerm);
     }
 
     @Override
     public Observable<Result<VenueResponse>> getVenue(String venueId) {
-        return retrofit.create(VenuesServiceOrig.class).venue(venueId);
+        return retrofit.create(VenuesService.class).venue(venueId);
     }
 }

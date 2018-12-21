@@ -23,7 +23,7 @@ abstract class BaseNavigationActivity : AppCompatActivity(), NavigationView.OnNa
 
     private val activityComponent: ActivityComponent by lazy {
         DaggerActivityComponent.builder()
-                .placesSearchComponentKT((application as PlacesSearchApplication).component())
+                .placesSearchComponent((application as PlacesSearchApplication).component())
                 .build()
     }
 

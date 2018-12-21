@@ -1,8 +1,8 @@
 package com.grace.placessearch.common.data
 
-import com.grace.placessearch.data.model.SuggestedVenuesResponse
-import com.grace.placessearch.data.model.VenueResponse
-import com.grace.placessearch.data.model.VenuesResponse
+import com.grace.placessearch.common.data.model.SuggestedVenuesResponse
+import com.grace.placessearch.common.data.model.VenueResponse
+import com.grace.placessearch.common.data.model.VenuesResponse
 import com.grace.placessearch.service.PlacesApi
 import retrofit2.adapter.rxjava.Result
 import rx.Observable

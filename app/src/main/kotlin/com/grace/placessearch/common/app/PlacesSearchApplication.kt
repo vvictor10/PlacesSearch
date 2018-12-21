@@ -6,9 +6,9 @@ import android.content.Context
 import android.content.Intent
 import android.util.LruCache
 import com.grace.placessearch.BuildConfig
-import com.grace.placessearch.common.app.injection.component.DaggerPlacesSearchComponentKT
-import com.grace.placessearch.common.app.injection.component.PlacesSearchComponentKT
-import com.grace.placessearch.common.app.injection.module.PlacesSearchModuleKT
+import com.grace.placessearch.common.app.injection.component.DaggerPlacesSearchComponent
+import com.grace.placessearch.common.app.injection.component.PlacesSearchComponent
+import com.grace.placessearch.common.app.injection.module.PlacesSearchModule
 import com.grace.placessearch.common.log.DebugTree
 import com.grace.placessearch.common.service.PlacesSearchStartupIntentService
 import timber.log.Timber
@@ -22,8 +22,8 @@ class PlacesSearchApplication : Application() {
     @Inject
     lateinit var lruCache: LruCache<Any, Any>
 
-    private val component: PlacesSearchComponentKT by lazy {
-        DaggerPlacesSearchComponentKT.builder().placesSearchModuleKT(PlacesSearchModuleKT(this)).build()
+    private val component: PlacesSearchComponent by lazy {
+        DaggerPlacesSearchComponent.builder().placesSearchModule(PlacesSearchModule(this)).build()
     }
 
     override fun attachBaseContext(base: Context) {
@@ -37,7 +37,7 @@ class PlacesSearchApplication : Application() {
         initiateAppStartupSequence()
     }
 
-    fun component(): PlacesSearchComponentKT {
+    fun component(): PlacesSearchComponent {
         return component
     }
 

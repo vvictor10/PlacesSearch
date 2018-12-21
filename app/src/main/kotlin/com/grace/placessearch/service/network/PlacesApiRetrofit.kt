@@ -2,9 +2,9 @@ package com.grace.placessearch.service.network
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.grace.placessearch.data.model.SuggestedVenuesResponse
-import com.grace.placessearch.data.model.VenueResponse
-import com.grace.placessearch.data.model.VenuesResponse
+import com.grace.placessearch.common.data.model.SuggestedVenuesResponse
+import com.grace.placessearch.common.data.model.VenueResponse
+import com.grace.placessearch.common.data.model.VenuesResponse
 import com.grace.placessearch.service.PlacesApi
 import com.grace.placessearch.service.VenuesService
 import okhttp3.OkHttpClient

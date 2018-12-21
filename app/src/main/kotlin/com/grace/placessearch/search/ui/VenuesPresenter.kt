@@ -2,11 +2,11 @@ package com.grace.placessearch.search.ui
 
 import android.util.LruCache
 import com.grace.placessearch.common.data.VenuesDataManager
+import com.grace.placessearch.common.data.model.Category
+import com.grace.placessearch.common.data.model.SuggestedVenuesResponse
+import com.grace.placessearch.common.data.model.VenueResponse
+import com.grace.placessearch.common.data.model.VenuesResponse
 import com.grace.placessearch.common.ui.injection.scope.ActivityScope
-import com.grace.placessearch.data.model.Category
-import com.grace.placessearch.data.model.SuggestedVenuesResponse
-import com.grace.placessearch.data.model.VenueResponse
-import com.grace.placessearch.data.model.VenuesResponse
 import retrofit2.adapter.rxjava.Result
 import rx.Subscriber
 import rx.Subscription
@@ -87,23 +87,19 @@ constructor(private val lruCache: LruCache<Any, Any>, private val venuesDataMana
         override fun onNext(result: Result<SuggestedVenuesResponse>) {
             val suggestedSearchStrings = ArrayList<String>()
             val venuesResponse = result.response().body()
-            if (venuesResponse != null && venuesResponse.response != null) {
-                val miniVenues = venuesResponse.response.venues
-                Timber.i("No. of venues in search result: %d", miniVenues.size)
+            if (venuesResponse?.response?.venues != null) {
+                val miniVenues = venuesResponse.response?.venues
+                Timber.i("No. of venues in search result: %d", miniVenues?.size)
 
-                for (i in miniVenues.indices) {
+                for (i in miniVenues?.indices!!) {
 
                     val venue = miniVenues[i]
-                    if (venue.name != null && !venue.name.isEmpty()) {
-                        suggestedSearchStrings.add(venue.name)
-                    }
+                    venue.name?.let { suggestedSearchStrings.add(venue.name!!)}
 
                     val venueCategories = ArrayList<Category>()
                     for (j in venueCategories.indices) {
                         val category = venueCategories[j]
-                        if (category.name != null && !category.name.isEmpty()) {
-                            suggestedSearchStrings.add(category.name)
-                        }
+                        category.name?.let { suggestedSearchStrings.add(category.name!!)}
                     }
                 }
 
@@ -129,8 +125,8 @@ constructor(private val lruCache: LruCache<Any, Any>, private val venuesDataMana
 
         override fun onNext(result: Result<VenuesResponse>) {
             val venuesResponse = result.response().body()
-            if (venuesResponse != null && venuesResponse.venueListResponse != null) {
-                val venues = venuesResponse.venueListResponse.venues as java.util.ArrayList
+            if (venuesResponse?.venueListResponse != null) {
+                val venues = venuesResponse.venueListResponse!!.venues as java.util.ArrayList
                 Timber.i("No. of venues for search: %d", venues.size)
                 listener?.onSearch(venues)
             }
@@ -149,9 +145,9 @@ constructor(private val lruCache: LruCache<Any, Any>, private val venuesDataMana
 
         override fun onNext(result: Result<VenueResponse>) {
             val venueResponse = result.response().body()
-            if (venueResponse != null && venueResponse.singleVenueResponse != null) {
-                Timber.i("Venue details fetched for %s", venueResponse.singleVenueResponse.venue.name)
-                listener?.onVenue(venueResponse.singleVenueResponse.venue)
+            if (venueResponse?.singleVenueResponse?.venue != null) {
+                Timber.i("Venue details fetched for %s", venueResponse.singleVenueResponse?.venue?.name)
+                listener?.onVenue(venueResponse.singleVenueResponse!!.venue!!)
             }
         }
     }

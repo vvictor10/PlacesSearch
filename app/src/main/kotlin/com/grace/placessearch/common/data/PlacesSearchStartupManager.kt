@@ -2,7 +2,7 @@ package com.grace.placessearch.common.data
 
 import android.util.LruCache
 import com.grace.placessearch.common.PlacesSearchConstants
-import com.grace.placessearch.data.model.VenuesResponse
+import com.grace.placessearch.common.data.model.VenuesResponse
 import com.grace.placessearch.service.PlacesApi
 import retrofit2.adapter.rxjava.Result
 import rx.Subscriber
@@ -50,9 +50,9 @@ constructor(lruCache: LruCache<Any, Any>, placesApi: PlacesApi) {
 
         override fun onNext(result: Result<VenuesResponse>) {
             val venuesResponse = result.response().body()
-            if (venuesResponse != null && venuesResponse.venueListResponse != null) {
-                val trendingVenues = venuesResponse.venueListResponse.venues
-                Timber.i("No. of Trending venues cached: %d", trendingVenues.size)
+            if (venuesResponse?.venueListResponse != null) {
+                val trendingVenues = venuesResponse.venueListResponse?.venues
+                Timber.i("No. of Trending venues cached: %d", trendingVenues?.size)
                 lruCache.put(PlacesSearchConstants.CACHE_KEY_TRENDING_VENUES, trendingVenues)
             }
         }

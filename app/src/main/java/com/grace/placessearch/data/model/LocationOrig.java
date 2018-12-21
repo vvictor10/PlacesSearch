@@ -5,8 +5,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
-
-public class Location {
+@Deprecated
+public class LocationOrig {
 
     @SerializedName("address")
     @Expose
@@ -46,7 +46,7 @@ public class Location {
     private List<String> formattedAddress = new ArrayList<>();
     @SerializedName("labeledLatLngs")
     @Expose
-    private List<LabeledLatLng> labeledLatLngs = new ArrayList<>();
+    private List<LabeledLatLngOrig> labeledLatLngs = new ArrayList<>();
 
     public String getAddress() {
         return address;
@@ -144,11 +144,11 @@ public class Location {
         this.formattedAddress = formattedAddress;
     }
 
-    public List<LabeledLatLng> getLabeledLatLngs() {
+    public List<LabeledLatLngOrig> getLabeledLatLngs() {
         return labeledLatLngs;
     }
 
-    public void setLabeledLatLngs(List<LabeledLatLng> labeledLatLngs) {
+    public void setLabeledLatLngs(List<LabeledLatLngOrig> labeledLatLngs) {
         this.labeledLatLngs = labeledLatLngs;
     }
 

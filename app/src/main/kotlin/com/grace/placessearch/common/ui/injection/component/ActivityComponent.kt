@@ -1,6 +1,6 @@
 package com.grace.placessearch.common.ui.injection.component
 
-import com.grace.placessearch.common.app.injection.component.PlacesSearchComponentKT
+import com.grace.placessearch.common.app.injection.component.PlacesSearchComponent
 import com.grace.placessearch.common.ui.injection.scope.ActivityScope
 import com.grace.placessearch.maps.ui.VenuesMapActivity
 import com.grace.placessearch.maps.ui.VenuesMapActivityOrig
@@ -11,7 +11,7 @@ import com.grace.placessearch.venue.detail.ui.VenueDetailsActivityOrig
 import dagger.Component
 
 @ActivityScope
-@Component(dependencies = [PlacesSearchComponentKT::class])
+@Component(dependencies = [PlacesSearchComponent::class])
 interface ActivityComponent {
 
     fun inject(activity: SearchActivityOrig)

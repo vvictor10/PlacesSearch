@@ -2,8 +2,8 @@ package com.grace.placessearch.data.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-public class Delivery {
+@Deprecated
+public class DeliveryOrig {
 
     @SerializedName("id")
     @Expose
@@ -13,7 +13,7 @@ public class Delivery {
     private String url;
     @SerializedName("provider")
     @Expose
-    private Provider provider;
+    private ProviderOrig provider;
 
     public String getId() {
         return id;
@@ -31,11 +31,11 @@ public class Delivery {
         this.url = url;
     }
 
-    public Provider getProvider() {
+    public ProviderOrig getProvider() {
         return provider;
     }
 
-    public void setProvider(Provider provider) {
+    public void setProvider(ProviderOrig provider) {
         this.provider = provider;
     }
 

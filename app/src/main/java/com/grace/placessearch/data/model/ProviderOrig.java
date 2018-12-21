@@ -2,15 +2,15 @@ package com.grace.placessearch.data.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-public class Provider {
+@Deprecated
+public class ProviderOrig {
 
     @SerializedName("name")
     @Expose
     private String name;
     @SerializedName("icon")
     @Expose
-    private Icon icon;
+    private IconOrig icon;
 
     public String getName() {
         return name;
@@ -20,11 +20,11 @@ public class Provider {
         this.name = name;
     }
 
-    public Icon getIcon() {
+    public IconOrig getIcon() {
         return icon;
     }
 
-    public void setIcon(Icon icon) {
+    public void setIcon(IconOrig icon) {
         this.icon = icon;
     }
 

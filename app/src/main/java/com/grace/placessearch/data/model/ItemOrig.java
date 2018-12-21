@@ -5,8 +5,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
-
-public class Item {
+@Deprecated
+public class ItemOrig {
 
     @SerializedName("id")
     @Expose
@@ -16,7 +16,7 @@ public class Item {
     private String name;
     @SerializedName("categories")
     @Expose
-    private List<Category> categories = new ArrayList<>();
+    private List<CategoryOrig> categories = new ArrayList<>();
     @SerializedName("allDay")
     @Expose
     private boolean allDay;
@@ -37,10 +37,10 @@ public class Item {
     private List<String> images = new ArrayList<>();
     @SerializedName("stats")
     @Expose
-    private Stats stats;
+    private StatsOrig stats;
     @SerializedName("participants")
     @Expose
-    private List<Participant> participants = new ArrayList<>();
+    private List<ParticipantOrig> participants = new ArrayList<>();
     @SerializedName("genres")
     @Expose
     private String genres;
@@ -67,11 +67,11 @@ public class Item {
         this.name = name;
     }
 
-    public List<Category> getCategories() {
+    public List<CategoryOrig> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<Category> categories) {
+    public void setCategories(List<CategoryOrig> categories) {
         this.categories = categories;
     }
 
@@ -123,19 +123,19 @@ public class Item {
         this.images = images;
     }
 
-    public Stats getStats() {
+    public StatsOrig getStats() {
         return stats;
     }
 
-    public void setStats(Stats stats) {
+    public void setStats(StatsOrig stats) {
         this.stats = stats;
     }
 
-    public List<Participant> getParticipants() {
+    public List<ParticipantOrig> getParticipants() {
         return participants;
     }
 
-    public void setParticipants(List<Participant> participants) {
+    public void setParticipants(List<ParticipantOrig> participants) {
         this.participants = participants;
     }
 
