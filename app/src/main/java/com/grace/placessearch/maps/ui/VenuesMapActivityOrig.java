@@ -33,7 +33,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.grace.placessearch.R;
 import com.grace.placessearch.common.PlacesSearchConstants;
 import com.grace.placessearch.data.model.MapPin;
-import com.grace.placessearch.venue.detail.ui.VenueDetailActivity;
+import com.grace.placessearch.venue.detail.ui.VenueDetailsActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -114,7 +114,7 @@ public class VenuesMapActivityOrig extends AppCompatActivity implements
     }
 
     private void onMarkerInfoWindowClicked(Marker marker) {
-        Intent intent = new Intent(this, VenueDetailActivity.class);
+        Intent intent = new Intent(this, VenueDetailsActivity.class);
         intent.putExtra(PlacesSearchConstants.VENUE_ID_EXTRA, marker.getSnippet());
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in, R.anim.fade_out);

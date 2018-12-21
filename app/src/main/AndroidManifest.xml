@@ -36,12 +36,12 @@
         </activity>
 
         <activity
-            android:name=".venue.detail.ui.VenueDetailsActivity"
+            android:name=".venue.detail.ui.VenueDetailsActivityOrig"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".venue.detail.ui.VenueDetailActivity"
+            android:name=".venue.detail.ui.VenueDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
@@ -52,6 +52,8 @@
         <activity
             android:name=".maps.ui.VenuesMapActivityOrig"
             android:theme="@style/AppTheme.NoActionBar.TranslucentFullScreen" />
+
+        <activity android:name=".search.ui.SearchActivityOrig" />
 
         <!-- Services -->
         <service

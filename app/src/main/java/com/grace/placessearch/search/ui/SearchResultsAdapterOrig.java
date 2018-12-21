@@ -24,8 +24,8 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-
-public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdapter.VenueViewHolder> {
+@Deprecated
+public class SearchResultsAdapterOrig extends RecyclerView.Adapter<SearchResultsAdapterOrig.VenueViewHolder> {
 
     private List<Venue> data = new ArrayList<>();
     private VenueListener listener;
@@ -33,7 +33,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
     private Context context;
     private Picasso picasso;
 
-    public SearchResultsAdapter(Context context, VenueListener listener, PlacesSearchPreferenceManager placesPreferenceManager, Picasso picasso) {
+    public SearchResultsAdapterOrig(Context context, VenueListener listener, PlacesSearchPreferenceManager placesPreferenceManager, Picasso picasso) {
         this.context = context;
         this.placesPreferenceManager = placesPreferenceManager;
         this.listener = listener;

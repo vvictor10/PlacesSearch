@@ -33,7 +33,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.grace.placessearch.R
 import com.grace.placessearch.common.PlacesSearchConstants
 import com.grace.placessearch.data.model.MapPin
-import com.grace.placessearch.venue.detail.ui.VenueDetailActivity
+import com.grace.placessearch.venue.detail.ui.VenueDetailsActivity
 import com.squareup.picasso.Picasso
 
 import javax.inject.Inject
@@ -103,7 +103,7 @@ class VenuesMapActivity : AppCompatActivity(), OnMapAndViewReadyListener.OnGloba
     }
 
     private fun onMarkerInfoWindowClicked(marker: Marker) {
-        val intent = Intent(this, VenueDetailActivity::class.java)
+        val intent = Intent(this, VenueDetailsActivity::class.java)
         intent.putExtra(PlacesSearchConstants.VENUE_ID_EXTRA, marker.snippet)
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in, R.anim.fade_out)

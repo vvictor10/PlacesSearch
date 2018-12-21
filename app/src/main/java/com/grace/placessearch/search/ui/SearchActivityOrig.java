@@ -30,7 +30,7 @@ import com.grace.placessearch.common.ui.view.LoadingIndicatorView;
 import com.grace.placessearch.data.model.MapPin;
 import com.grace.placessearch.data.model.Venue;
 import com.grace.placessearch.maps.ui.VenuesMapActivity;
-import com.grace.placessearch.venue.detail.ui.VenueDetailActivity;
+import com.grace.placessearch.venue.detail.ui.VenueDetailsActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -42,11 +42,11 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import timber.log.Timber;
-
-public class SearchActivity extends BaseNavigationActivity implements VenuesContract.View, SearchResultsAdapter.VenueListener {
+@Deprecated
+public class SearchActivityOrig extends BaseNavigationActivity implements VenuesContract.View, SearchResultsAdapter.VenueListener {
 
     protected RecyclerView.Adapter searchResultsAdapter;
-    protected SuggestedSearchRecyclerAdapter suggestedSearchRecyclerAdapter;
+    protected SuggestedSearchResultsAdapter suggestedSearchRecyclerAdapter;
 
     @Bind(R.id.map_fab)
     FloatingActionButton mapFab;
@@ -116,8 +116,8 @@ public class SearchActivity extends BaseNavigationActivity implements VenuesCont
             return false;
         }
     };
-    private SuggestedSearchRecyclerAdapter.SuggestedSearchOnClickListener suggestedSearchItemClickListener =
-            new SuggestedSearchRecyclerAdapter.SuggestedSearchOnClickListener() {
+    private SuggestedSearchResultsAdapter.SuggestedSearchOnClickListener suggestedSearchItemClickListener =
+            new SuggestedSearchResultsAdapter.SuggestedSearchOnClickListener() {
                 @Override
                 public void onSuggestedSearchItemClick(String searchTerm) {
                     Timber.i("SuggestedSearchOnClickListener User Action|%s|%s|%s", "Suggested searches", "Search String", searchTerm);
@@ -280,7 +280,7 @@ public class SearchActivity extends BaseNavigationActivity implements VenuesCont
     private void setupSuggestedSearchResultsRecyclerView() {
         suggestedSearchTermsLayoutManager = new LinearLayoutManager(this);
         suggestedSearchesRecyclerView.setLayoutManager(suggestedSearchTermsLayoutManager);
-        suggestedSearchRecyclerAdapter = new SuggestedSearchRecyclerAdapter(suggestedSearchesRecyclerView, new ArrayList<String>(), suggestedSearchHeader);
+        suggestedSearchRecyclerAdapter = new SuggestedSearchResultsAdapter(suggestedSearchesRecyclerView, new ArrayList<String>(), suggestedSearchHeader);
         suggestedSearchRecyclerAdapter.setClickListeners(suggestedSearchItemClickListener, backgroundTouchListener);
         suggestedSearchesRecyclerView.setAdapter(suggestedSearchRecyclerAdapter);
     }
@@ -304,7 +304,7 @@ public class SearchActivity extends BaseNavigationActivity implements VenuesCont
     }
 
     @Override
-    public void onSearch(List<Venue> venues) {
+    public void onSearch(ArrayList<Venue> venues) {
         displayLoadingIndicator(false);
         if (venues != null && !venues.isEmpty()) {
             displayNoResultsState(false);
@@ -344,7 +344,7 @@ public class SearchActivity extends BaseNavigationActivity implements VenuesCont
 
     @Override
     public void onVenueItemClicked(Venue venue) {
-        Intent intent = new Intent(this, VenueDetailActivity.class);
+        Intent intent = new Intent(this, VenueDetailsActivity.class);
         intent.putExtra(PlacesSearchConstants.VENUE_NAME_EXTRA, venue.getName());
         intent.putExtra(PlacesSearchConstants.VENUE_ID_EXTRA, venue.getId());
         startActivity(intent);
@@ -381,5 +381,4 @@ public class SearchActivity extends BaseNavigationActivity implements VenuesCont
             }
         }
     }
-
 }

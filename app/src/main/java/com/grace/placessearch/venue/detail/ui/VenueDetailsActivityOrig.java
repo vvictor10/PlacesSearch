@@ -50,6 +50,7 @@ import com.grace.placessearch.search.ui.VenuesPresenter;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -62,7 +63,7 @@ import timber.log.Timber;
  * A Map activity displaying the pins passed in the Intent Extra.
  */
 @Deprecated
-public class VenueDetailsActivity extends BaseNavigationActivity implements VenuesContract.View {
+public class VenueDetailsActivityOrig extends BaseNavigationActivity implements VenuesContract.View {
 
     @Bind(R.id.favorite_status)
     public ImageView favoriteStatusImage;
@@ -209,7 +210,7 @@ public class VenueDetailsActivity extends BaseNavigationActivity implements Venu
     }
 
     @Override
-    public void onSearch(List<Venue> venues) {
+    public void onSearch(ArrayList<Venue> venues) {
         // Not applicable
     }
 

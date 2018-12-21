@@ -16,8 +16,8 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-
-public class SuggestedSearchRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+@Deprecated
+public class SuggestedSearchRecyclerAdapterOrig extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int ITEM_TYPE_HEADER = 0;
     private static final int ITEM_TYPE_DATA = 1;
@@ -29,7 +29,7 @@ public class SuggestedSearchRecyclerAdapter extends RecyclerView.Adapter<Recycle
     private RecyclerView recyclerView;
     private String searchInput;
 
-    public SuggestedSearchRecyclerAdapter(RecyclerView recyclerView, List<String> suggestedSearchResults, ViewGroup searchHeader) {
+    public SuggestedSearchRecyclerAdapterOrig(RecyclerView recyclerView, List<String> suggestedSearchResults, ViewGroup searchHeader) {
         this.recyclerView = recyclerView;
         this.suggestedSearchResults = suggestedSearchResults;
         this.searchHeader = searchHeader;
