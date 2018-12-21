@@ -28,7 +28,6 @@ abstract class BaseNavigationActivity : AppCompatActivity(), NavigationView.OnNa
     }
 
     override fun onBackPressed() {
-        //val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
         when (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             true -> drawer_layout.closeDrawer(GravityCompat.START)
             false -> super.onBackPressed()

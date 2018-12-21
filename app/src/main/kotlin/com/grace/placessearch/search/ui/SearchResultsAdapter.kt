@@ -111,7 +111,7 @@ class SearchResultsAdapter(private val context: Context, private val listener: V
             }
             setInitialFavoriteStatus(placesPreferenceManager, data)
 
-            itemView.viewTreeObserver.addOnWindowFocusChangeListener{ hasFocus ->
+            itemView.viewTreeObserver.addOnWindowFocusChangeListener { hasFocus ->
                 if (hasFocus && favoriteStatusNeedsUpdating && venueId != null && venueId == data.id) {
                     refreshFavoriteStatus(data.id, placesPreferenceManager)
                     favoriteStatusNeedsUpdating = false

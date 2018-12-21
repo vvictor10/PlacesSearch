@@ -24,16 +24,16 @@ class LoadingIndicatorView : RelativeLayout {
 
     lateinit var loadingIndicatorAnimation: AnimatorSet
 
-    constructor(context: Context): this(context, null, 0)
+    constructor(context: Context) : this(context, null, 0)
 
-    constructor(context: Context, attrs: AttributeSet): this(context, attrs, 0)
+    constructor(context: Context, attrs: AttributeSet) : this(context, attrs, 0)
 
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int): super(context, attrs, defStyleAttr) {
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
 
         val ta = context.obtainStyledAttributes(attrs, R.styleable.LoadingIndicatorView, 0, 0)
 
-        var smallView : Boolean
-        var shade : Int
+        var smallView: Boolean
+        var shade: Int
         try {
             shade = ta.getInt(R.styleable.LoadingIndicatorView_shade, LIGHT)
             smallView = ta.getBoolean(R.styleable.LoadingIndicatorView_smallView, false)

@@ -12,9 +12,8 @@ import com.grace.placessearch.common.ui.view.ViewUtils
 import kotlinx.android.synthetic.main.suggested_search_header.view.*
 import kotlinx.android.synthetic.main.suggested_search_item.view.*
 import timber.log.Timber
-import java.lang.Exception
 
-class SuggestedSearchResultsAdapter(private val recyclerView: RecyclerView, private var suggestedSearchResults: MutableList<String>, private val searchHeader: View)
+class SuggestedSearchResultsAdapter(private val recyclerView: RecyclerView, private var suggestedSearchResults: MutableList<String>)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {

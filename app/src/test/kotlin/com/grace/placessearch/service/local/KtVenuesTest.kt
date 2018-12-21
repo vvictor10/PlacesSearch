@@ -17,7 +17,7 @@ class KtVenuesTest : KtPlacesTestBase() {
 
     @Test
     fun testTrendingVenues() {
-        val observable = places.trendingVenues
+        val observable = places.trendingVenues()
         val bo = BlockingObservable.from(observable)
         val venuesResponse = bo.first().response().body()
         assertThat(venuesResponse).isNotNull()

@@ -2,12 +2,9 @@ package com.grace.placessearch.common.app
 
 import android.content.Context
 import android.content.SharedPreferences
-
 import com.google.gson.Gson
 import com.grace.placessearch.BuildConfig
 import com.grace.placessearch.common.app.injection.qualifier.ForApplication
-import timber.log.Timber
-
 import javax.inject.Inject
 import javax.inject.Singleton
 

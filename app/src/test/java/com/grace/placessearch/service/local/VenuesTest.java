@@ -19,7 +19,7 @@ public class VenuesTest extends PlacesTestBase {
 
     @Test
     public void testTrendingVenues() {
-        Observable<Result<VenuesResponse>> observable = getPlaces().getTrendingVenues();
+        Observable<Result<VenuesResponse>> observable = getPlaces().trendingVenues();
         BlockingObservable<Result<VenuesResponse>> bo = BlockingObservable.from(observable);
         VenuesResponse venuesResponse = bo.first().response().body();
         assertThat(venuesResponse).isNotNull();

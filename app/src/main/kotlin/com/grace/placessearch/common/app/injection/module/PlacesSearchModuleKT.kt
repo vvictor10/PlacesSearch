@@ -26,9 +26,11 @@ import javax.inject.Singleton
 @Module
 class PlacesSearchModuleKT(private val context: Context) {
 
-    private val CACHE_SIZE = 5 * 1024 * 1024
+    companion object {
+        const val CACHE_SIZE = 5 * 1024 * 1024
+    }
 
-    private val mPlacesApi : PlacesApi by lazy {
+    private val mPlacesApi: PlacesApi by lazy {
         Timber.i("Creating new PlacesRetrofit instance.")
         PlacesApiRetrofit(PlacesSearchEnvironmentEnum.PROD.placesBaseUrl, "20180421",
                 BuildConfig.FOUR_SQUARE_API_CLIENT_ID, BuildConfig.FOUR_SQUARE_API_CLIENT_SECRET, PlacesSearchUtil.latLngOfUserLocation)

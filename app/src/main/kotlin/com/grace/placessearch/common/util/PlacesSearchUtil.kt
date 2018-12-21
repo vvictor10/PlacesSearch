@@ -58,7 +58,7 @@ object PlacesSearchUtil {
         favorites.add(venueId)
 
         preferences.favoriteVenues = Gson().toJson(favorites)
-        preferenceManager.saveFavoriteVenuePreferences( preferences)
+        preferenceManager.saveFavoriteVenuePreferences(preferences)
         Timber.i("Favorite venue %s added", venueId)
     }
 
@@ -85,7 +85,7 @@ object PlacesSearchUtil {
         Timber.i("Favorite venue %s removed", venueId)
 
         preferences.favoriteVenues = Gson().toJson(favorites)
-        preferenceManager.saveFavoriteVenuePreferences( preferences)
+        preferenceManager.saveFavoriteVenuePreferences(preferences)
     }
 
     /**

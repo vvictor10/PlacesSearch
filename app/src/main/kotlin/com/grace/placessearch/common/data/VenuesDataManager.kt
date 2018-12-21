@@ -4,12 +4,10 @@ import com.grace.placessearch.data.model.SuggestedVenuesResponse
 import com.grace.placessearch.data.model.VenueResponse
 import com.grace.placessearch.data.model.VenuesResponse
 import com.grace.placessearch.service.PlacesApi
-
-import javax.inject.Inject
-import javax.inject.Singleton
-
 import retrofit2.adapter.rxjava.Result
 import rx.Observable
+import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * A component to host all business logic associated with Venue data.

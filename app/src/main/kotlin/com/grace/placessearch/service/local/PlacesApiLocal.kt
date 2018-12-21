@@ -52,7 +52,7 @@ class PlacesApiLocal(private val resourcesDirectory: String) : PlacesApi {
                 reader = BufferedReader(FileReader(filePath))
 
                 val buffer = CharArray(1024)
-                var n : Int = reader.read(buffer)
+                var n: Int = reader.read(buffer)
                 while (n != -1) {
                     writer.write(buffer, 0, n)
                     n = reader.read(buffer)

@@ -3,14 +3,11 @@ package com.grace.placessearch.common.service
 import android.app.IntentService
 import android.content.Intent
 import android.util.LruCache
-
 import com.grace.placessearch.common.app.PlacesSearchApplication
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager
 import com.grace.placessearch.common.data.PlacesSearchStartupManager
-
-import javax.inject.Inject
-
 import timber.log.Timber
+import javax.inject.Inject
 
 /**
  * Created by vicsonvictor on 4/21/18.

@@ -14,12 +14,15 @@ object PlacesSearchConstants {
     const val HEART_CROSS_FADE_ANIMATION_DURATION = 150
 
     // Disk cache size used for Picasso - set to 50MB for now.
-    @JvmField val IMAGE_DISK_CACHE_SIZE = DecimalByteUnit.MEGABYTES.toBytes(50).toInt()
+    @JvmField
+    val IMAGE_DISK_CACHE_SIZE = DecimalByteUnit.MEGABYTES.toBytes(50).toInt()
 
     const val CACHE_KEY_TRENDING_VENUES = "TrendingVenuesCache"
 
-    @JvmField val USER_LOCATION_LAT = BuildConfig.USER_LOCATION_LAT.toDouble()
-    @JvmField val USER_LOCATION_LNG = BuildConfig.USER_LOCATION_LNG.toDouble()
+    @JvmField
+    val USER_LOCATION_LAT = BuildConfig.USER_LOCATION_LAT.toDouble()
+    @JvmField
+    val USER_LOCATION_LNG = BuildConfig.USER_LOCATION_LNG.toDouble()
 
     const val MAP_PINS_EXTRA = "MapPinsExtra"
 

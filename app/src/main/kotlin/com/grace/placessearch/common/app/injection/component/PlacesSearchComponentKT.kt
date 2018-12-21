@@ -17,9 +17,6 @@ import javax.inject.Singleton
 @Component(modules = [PlacesSearchModuleKT::class])
 interface PlacesSearchComponentKT {
 
-    // provides
-//    fun provideContext(): Context
-
     fun providePlacesSearchPreferenceManager(): PlacesSearchPreferenceManager
 
     fun provideSearchDataManager(): VenuesDataManager

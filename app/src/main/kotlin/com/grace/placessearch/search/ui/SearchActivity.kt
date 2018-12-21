@@ -43,8 +43,8 @@ class SearchActivity : BaseNavigationActivity(), VenuesContract.View, SearchResu
     @Inject
     lateinit var lruCache: LruCache<Any, Any>
 
-    protected lateinit var searchResultsAdapter: SearchResultsAdapter
-    protected lateinit var suggestedSearchRecyclerAdapter: SuggestedSearchResultsAdapter
+    lateinit var searchResultsAdapter: SearchResultsAdapter
+    lateinit var suggestedSearchRecyclerAdapter: SuggestedSearchResultsAdapter
 
     private lateinit var searchResultsLayoutManager: LinearLayoutManager
     private lateinit var searchInput: String
@@ -56,7 +56,7 @@ class SearchActivity : BaseNavigationActivity(), VenuesContract.View, SearchResu
 
         override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
             // make sure menus are initialized since text watcher is created before menus
-            clear_icon.visibility =  when (s.isNotEmpty()) {
+            clear_icon.visibility = when (s.isNotEmpty()) {
                 true -> View.VISIBLE
                 false -> View.INVISIBLE
             }
@@ -64,8 +64,9 @@ class SearchActivity : BaseNavigationActivity(), VenuesContract.View, SearchResu
             searchInput = s.toString()
 
             when (s.isNotEmpty()) {
-                true -> { displayNoResultsState(false)
-                        venuesPresenter.doSuggestedSearch(s.toString())
+                true -> {
+                    displayNoResultsState(false)
+                    venuesPresenter.doSuggestedSearch(s.toString())
                 }
                 false -> displaySuggestedSearchViews(false)
             }
@@ -79,7 +80,7 @@ class SearchActivity : BaseNavigationActivity(), VenuesContract.View, SearchResu
             true -> {
                 no_results_message.visibility = View.VISIBLE
                 no_results_message.text = String.format(getString(R.string.search_no_results_response),
-                    searchInput)
+                        searchInput)
             }
             false -> no_results_message.visibility = View.INVISIBLE
         }
@@ -266,7 +267,7 @@ class SearchActivity : BaseNavigationActivity(), VenuesContract.View, SearchResu
     private fun setupSuggestedSearchResultsRecyclerView() {
         suggestedSearchTermsLayoutManager = LinearLayoutManager(this)
         suggested_search_list_recycler_view.layoutManager = suggestedSearchTermsLayoutManager
-        suggestedSearchRecyclerAdapter = SuggestedSearchResultsAdapter(suggested_search_list_recycler_view, ArrayList(), suggested_search_header)
+        suggestedSearchRecyclerAdapter = SuggestedSearchResultsAdapter(suggested_search_list_recycler_view, ArrayList())
         suggestedSearchRecyclerAdapter.setClickListeners(suggestedSearchItemClickListener, backgroundTouchListener)
         suggested_search_list_recycler_view.adapter = suggestedSearchRecyclerAdapter
     }
@@ -310,7 +311,7 @@ class SearchActivity : BaseNavigationActivity(), VenuesContract.View, SearchResu
     private fun displaySuggestedSearchViews(show: Boolean) {
         when (show) {
             true -> suggested_searches.visibility = View.VISIBLE
-            false ->             {
+            false -> {
                 suggested_searches.visibility = View.INVISIBLE
                 if (suggestedSearchRecyclerAdapter != null) {
                     suggestedSearchRecyclerAdapter.clearSearchResults()
@@ -318,7 +319,6 @@ class SearchActivity : BaseNavigationActivity(), VenuesContract.View, SearchResu
             }
         }
     }
-
 
     private fun getOnEditorActionListener(): TextView.OnEditorActionListener {
         return TextView.OnEditorActionListener { v, actionId, event ->

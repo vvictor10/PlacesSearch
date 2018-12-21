@@ -1,11 +1,8 @@
 package com.grace.placessearch.common.log
 
 import android.util.Log
-
-import java.util.regex.Matcher
-import java.util.regex.Pattern
-
 import timber.log.Timber
+import java.util.regex.Pattern
 
 /**
  * From the original [Timber.DebugTree].

@@ -13,7 +13,7 @@ import javax.inject.Singleton
 
 @Singleton
 class PlacesSearchStartupManager @Inject
-constructor(lruCache: LruCache<Any, Any>, placesApi : PlacesApi) {
+constructor(lruCache: LruCache<Any, Any>, placesApi: PlacesApi) {
 
     private val lruCache = lruCache
     private val placesApi = placesApi

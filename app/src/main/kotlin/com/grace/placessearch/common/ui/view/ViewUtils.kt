@@ -2,14 +2,12 @@ package com.grace.placessearch.common.ui.view
 
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.content.pm.ResolveInfo
 import android.graphics.Typeface
 import android.net.Uri
 import android.support.customtabs.CustomTabsService
 import android.text.SpannableStringBuilder
 import android.text.style.StyleSpan
-import java.util.Locale
+import java.util.*
 
 /**
  * Created by vicsonvictor on 4/23/18.
@@ -41,7 +39,7 @@ object ViewUtils {
 
         when {
             (startingIndex < 0 || endingIndex < 0) -> return builder.append(text)
-            (startingIndex >= 0 && endingIndex >= 0) ->  {
+            (startingIndex >= 0 && endingIndex >= 0) -> {
                 builder.append(text)
                 builder.setSpan(StyleSpan(Typeface.BOLD), startingIndex, endingIndex, 0)
             }

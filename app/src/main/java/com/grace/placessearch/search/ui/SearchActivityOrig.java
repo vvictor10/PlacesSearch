@@ -280,7 +280,7 @@ public class SearchActivityOrig extends BaseNavigationActivity implements Venues
     private void setupSuggestedSearchResultsRecyclerView() {
         suggestedSearchTermsLayoutManager = new LinearLayoutManager(this);
         suggestedSearchesRecyclerView.setLayoutManager(suggestedSearchTermsLayoutManager);
-        suggestedSearchRecyclerAdapter = new SuggestedSearchResultsAdapter(suggestedSearchesRecyclerView, new ArrayList<String>(), suggestedSearchHeader);
+        suggestedSearchRecyclerAdapter = new SuggestedSearchResultsAdapter(suggestedSearchesRecyclerView, new ArrayList<String>());
         suggestedSearchRecyclerAdapter.setClickListeners(suggestedSearchItemClickListener, backgroundTouchListener);
         suggestedSearchesRecyclerView.setAdapter(suggestedSearchRecyclerAdapter);
     }

@@ -21,24 +21,17 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.TextView
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.LatLngBounds
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import com.grace.placessearch.R
 import com.grace.placessearch.common.PlacesSearchConstants
 import com.grace.placessearch.data.model.MapPin
 import com.grace.placessearch.venue.detail.ui.VenueDetailsActivity
 import com.squareup.picasso.Picasso
-
-import javax.inject.Inject
-
 import timber.log.Timber
+import javax.inject.Inject
 
 /**
  * A Map activity displaying the pins passed in the Intent Extra.
