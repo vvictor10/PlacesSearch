@@ -58,6 +58,7 @@
         <!-- Services -->
         <service
             android:name="com.grace.placessearch.common.service.PlacesSearchStartupIntentService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
             android:exported="false" />
 
     </application>

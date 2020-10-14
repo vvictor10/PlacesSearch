@@ -1,12 +1,12 @@
 package com.grace.placessearch.search.ui
 
 import android.animation.ObjectAnimator
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.grace.placessearch.R
 import com.grace.placessearch.common.ui.view.ViewUtils
 import kotlinx.android.synthetic.main.suggested_search_header.view.*

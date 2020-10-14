@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
 import android.net.Uri
-import android.support.customtabs.CustomTabsService
+import androidx.browser.customtabs.CustomTabsService
 import android.text.SpannableStringBuilder
 import android.text.style.StyleSpan
 import java.util.*

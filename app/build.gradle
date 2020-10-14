@@ -42,7 +42,7 @@ android {
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
         // Project/Build
         buildConfigField "String", "PROJECT_NAME", "\"${projectName}\""
@@ -50,6 +50,11 @@ android {
         buildConfigField "String", "FOUR_SQUARE_API_CLIENT_SECRET", "\"${foursquareapiclientsecret}\""
         buildConfigField "String", "USER_LOCATION_LAT", "\"${userlocationlat}\""
         buildConfigField "String", "USER_LOCATION_LNG", "\"${userlocationlng}\""
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     buildTypes {
@@ -81,16 +86,16 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // support libs
-    implementation "com.android.support:design:${supportLibVersion}"
-    implementation "com.android.support:cardview-v7:${supportLibVersion}"
-    implementation "com.android.support:appcompat-v7:${supportLibVersion}"
-    implementation "com.android.support:recyclerview-v7:${supportLibVersion}"
-    implementation "com.android.support:support-v4:${supportLibVersion}"
-    implementation "com.android.support:cardview-v7:${supportLibVersion}"
-    implementation "com.android.support:customtabs:${supportLibVersion}"
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.browser:browser:1.2.0'
 
     // maps
-    implementation ('com.google.android.gms:play-services-maps:12.0.1') {
+    implementation ('com.google.android.gms:play-services-maps:17.0.0') {
         exclude group: 'com.android.support'
     }
 
@@ -99,6 +104,7 @@ dependencies {
 
     // Butterknife
     implementation 'com.jakewharton:butterknife:7.0.1'
+    implementation 'androidx.drawerlayout:drawerlayout:1.1.1'
     kapt 'com.jakewharton:butterknife:7.0.1'
     annotationProcessor 'com.jakewharton:butterknife:7.0.1'
 
@@ -108,14 +114,14 @@ dependencies {
     implementation 'org.glassfish:javax.annotation:10.0-b28'
 
     // Gson
-    implementation 'com.google.code.gson:gson:2.3.1'
+    implementation 'com.google.code.gson:gson:2.8.5'
 
     // Picasso
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.0.2'
 
     // okhttp
-    implementation 'com.squareup.okhttp3:okhttp:3.6.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.14.1'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.6.0'
 
     // Retrofit
@@ -124,11 +130,11 @@ dependencies {
     implementation 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
 
     // Rx
-    implementation 'io.reactivex:rxjava:1.1.0'
+    implementation 'io.reactivex:rxjava:1.1.1'
     implementation 'io.reactivex:rxandroid:1.1.0'
 
     // Test
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13.1'
     testImplementation 'org.assertj:assertj-core:1.7.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

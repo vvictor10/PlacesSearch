@@ -2,10 +2,6 @@ package com.grace.placessearch.search.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.NavigationView
-import android.support.design.widget.Snackbar
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.Toolbar
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.LruCache
@@ -13,8 +9,12 @@ import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.LinearLayoutManager
 import butterknife.ButterKnife
 import butterknife.OnClick
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import com.grace.placessearch.R
 import com.grace.placessearch.common.PlacesSearchConstants
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager
@@ -256,7 +256,7 @@ class SearchActivity : BaseNavigationActivity(), VenuesContract.View, SearchResu
     private fun setupSearchResultsRecyclerView() {
         searchResultsAdapter = SearchResultsAdapter(this, this, preferenceManager, picasso)
         searchResultsLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        search_results_recycler_view.setLayoutManager(searchResultsLayoutManager)
+        search_results_recycler_view.layoutManager = searchResultsLayoutManager
         search_results_recycler_view.setAdapter(searchResultsAdapter)
     }
 
