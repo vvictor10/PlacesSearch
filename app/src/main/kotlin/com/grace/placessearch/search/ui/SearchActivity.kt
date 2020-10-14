@@ -177,13 +177,12 @@ class SearchActivity : BaseNavigationActivity(), VenuesContract.View, SearchResu
         val mapPins = ArrayList<MapPin>()
         for (i in searchResults.indices) {
             val venue = searchResults[i]
-            if (venue.location != null) {
-                val mapPin = MapPin(venue.id!!, venue.name!!, venue.location!!.lat, venue.location!!.lng, venue.mapPinUrl!!)
-//                mapPin.venueId = venue.id
-//                mapPin.pinName = venue.name
-//                mapPin.lat = venue.location!!.lat
-//                mapPin.lng = venue.location!!.lng
-//                mapPin.imgUrl = venue.mapPinUrl
+            val venueId = venue.id
+            val venueName = venue.name
+            val venueLocation = venue.location
+            val venuePinUrl = venue.mapPinUrl
+            if (venueId != null && venueName != null && venueLocation != null && venuePinUrl != null) {
+                val mapPin = MapPin(venueId, venueName, venueLocation.lat, venueLocation.lat, venuePinUrl)
                 mapPins.add(mapPin)
             }
         }

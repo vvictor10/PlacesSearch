@@ -6,6 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.Result
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import rx.Observable
+import rx.functions.Func1
 import java.io.IOException
 import java.lang.reflect.Type
 
