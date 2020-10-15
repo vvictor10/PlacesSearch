@@ -19,10 +19,17 @@ import com.grace.placessearch.common.app.PlacesSearchApplication
 import com.grace.placessearch.common.data.model.Venue
 import com.grace.placessearch.common.ui.injection.component.ActivityComponent
 import com.grace.placessearch.common.ui.injection.component.DaggerActivityComponent
-import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.custom_toast.view.*
 import kotlinx.android.synthetic.main.search_toolbar.*
 
+/**
+ * To implement dynamic installation of feature modules using the play core library, see:
+ *
+ * https://developer.android.com/guide/playcore/play-feature-delivery
+ *
+ * https://github.com/android/app-bundle-samples/tree/master/DynamicFeatures
+ *
+ */
 abstract class BaseNavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private val activityComponent: ActivityComponent by lazy {
