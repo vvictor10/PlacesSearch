@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/suggested_searches"
+    android:id="@+id/suggested_searches_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
@@ -19,7 +19,7 @@
             android:layout_height="match_parent">
 
             <!-- suggested Search list -->
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/suggested_search_list_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

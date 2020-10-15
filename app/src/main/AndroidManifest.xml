@@ -36,17 +36,13 @@
         </activity>
 
         <activity
-            android:name=".venue.detail.ui.VenueDetailsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
-        <activity
             android:name=".maps.ui.VenuesMapActivity"
             android:theme="@style/AppTheme.NoActionBar.TranslucentFullScreen" />
 
         <!-- Services -->
         <service
             android:name="com.grace.placessearch.common.service.PlacesSearchStartupIntentService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
             android:exported="false" />
 
     </application>

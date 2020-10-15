@@ -30,5 +30,6 @@ On the main screen, when search results are visible, the screen should include a
     <string name="map_not_ready">Map is not ready yet</string>
 
     <string name="unavailable">Unavailable</string>
+    <string name="title_placedetail">Place Detail</string>
 
 </resources>
