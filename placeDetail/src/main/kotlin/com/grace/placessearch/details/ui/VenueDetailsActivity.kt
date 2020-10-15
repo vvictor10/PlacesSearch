@@ -1,4 +1,4 @@
-package com.grace.placessearch.venue.detail.ui
+package com.grace.placessearch.details.ui
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -6,28 +6,34 @@ import android.content.Intent
 import android.graphics.Paint
 import android.net.Uri
 import android.os.Bundle
-import androidx.browser.customtabs.CustomTabsIntent
-import androidx.core.content.ContextCompat
 import android.util.LruCache
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.ImageView
 import androidx.appcompat.widget.Toolbar
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.content.ContextCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import butterknife.ButterKnife
 import com.google.android.material.navigation.NavigationView
 import com.grace.placessearch.R
 import com.grace.placessearch.common.PlacesSearchConstants
+import com.grace.placessearch.common.app.PlacesSearchApplication
 import com.grace.placessearch.common.app.PlacesSearchPreferenceManager
 import com.grace.placessearch.common.data.model.Category
 import com.grace.placessearch.common.data.model.Venue
 import com.grace.placessearch.common.ui.BaseNavigationActivity
 import com.grace.placessearch.common.ui.view.ViewUtils
 import com.grace.placessearch.common.util.PlacesSearchUtil
+import com.grace.placessearch.details.injection.DaggerVenueDetailsComponent
+import com.grace.placessearch.details.injection.VenueDetailsComponent
 import com.grace.placessearch.search.ui.VenuesContract
 import com.grace.placessearch.search.ui.VenuesPresenter
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_venue_details.drawer_layout
+import kotlinx.android.synthetic.main.activity_venue_details.nav_view
 import kotlinx.android.synthetic.main.app_bar_venue_details.*
 import kotlinx.android.synthetic.main.content_venue_details.*
 import timber.log.Timber
@@ -53,10 +59,10 @@ class VenueDetailsActivity : BaseNavigationActivity(), VenuesContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_venue_details)
+        setContentView(com.grace.placessearch.details.R.layout.activity_venue_details)
         ButterKnife.bind(this)
 
-        component().inject(this)
+        venueDetailsComponent().inject(this)
 
         setupNavigationView()
 
@@ -64,7 +70,7 @@ class VenueDetailsActivity : BaseNavigationActivity(), VenuesContract.View {
 
         initToolbar(toolbar)
 
-        val navigationView = findViewById<View>(R.id.nav_view) as NavigationView
+        val navigationView = findViewById<View>(com.grace.placessearch.details.R.id.nav_view) as NavigationView
         navigationView.setNavigationItemSelectedListener(this)
 
         mVenuesPresenter.bindView(this)
@@ -146,6 +152,22 @@ class VenueDetailsActivity : BaseNavigationActivity(), VenuesContract.View {
             actionBar.setDisplayShowHomeEnabled(true)
         }
         toolbar.setNavigationIcon(R.drawable.appbar_back_white)
+    }
+
+    override fun getNavigationView(): NavigationView {
+        return nav_view
+    }
+
+    override fun getDrawerLayout(): DrawerLayout {
+        return drawer_layout
+    }
+
+    private fun venueDetailsComponent(): VenueDetailsComponent {
+        // Gets appComponent from MyApplication available in the base Gradle module
+        val appComponent = (applicationContext as PlacesSearchApplication).component()
+
+        // Creates a new instance of VenueDetailsComponent
+        return DaggerVenueDetailsComponent.factory().create(appComponent)
     }
 
     private fun setViewHeight(view: View, viewHeight: Int) {

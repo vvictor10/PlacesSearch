@@ -4,7 +4,6 @@ import com.grace.placessearch.common.app.injection.component.PlacesSearchCompone
 import com.grace.placessearch.common.ui.injection.scope.ActivityScope
 import com.grace.placessearch.maps.ui.VenuesMapActivity
 import com.grace.placessearch.search.ui.SearchActivity
-import com.grace.placessearch.venue.detail.ui.VenueDetailsActivity
 import dagger.Component
 
 @ActivityScope
@@ -15,5 +14,4 @@ interface ActivityComponent {
 
     fun inject(activity: VenuesMapActivity)
 
-    fun inject(activity: VenueDetailsActivity)
 }

@@ -10,6 +10,7 @@ import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import butterknife.ButterKnife
 import butterknife.OnClick
@@ -22,8 +23,8 @@ import com.grace.placessearch.common.data.model.MapPin
 import com.grace.placessearch.common.data.model.Venue
 import com.grace.placessearch.common.ui.BaseNavigationActivity
 import com.grace.placessearch.maps.ui.VenuesMapActivity
-import com.grace.placessearch.venue.detail.ui.VenueDetailsActivity
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.app_bar_search.*
 import kotlinx.android.synthetic.main.content_search.*
 import kotlinx.android.synthetic.main.search_toolbar.*
@@ -32,6 +33,11 @@ import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
+/**
+ *  Loading and referring to classes in the feature module.
+ *
+ *  https://github.com/googlesamples/android-dynamic-code-loading
+ */
 class SearchActivity : BaseNavigationActivity(), VenuesContract.View, SearchResultsAdapter.VenueListener {
 
     @Inject
@@ -242,12 +248,21 @@ class SearchActivity : BaseNavigationActivity(), VenuesContract.View, SearchResu
                 .setAction("Action", null).show()
     }
 
+    override fun getNavigationView(): NavigationView {
+        return nav_view
+    }
+
+    override fun getDrawerLayout(): DrawerLayout {
+        return drawer_layout
+    }
+
     override fun onVenueItemClicked(venue: Venue) {
-        val intent = Intent(this, VenueDetailsActivity::class.java)
-        intent.putExtra(PlacesSearchConstants.VENUE_NAME_EXTRA, venue.name)
-        intent.putExtra(PlacesSearchConstants.VENUE_ID_EXTRA, venue.id)
-        startActivity(intent)
-        overridePendingTransition(R.anim.slide_in, R.anim.fade_out)
+        goToVenueDetailActivity(venue)
+//        val intent = Intent(this, VenueDetailsActivity::class.java)
+//        intent.putExtra(PlacesSearchConstants.VENUE_NAME_EXTRA, venue.name)
+//        intent.putExtra(PlacesSearchConstants.VENUE_ID_EXTRA, venue.id)
+//        startActivity(intent)
+//        overridePendingTransition(R.anim.slide_in, R.anim.fade_out)
     }
 
     /**

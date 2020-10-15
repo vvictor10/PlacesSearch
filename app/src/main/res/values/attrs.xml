@@ -1,21 +1,5 @@
 <resources>
 
-    <!--<declare-styleable name="LoadingIndicatorViewOrig">-->
-        <!--<attr name="shade" format="enum">-->
-            <!--<enum name="dark" value="0" />-->
-            <!--<enum name="light" value="1" />-->
-            <!--<enum name="search" value="2" />-->
-            <!--<enum name="pdp" value="3" />-->
-            <!--<enum name="explore" value="4" />-->
-            <!--<enum name="cart" value="5" />-->
-            <!--<enum name="pdpAddToCart" value="6" />-->
-            <!--<enum name="transparent" value="7" />-->
-            <!--<enum name="filter" value="8" />-->
-            <!--<enum name="pattern" value="9" />-->
-        <!--</attr>-->
-        <!--<attr name="smallView" format="boolean" />-->
-    <!--</declare-styleable>-->
-
     <declare-styleable name="LoadingIndicatorView">
         <attr name="shade" format="enum">
             <enum name="dark" value="0" />
@@ -31,6 +15,5 @@
         </attr>
         <attr name="smallView" format="boolean" />
     </declare-styleable>
-
 
 </resources>

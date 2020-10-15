@@ -40,10 +40,10 @@
 <!--            android:screenOrientation="portrait"-->
 <!--            android:theme="@style/AppTheme.NoActionBar" />-->
 
-        <activity
-            android:name=".venue.detail.ui.VenueDetailsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+<!--        <activity-->
+<!--            android:name=".details.VenueDetailsActivity"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:theme="@style/AppTheme.NoActionBar" />-->
 
         <activity
             android:name=".maps.ui.VenuesMapActivity"

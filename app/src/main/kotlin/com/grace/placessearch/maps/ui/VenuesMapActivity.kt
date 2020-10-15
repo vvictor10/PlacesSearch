@@ -28,7 +28,7 @@ import com.google.android.gms.maps.model.*
 import com.grace.placessearch.R
 import com.grace.placessearch.common.PlacesSearchConstants
 import com.grace.placessearch.common.data.model.MapPin
-import com.grace.placessearch.venue.detail.ui.VenueDetailsActivity
+//import com.grace.placessearch.details.VenueDetailsActivity
 import com.squareup.picasso.Picasso
 import timber.log.Timber
 import javax.inject.Inject
@@ -96,10 +96,10 @@ class VenuesMapActivity : AppCompatActivity(), OnMapAndViewReadyListener.OnGloba
     }
 
     private fun onMarkerInfoWindowClicked(marker: Marker) {
-        val intent = Intent(this, VenueDetailsActivity::class.java)
-        intent.putExtra(PlacesSearchConstants.VENUE_ID_EXTRA, marker.snippet)
-        startActivity(intent)
-        overridePendingTransition(R.anim.slide_in, R.anim.fade_out)
+//        val intent = Intent(this, com.grace.placessearch.details.VenueDetailsActivity::class.java)
+//        intent.putExtra(PlacesSearchConstants.VENUE_ID_EXTRA, marker.snippet)
+//        startActivity(intent)
+//        overridePendingTransition(R.anim.slide_in, R.anim.fade_out)
     }
 
     private inner class InfoWindowAdapter internal constructor() : GoogleMap.InfoWindowAdapter {

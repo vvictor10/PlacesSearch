@@ -1,12 +1,12 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 ext {
     compileSdkVersion = 29
-    buildToolsVersion = '27.0.3'
+    buildToolsVersion = '29.0.2'
     targetSdkVersion = 30
     androidxAppCompatVersion = '1.0.0'
     playServicesLibVersion = '11.4.0'
     minSdkVersion = 23
-    daggerVersion = '2.6.1'
+    daggerVersion = '2.22'
 }
 
 buildscript {

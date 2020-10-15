@@ -1,6 +1,7 @@
 package com.grace.placessearch.common.ui
 
 import android.content.Context
+import android.content.Intent
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
@@ -11,8 +12,11 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import com.grace.placessearch.BuildConfig
 import com.grace.placessearch.R
+import com.grace.placessearch.common.PlacesSearchConstants
 import com.grace.placessearch.common.app.PlacesSearchApplication
+import com.grace.placessearch.common.data.model.Venue
 import com.grace.placessearch.common.ui.injection.component.ActivityComponent
 import com.grace.placessearch.common.ui.injection.component.DaggerActivityComponent
 import kotlinx.android.synthetic.main.activity_search.*
@@ -28,8 +32,8 @@ abstract class BaseNavigationActivity : AppCompatActivity(), NavigationView.OnNa
     }
 
     override fun onBackPressed() {
-        when (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-            true -> drawer_layout.closeDrawer(GravityCompat.START)
+        when (getDrawerLayout().isDrawerOpen(GravityCompat.START)) {
+            true -> getDrawerLayout().closeDrawer(GravityCompat.START)
             false -> super.onBackPressed()
         }
     }
@@ -37,7 +41,7 @@ abstract class BaseNavigationActivity : AppCompatActivity(), NavigationView.OnNa
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home, R.id.nav_settings, R.id.nav_favorites, R.id.nav_explore -> {
-                drawer_layout.openDrawer(GravityCompat.START)  // OPEN DRAWER
+                getDrawerLayout().openDrawer(GravityCompat.START)  // OPEN DRAWER
                 return true
             }
         }
@@ -46,7 +50,7 @@ abstract class BaseNavigationActivity : AppCompatActivity(), NavigationView.OnNa
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
-        drawer_layout.closeDrawer(GravityCompat.START)
+        getDrawerLayout().closeDrawer(GravityCompat.START)
         when (item.itemId) {
             R.id.nav_favorites, R.id.nav_explore, R.id.nav_settings -> {
                 displayCustomToast("Under construction. Coming soon!")
@@ -56,15 +60,15 @@ abstract class BaseNavigationActivity : AppCompatActivity(), NavigationView.OnNa
         return true
     }
 
-    fun component(): ActivityComponent {
+    open fun component(): ActivityComponent {
         return activityComponent
     }
 
     protected fun setupDrawerListeners() {
         val toggle = ActionBarDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawer_layout.addDrawerListener(toggle)
-        drawer_layout.addDrawerListener(object : DrawerLayout.DrawerListener {
+                this, getDrawerLayout(), toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        getDrawerLayout().addDrawerListener(toggle)
+        getDrawerLayout().addDrawerListener(object : DrawerLayout.DrawerListener {
             override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
                 hideKeyboard()
             }
@@ -104,8 +108,8 @@ abstract class BaseNavigationActivity : AppCompatActivity(), NavigationView.OnNa
     }
 
     protected fun setupNavigationView() {
-        val menu = nav_view.menu
-        if (menu?.getItem(1) != null) {
+        val menu = getNavigationView().menu
+        if (menu.getItem(1) != null) {
             menu.getItem(1).isChecked = true
         }
     }
@@ -130,5 +134,35 @@ abstract class BaseNavigationActivity : AppCompatActivity(), NavigationView.OnNa
         toast.duration = Toast.LENGTH_SHORT
         toast.view = layout
         toast.show()
+    }
+
+    protected fun goToVenueDetailActivity(venue: Venue) {
+        Intent().setClassName(BuildConfig.APPLICATION_ID, VENUE_DETAIL_ACTIVITY_CLASSNAME)
+                .putExtra(PlacesSearchConstants.VENUE_NAME_EXTRA, venue.name)
+                .putExtra(PlacesSearchConstants.VENUE_ID_EXTRA, venue.id)
+                .also {
+                    startActivity(it)
+                }
+
+        overridePendingTransition(R.anim.slide_in, R.anim.fade_out)
+
+//        val intent = Intent(this, VENUE_DETAIL_ACTIVITY_CLASSNAME)
+//        intent.putExtra(PlacesSearchConstants.VENUE_NAME_EXTRA, venue.name)
+//        intent.putExtra(PlacesSearchConstants.VENUE_ID_EXTRA, venue.id)
+//        startActivity(intent)
+//        overridePendingTransition(R.anim.slide_in, R.anim.fade_out)
+    }
+
+    abstract fun getNavigationView(): NavigationView
+
+    abstract fun getDrawerLayout(): DrawerLayout
+
+    companion object {
+        private const val PACKAGE_NAME = "com.google.android.samples.dynamicfeatures.ondemand"
+
+        private const val VENUE_DETAIL_PACKAGE_NAME = "com.grace.placessearch.details.ui"
+        
+        private const val VENUE_DETAIL_ACTIVITY_CLASSNAME = "$VENUE_DETAIL_PACKAGE_NAME.VenueDetailsActivity"
+
     }
 }

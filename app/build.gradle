@@ -50,6 +50,7 @@ android {
         buildConfigField "String", "FOUR_SQUARE_API_CLIENT_SECRET", "\"${foursquareapiclientsecret}\""
         buildConfigField "String", "USER_LOCATION_LAT", "\"${userlocationlat}\""
         buildConfigField "String", "USER_LOCATION_LNG", "\"${userlocationlng}\""
+
     }
 
     compileOptions {
@@ -70,11 +71,21 @@ android {
         enabled = true
     }
 
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
     sourceSets {
-        main { java.srcDirs = ['src/main/java', 'src/main/kotlin'] }
+        main { java.srcDirs = ['src/main/kotlin'] }
         test.java.srcDirs += 'src/test/kotlin'
         //androidTest.java.srcDirs += 'src/androidTest/kotlin'
     }
+
+    // Specifies feature modules that have a dependency on this base module.
+    dynamicFeatures = [':placeDetail']
 
 }
 
@@ -109,8 +120,8 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife:7.0.1'
 
     // Dagger
-    implementation "com.google.dagger:dagger:2.6.1"
-    kapt "com.google.dagger:dagger-compiler:2.6.1"
+    implementation "com.google.dagger:dagger:2.22"
+    kapt "com.google.dagger:dagger-compiler:2.22"
     implementation 'org.glassfish:javax.annotation:10.0-b28'
 
     // Gson
